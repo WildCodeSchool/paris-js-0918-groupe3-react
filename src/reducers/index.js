@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import myReducer from './myReducer';
+import newOfferReducer from './newOfferReducer';
+
 
 
 export default combineReducers({
-  stateName: myReducer,
+  newOffer: newOfferReducer
   //Add here other state names for each reducer
 });
