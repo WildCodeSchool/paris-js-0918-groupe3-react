@@ -35,10 +35,11 @@ export const postNewOffer = (e) => dispatch => {
   const url = `${domain}api/offers/${id_companies}?questions=${questionsList}`;
   console.log(url)
   axios.post(url, body)
-    .then(res => 
+    .then(res => {
+      alert('Nouvelle offre correctement postée.')
       dispatch({
       type: POST_NEW_OFFER,
       })
-    )
+    })
     .catch(err => {throw err}) 
 };
