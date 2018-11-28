@@ -1,8 +1,7 @@
-import { GET_ORIGINAL_QUESTIONS } from '../actions/types';
+import { GET_ORIGINAL_QUESTIONS, POST_NEW_OFFER } from '../actions/types';
 
 const initialState = {
   questionsList: [],
-  //Write here your state properties for this reducer with there initial value
 };
 
 export default function (state = initialState, action) {
@@ -12,12 +11,9 @@ export default function (state = initialState, action) {
         ...state,
         questionsList: action.questionsList,
       };
-    // case MY_ACTION_TYPE2:
-    //   return {
-    //     ...state,
-    //     stateProperty: action.property,
-    //   };
+    case POST_NEW_OFFER:
+      return state;
     default: 
       return state;
-  }
-}
+  };
+};
