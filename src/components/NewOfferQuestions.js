@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getOriginalQuestions } from "../actions/newOfferQuestions";
+import {
+  getOriginalQuestions,
+  postNewQuestion
+} from "../actions/newOfferActions";
 
 class NewOfferQuestions extends Component {
   componentDidMount() {
@@ -10,10 +13,12 @@ class NewOfferQuestions extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     return (
       <div>
         {this.props.questionsList.map(e => (
-          <p key = {e.id}>{e.text}</p>
+          <p key={e.id}>{e.text}</p>
         ))}
       </div>
     );
@@ -21,11 +26,10 @@ class NewOfferQuestions extends Component {
 }
 
 const mapStateToProps = state => ({
-  questionsList: state.getQuestions.questionsList
-  //add here the props you need from the store state
+  questionsList: state.newOffer.questionsList
 });
 
 export default connect(
   mapStateToProps,
-  { getOriginalQuestions }
+  { getOriginalQuestions, postNewQuestion }
 )(NewOfferQuestions);
