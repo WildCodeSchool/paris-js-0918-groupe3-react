@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
-import newOfferReducer from './newOfferReducer';
-
-
+import getQuestionsReducer from './getQuestionsReducer';
 
 export default combineReducers({
-  newOffer: newOfferReducer
+  getQuestions : getQuestionsReducer
   //Add here other state names for each reducer
 });

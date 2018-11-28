@@ -1,29 +1,22 @@
 import React, { Component } from 'react';
-// import NewOfferForm from './NewOfferForm';
-// import NewOfferQuestions from './NewOfferQuestions';
-// import NewQuestion from './NewQuestion';
-// import OrangeButton from './OrangeButton';
-import { connect } from 'react-redux';
-import { getOriginalQuestions } from '../actions/newOfferActions';
+// import { connect } from 'react-redux';
+import NewOfferQuestions from './NewOfferQuestions';
 
-
- class NewOfferContainer extends Component {
+class NewOfferContainer extends Component {
   render() {
     return (
-      <div className="NewOfferContainer">
-        <h2>Poster une offre</h2>
-          {/* <NewOfferForm/> */}
-          {/* <NewOfferQuestions/> */}
-          {/* <NewQuestion/> */}
-          {/* <OrangeButton/> */}
+      <div>
+        <NewOfferQuestions />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  questionsList : state.newOffer.questionsList,
-  //add here the props you need from the store state
-});
+export default NewOfferContainer;
 
-export default connect(mapStateToProps, { getOriginalQuestions })(NewOfferContainer);
+// const mapStateToProps = state => ({
+//     propName: state.stateName.stateProperty,
+//     //add here the props you need from the store state
+//   });
+  
+//   export default connect(mapStateToProps, {  })(NewOfferContainer)
