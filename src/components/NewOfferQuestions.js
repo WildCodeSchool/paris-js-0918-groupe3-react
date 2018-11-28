@@ -4,11 +4,9 @@ import { getOriginalQuestions } from '../actions/newOfferActions';
 
 import NewOfferQuestion from './NewOfferQuestion';
 
+class NewOfferQuestions extends Component {
 
-
- class NewOfferQUestions extends Component {
-
-  componentWillMount() {
+  componentDidMount() {
     this.props.getOriginalQuestions();
   }
 
@@ -17,7 +15,7 @@ import NewOfferQuestion from './NewOfferQuestion';
     return (
       <div className="NewOfferQuestions">
         <h3>Questions diponibles</h3>
-        <fieldset name='questionsList' className='questionsList'>
+        <div name='questionsList' className='questionsList'>
           {questionsList.map(q => 
             <NewOfferQuestion 
               key={q.id}
@@ -25,7 +23,7 @@ import NewOfferQuestion from './NewOfferQuestion';
               text={q.text}
             />
           )}
-        </fieldset>
+        </div>
       </div>
     )
   }
@@ -36,4 +34,4 @@ const mapStateToProps = state => ({
   //add here the props you need from the store state
 });
 
-export default connect(mapStateToProps, { getOriginalQuestions })(NewOfferQUestions);
+export default connect(mapStateToProps, { getOriginalQuestions })(NewOfferQuestions);
