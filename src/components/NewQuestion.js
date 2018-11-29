@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postNewQuestion } from "../actions/newOfferActions";
 
+import './NewQuestion.css';
+
 class NewQuestion extends Component {
   state = {
     newQuestion: ""
@@ -19,7 +21,7 @@ class NewQuestion extends Component {
       <div className="NewQuestion">
         <input value={newQuestion} onChange={this.handleChange} />
         <button onClick={() => this.props.postNewQuestion(newQuestion)}>
-          Ajouter Question
+          &nbsp;+&nbsp;
         </button>
       </div>
     );

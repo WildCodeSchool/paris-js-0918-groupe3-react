@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './OrangeButton.css';
+
  class OrangeButton extends Component {
   render() {
     const { text } = this.props;
