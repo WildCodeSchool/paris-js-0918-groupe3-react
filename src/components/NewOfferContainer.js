@@ -1,24 +1,30 @@
-import React, { Component } from "react";
-// import { connect } from 'react-redux';
-import NewOfferQuestions from "./NewOfferQuestions";
+import React, { Component } from 'react';
+
+import { connect } from 'react-redux';
+import { postNewOffer } from '../actions/newOfferActions';
+import NewOfferForm from './NewOfferForm';
 import NewQuestion from "./NewQuestion";
 
 class NewOfferContainer extends Component {
+
+  submit = (values) => {
+    this.props.postNewOffer(values);
+  }
+
   render() {
     return (
-      <div>
-        <NewOfferQuestions />
-        <NewQuestion />
+      <div className="NewOfferContainer">
+        <h2>Poster une offre</h2>
+          <NewOfferForm onSubmit = {this.submit} />
+          <NewQuestion />
       </div>
     );
-  }
-}
+  };
+};
 
-export default NewOfferContainer;
+const mapStateToProps = state => ({
+  questionsList : state.newOffer.questionsList,
+});
 
-// const mapStateToProps = state => ({
-//     propName: state.stateName.stateProperty,
-//     //add here the props you need from the store state
-//   });
+export default connect(mapStateToProps, { postNewOffer })(NewOfferContainer);
 
-//   export default connect(mapStateToProps, {  })(NewOfferContainer)

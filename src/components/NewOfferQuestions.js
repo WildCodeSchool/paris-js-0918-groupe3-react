@@ -1,35 +1,36 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import {
-  getOriginalQuestions,
-  postNewQuestion
-} from "../actions/newOfferActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getOriginalQuestions } from '../actions/newOfferActions';
+
+import NewOfferQuestion from './NewOfferQuestion';
 
 class NewOfferQuestions extends Component {
-  componentDidMount() {
-    console.log("va dans didmount");
 
+  componentDidMount() {
     this.props.getOriginalQuestions();
   }
 
   render() {
-    console.log(this.props);
-
+    const { questionsList } = this.props;
     return (
-      <div>
-        {this.props.questionsList.map(e => (
-          <p key={e.id}>{e.text}</p>
-        ))}
+      <div className="NewOfferQuestions">
+        <h3>Questions diponibles</h3>
+        <div name='questionsList' className='questionsList'>
+          {questionsList.map(q => 
+            <NewOfferQuestion 
+              key={q.id}
+              id={q.id}
+              text={q.text}
+            />
+          )}
+        </div>
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => ({
-  questionsList: state.newOffer.questionsList
+  questionsList : state.newOffer.questionsList,
 });
 
-export default connect(
-  mapStateToProps,
-  { getOriginalQuestions, postNewQuestion }
-)(NewOfferQuestions);
+export default connect(mapStateToProps, { getOriginalQuestions })(NewOfferQuestions);

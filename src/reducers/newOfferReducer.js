@@ -1,7 +1,7 @@
-import { GET_ORIGINAL_QUESTIONS, POST_NEW_QUESTION } from "../actions/types";
+import { GET_ORIGINAL_QUESTIONS, POST_NEW_QUESTION, POST_NEW_OFFER } from "../actions/types";
 
 const initialState = {
-  questionsList: []
+  questionsList: [],
 };
 
 export default function(state = initialState, action) {
@@ -16,7 +16,9 @@ export default function(state = initialState, action) {
         ...state,
         questionsList: state.questionsList.concat(action.newQuestion)
       };
-    default:
+    case POST_NEW_OFFER:
+      return state;
+    default: 
       return state;
   }
-}
+};
