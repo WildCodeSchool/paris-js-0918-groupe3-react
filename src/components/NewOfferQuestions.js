@@ -31,7 +31,6 @@ class NewOfferQuestions extends Component {
 
 const mapStateToProps = state => ({
   questionsList : state.newOffer.questionsList,
-  //add here the props you need from the store state
 });
 
 export default connect(mapStateToProps, { getOriginalQuestions })(NewOfferQuestions);

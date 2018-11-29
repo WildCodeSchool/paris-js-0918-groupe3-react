@@ -1,22 +1,35 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { postNewOffer } from '../actions/newOfferActions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { postNewQuestion } from "../actions/newOfferActions";
 
+class NewQuestion extends Component {
+  state = {
+    newQuestion: ""
+  };
 
- class NewQuestion extends Component {
+  handleChange = e => {
+    this.setState({
+      newQuestion: e.target.value
+    });
+  };
 
   render() {
+    const { newQuestion } = this.state;
     return (
       <div className="NewQuestion">
-        
+        <input value={newQuestion} onChange={this.handleChange} />
+        <button onClick={() => this.props.postNewQuestion(newQuestion)}>
+          Ajouter Question
+        </button>
       </div>
-    )
+    );
   }
 }
-
 const mapStateToProps = state => ({
-  questionsList : state.newOffer.questionsList,
-  //add here the props you need from the store state
+  questionsList: state.newOffer.questionsList
 });
 
-export default connect(mapStateToProps, { postNewOffer })(NewQuestion);
+export default connect(
+  mapStateToProps,
+  { postNewQuestion }
+)(NewQuestion);

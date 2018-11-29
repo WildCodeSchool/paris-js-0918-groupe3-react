@@ -1,4 +1,4 @@
-import { GET_ORIGINAL_QUESTIONS, POST_NEW_OFFER } from "./types";
+import { GET_ORIGINAL_QUESTIONS, POST_NEW_OFFER, POST_NEW_QUESTION } from "./types";
 import axios from "axios";
 
 const domain = process.env.REACT_APP_DOMAIN_NAME;
@@ -12,6 +12,17 @@ export const getOriginalQuestions = () => dispatch => {
     })}
   );
 };
+
+
+export const postNewQuestion = (newQuestion) => dispatch => {
+  const url = `${domain}api/questions/`;
+  const body = {text: newQuestion}
+  axios.post(url, body).then(res =>
+    dispatch({
+      type: POST_NEW_QUESTION,
+      newQuestion: res.data
+    })
+  );
 
 export const postNewOffer = (values) => dispatch => {
   const { title, contract_type, place, description, is_published } = values;

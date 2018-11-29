@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postNewOffer } from '../actions/newOfferActions';
 import NewOfferForm from './NewOfferForm';
+import NewQuestion from "./NewQuestion";
 
 class NewOfferContainer extends Component {
 
@@ -15,6 +16,7 @@ class NewOfferContainer extends Component {
       <div className="NewOfferContainer">
         <h2>Poster une offre</h2>
           <NewOfferForm onSubmit = {this.submit} />
+          <NewQuestion />
       </div>
     );
   };
@@ -22,7 +24,7 @@ class NewOfferContainer extends Component {
 
 const mapStateToProps = state => ({
   questionsList : state.newOffer.questionsList,
-  // values : state.form.newOffer.values,
 });
 
 export default connect(mapStateToProps, { postNewOffer })(NewOfferContainer);
+
