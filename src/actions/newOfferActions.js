@@ -23,6 +23,7 @@ export const postNewQuestion = (newQuestion) => dispatch => {
       newQuestion: res.data
     })
   );
+}
 
 export const postNewOffer = (values) => dispatch => {
   const { title, contract_type, place, description, is_published } = values;
@@ -30,10 +31,9 @@ export const postNewOffer = (values) => dispatch => {
   const questionsList = [];
   for (let prop in values) {
     if (prop.includes('question') && values[prop]){
-      questionsList.push(prop.split('').pop());
+      questionsList.push(prop.substr(8));
     }
   }
-  console.log('questionsList', questionsList)
   const body = {
     title,
     contract_type,
@@ -42,7 +42,6 @@ export const postNewOffer = (values) => dispatch => {
     is_published,
   }
   const url = `${domain}api/offers/${id_companies}?questions=${questionsList}`;
-  console.log(url)
   axios.post(url, body)
     .then(res => {
       alert('Nouvelle offre correctement postée.')
@@ -51,4 +50,4 @@ export const postNewOffer = (values) => dispatch => {
       })
     })
     .catch(err => {throw err}) 
-};
+}
