@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import newOfferReducer from './newOfferReducer';
 
 
 
 export default combineReducers({
-  newOffer: newOfferReducer
-  //Add here other state names for each reducer
+  newOffer: newOfferReducer,
+  form: formReducer,
 });

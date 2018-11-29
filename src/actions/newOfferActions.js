@@ -3,9 +3,6 @@ import axios from "axios";
 
 const domain = process.env.REACT_APP_DOMAIN_NAME;
 
-/**
- * comment your function
- */
 export const getOriginalQuestions = () => dispatch => {
   const url = `${domain}api/questions/originals`;
   axios.get(url).then(res =>{
@@ -16,21 +13,22 @@ export const getOriginalQuestions = () => dispatch => {
   );
 };
 
-export const postNewOffer = (e) => dispatch => {
-  const questionsAvailable = e.target.elements.questionsList.elements;
-  const { title, contract_type, place, description, is_published } = e.target.elements;
+export const postNewOffer = (values) => dispatch => {
+  const { title, contract_type, place, description, is_published } = values;
   const id_companies = 1;
   const questionsList = [];
-  for (let i = 0; i < questionsAvailable.length; i++) {
-    if (questionsAvailable[i].checked)
-      questionsList.push(questionsAvailable[i].value)
+  for (let prop in values) {
+    if (prop.includes('question') && values[prop]){
+      questionsList.push(prop.split('').pop());
+    }
   }
+  console.log('questionsList', questionsList)
   const body = {
-    title : title.value,
-    contract_type : contract_type.value,
-    place : place.value,
-    description : description.value,
-    is_published : is_published.checked,
+    title,
+    contract_type,
+    place,
+    description,
+    is_published,
   }
   const url = `${domain}api/offers/${id_companies}?questions=${questionsList}`;
   console.log(url)
