@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Field } from 'redux-form';
 
  class NewOfferQUestion extends Component {
   render() {
-    const { id, text } = this.props;
+    const { id, text, handleBoxChange } = this.props;
     return (
       <div className="NewOfferQuestion">
-        <Field component="input" type='checkbox' name={`question${id}`} value={id} />
+        <input type='checkbox' name={`question${id}`} value={id} onChange={handleBoxChange} />
         <span>{text}</span>
       </div>
     )

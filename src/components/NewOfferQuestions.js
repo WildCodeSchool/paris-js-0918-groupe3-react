@@ -11,7 +11,7 @@ class NewOfferQuestions extends Component {
   }
 
   render() {
-    const { questionsList } = this.props;
+    const { questionsList, handleBoxChange } = this.props;
     return (
       <div className="NewOfferQuestions">
         <h3>Questions diponibles</h3>
@@ -21,6 +21,7 @@ class NewOfferQuestions extends Component {
               key={q.id}
               id={q.id}
               text={q.text}
+              handleBoxChange={handleBoxChange}
             />
           )}
         </div>
