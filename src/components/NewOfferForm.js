@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form'
 
 import NewOfferQuestions from './NewOfferQuestions';
 import NewQuestion from './NewQuestion';
@@ -9,41 +8,58 @@ import { postNewOffer } from '../actions/newOfferActions';
 
 import './NewOfferForm.css';
 
-const initialData = {
-  contract_type: 'CDI',
-  is_published: true
-}
-
 class NewOfferForm extends Component {
 
+  state = {
+    title: '',
+    place: '',
+    contract_type: 'CDI',
+    description: '',
+    is_published: false,
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    }, () => console.log(this.state))
+  }
+
+  handleBoxChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.checked,
+    }, () => console.log(this.state))
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.postNewOffer(this.state);
+  }
+
   render() {
-
-  const {handleSubmit} = this.props;
-
     return (
       <div className="NewOfferForm">
-        <form className='postNewOfferForm' onSubmit = {handleSubmit}>
+        <form className='postNewOfferForm' onSubmit = {this.handleSubmit}>
           <fieldset>
             <label htmlFor='title'>Titre de votre offre</label>
-            <Field component="input" type='text' name='title' id='title' placeholder='Ex: Développeur Web' />
+            <input type='text' name='title' id='title' placeholder='Ex: Développeur Web' onChange={this.handleChange} />
           </fieldset>
           <fieldset>
             <label htmlFor='place'>Lieu</label>
-            <Field component="input" type='text' name='place' id='place' placeholder='Ex: Paris' />
+            <input type='text' name='place' id='place' placeholder='Ex: Paris' onChange={this.handleChange} />
             <label htmlFor='contract_type'>Type de contrat</label>
-            <Field component="select" name='contract_type' id='contract_type'>
+            <select name='contract_type' id='contract_type' onChange={this.handleChange} >
               <option>CDI</option>
               <option>CDD</option>
               <option>Stage</option>
-            </Field>
+            </select>
           </fieldset>
           <fieldset>
             <label htmlFor='description'>Description</label>
-            <Field component="textarea" name='description' id='description'></Field>
+            <textarea name='description' id='description' onChange={this.handleChange} ></textarea>
           </fieldset>
-          <NewOfferQuestions />
+          <NewOfferQuestions handleBoxChange={this.handleBoxChange} />
           <NewQuestion />
-          <Field component="input" type ='checkbox' name = 'is_published' value = '1' />
+          <input type ='checkbox' name = 'is_published' onChange={this.handleBoxChange} />
           <span>Mise en ligne immédiate</span>
           <OrangeButton text='Valider mon offre'/>
         </form>
@@ -51,10 +67,6 @@ class NewOfferForm extends Component {
     )
   }
 }
-
-NewOfferForm = reduxForm({
-  form: 'offer'
-})(NewOfferForm)
 
 const mapStateToProps = state => ({
   questionsList : state.newOffer.questionsList,
