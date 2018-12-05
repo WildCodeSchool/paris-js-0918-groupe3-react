@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postNewQuestion } from "../actions/newOfferActions";
 
-import './NewQuestion.css';
+import "./css/NewQuestion.css";
 import iconAdd from "../images/icons/iconAdd.png";
 
 class NewQuestion extends Component {
@@ -20,11 +20,21 @@ class NewQuestion extends Component {
     const { newQuestion } = this.state;
     return (
       <div className="NewQuestion">
-        <input value={newQuestion} onChange={this.handleChange} />
-        {/* <button onClick={() => this.props.postNewQuestion(newQuestion)}>
+        <div className="row align-items-center mt-3 mb-4">
+          <div className="col-10 col-md-11">
+            <textarea value={newQuestion} onChange={this.handleChange} placeholder="Ajouter une question..."/>
+            {/* <button onClick={() => this.props.postNewQuestion(newQuestion)}>
           &nbsp;+&nbsp;
         </button> */}
-         <img src={iconAdd} alt="" onClick={() => this.props.postNewQuestion(newQuestion)} />
+          </div>
+          <div className="col-2 col-md-1">
+            <img
+              src={iconAdd}
+              alt=""
+              onClick={() => this.props.postNewQuestion(newQuestion)}
+            />
+          </div>
+        </div>
       </div>
     );
   }
