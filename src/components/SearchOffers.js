@@ -14,7 +14,7 @@ import Offers from './Offers'
       handleChange = (e) => {
         this.setState({
           [e.target.name]: e.target.value,
-        }, () => console.log(this.state))
+        })
       }
     
    
@@ -53,8 +53,6 @@ import Offers from './Offers'
 }
 
 
-const mapStateToProps = state => ({
-   offersList: state.offers.offersList
-  });
+const mapStateToProps = state => state;
   
   export default connect(mapStateToProps, { searchOffers })(SearchOffers);
