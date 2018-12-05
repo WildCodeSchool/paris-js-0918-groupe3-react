@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
  class SearchJob extends Component {
   render() {
@@ -11,4 +12,8 @@ import React, { Component } from 'react'
 }
 
 
-export default SearchJob;
+const mapStateToProps = state => ({
+   
+  });
+  
+  export default connect(mapStateToProps, {  })(SearchJob);
