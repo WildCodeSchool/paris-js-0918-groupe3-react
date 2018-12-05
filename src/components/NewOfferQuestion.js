@@ -5,27 +5,28 @@ import "react-toggle/style.css";
 import "./css/toggle.css";
 
 class NewOfferQUestion extends Component {
+
   render() {
     const { id, text, handleBoxChange } = this.props;
     return (
       <div className="NewOfferQuestion">
         <div className="row align-items-center m-3">
           <div className="col-3 col-md-2">
-            <input
+            {/* <input
               type="checkbox"
               name={`question${id}`}
               value={id}
               onChange={handleBoxChange}
-            />
-            {/* <Toggle
+            /> */}
+            <Toggle
               className="customToggle"
               name={`question${id}`}
-              value={id}
-              defaultChecked={true}
-              //checked={field.input.value}
+              value={`${id}`}
+              defaultChecked={false}
+              //checked={false}
               icons={true}
               onChange={handleBoxChange}
-            /> */}
+            />
           </div>
           <div className="col-9 col-md-10">
             <span>{text}</span>
