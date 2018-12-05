@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
- class NewOfferQUestion extends Component {
-  render() {
-    const { id, text, handleBoxChange } = this.props;
-    return (
-      <div className="NewOfferQuestion">
-        <input type='checkbox' name={`question${id}`} value={id} onChange={handleBoxChange} />
-        <span>{text}</span>
-      </div>
-    )
-  };
-};
+const NewOfferQuestion = (props) => {
+  const { id, text, handleBoxChange } = props;
+  return (
+    <div className="NewOfferQuestion">
+      <input type='checkbox' name={`question${id}`} value={id} onChange={handleBoxChange} />
+      <span>{text}</span>
+    </div>
+  );
+}
 
-export default NewOfferQUestion;
+export default NewOfferQuestion;
