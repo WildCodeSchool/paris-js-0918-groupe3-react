@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
- class SearchOffer extends Component {
+ class SearchOffers extends Component {
 
     state = {
         title: '',
@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
     
       handleSubmit = (e) => {
         e.preventDefault();
-        this.props.searchOffer(this.state);
+        this.props.searchOffers(this.state);
       }
   render() {
     return (
@@ -53,4 +53,4 @@ const mapStateToProps = state => ({
    
   });
   
-  export default connect(mapStateToProps, { searchOffer })(SearchOffer);
+  export default connect(mapStateToProps, { searchOffers })(SearchOffers);
