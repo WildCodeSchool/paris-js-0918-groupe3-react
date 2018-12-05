@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import NewOfferContainer from './components/NewOfferContainer';
 import Home from './components/Home';
+import AccountCompany from './components/AccountCompany';
 
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/newOffer' component={NewOfferContainer} />
+          <Route path='/company:id(\d+)' component={AccountCompany}/>
         </Switch>
       </div>
     );
