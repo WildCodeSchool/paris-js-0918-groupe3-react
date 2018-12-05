@@ -3,12 +3,11 @@ import axios from "axios";
 
 const domain = process.env.REACT_APP_DOMAIN_NAME;
 
-export const searchOffers = (title, place, contract_type) => dispatch => {
-  const Search = title;
-  const location = place;
-  const type = contract_type;
-  const url = `${domain}api/offers/?=${Search},?=${location},?=${type}`;
-  axios.get(url).then(res => {
+export const searchOffers = (data) => dispatch => {
+  const {title, place, contract_type} = data;
+  const url = `${domain}api/offers?search=${title}&place=${place}&type=${contract_type}`;
+  axios.get(url).then(res => {console.log(url);
+  
       dispatch({
           type: GET_OFFERS,
           offersList:res.data

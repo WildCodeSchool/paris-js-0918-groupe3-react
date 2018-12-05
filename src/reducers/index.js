@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form'
 import newOfferReducer from './newOfferReducer';
+import offersReducer from './offersReducer';
 
 export default combineReducers({
   newOffer: newOfferReducer,
-  form: formReducer,
+  offers: offersReducer
 });

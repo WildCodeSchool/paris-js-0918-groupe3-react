@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { searchOffers } from '../actions/searchOffersActions';
+import Offers from './Offers'
 
  class SearchOffers extends Component {
 
@@ -38,10 +40,12 @@ import { connect } from 'react-redux';
               <option>CDD</option>
               <option>Stage</option>
             </select>
+            <button>rechercher</button>
           </fieldset>
           
          
         </form>
+       <Offers />
         
       </div>
     )
@@ -50,7 +54,7 @@ import { connect } from 'react-redux';
 
 
 const mapStateToProps = state => ({
-   
+   offersList: state.offers.offersList
   });
   
   export default connect(mapStateToProps, { searchOffers })(SearchOffers);
