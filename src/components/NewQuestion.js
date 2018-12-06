@@ -20,9 +20,13 @@ class NewQuestion extends Component {
     const { newQuestion } = this.state;
     return (
       <div className="NewQuestion">
-        <div className="row align-items-center mt-3 mb-4">
+        <div className="row align-items-center mt-3">
           <div className="col-10 col-md-11">
-            <textarea value={newQuestion} onChange={this.handleChange} placeholder="Ajouter une question..."/>
+            <textarea
+              value={newQuestion}
+              onChange={this.handleChange}
+              placeholder="Ajouter une question..."
+            />
             {/* <button onClick={() => this.props.postNewQuestion(newQuestion)}>
           &nbsp;+&nbsp;
         </button> */}
@@ -33,6 +37,14 @@ class NewQuestion extends Component {
               alt=""
               onClick={() => this.props.postNewQuestion(newQuestion)}
             />
+          </div>
+        </div>
+        <div className="row justify-content-start align-items-center mb-5">
+          <div className="col-auto">
+            <input type="checkbox" name="" value="" />
+          </div>
+          <div className="col-auto">
+            <span className="align-middle">Joindre un fichier</span>
           </div>
         </div>
       </div>

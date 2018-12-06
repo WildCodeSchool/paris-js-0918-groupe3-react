@@ -18,8 +18,10 @@
     cursor: pointer;
 }
 
-
-
 .NewQuestion img{
     width: 40px;
+}
+
+.NewQuestion input[type=checkbox]{
+    transform: scale(1.4);
 }

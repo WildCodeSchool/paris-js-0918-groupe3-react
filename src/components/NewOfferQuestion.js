@@ -11,24 +11,16 @@ class NewOfferQUestion extends Component {
     return (
       <div className="NewOfferQuestion">
         <div className="row align-items-center m-3">
-          <div className="col-3 col-md-2">
-            {/* <input
-              type="checkbox"
-              name={`question${id}`}
-              value={id}
-              onChange={handleBoxChange}
-            /> */}
+          <div className="col-4 col-md-2">
             <Toggle
-              className="customToggle"
+              className="customToggleBlue"
               name={`question${id}`}
-              value={`${id}`}
               defaultChecked={false}
-              //checked={false}
-              icons={true}
+              icons={false}
               onChange={handleBoxChange}
             />
           </div>
-          <div className="col-9 col-md-10">
+          <div className="col-8 col-md-10">
             <span>{text}</span>
           </div>
         </div>

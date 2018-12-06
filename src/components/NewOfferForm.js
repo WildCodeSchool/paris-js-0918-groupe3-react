@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Toggle from "react-toggle";
 
 import NewOfferQuestions from "./NewOfferQuestions";
 import NewQuestion from "./NewQuestion";
@@ -7,6 +8,7 @@ import { connect } from "react-redux";
 import { postNewOffer } from "../actions/newOfferActions";
 
 import "./css/NewOfferForm.css";
+import "./css/toggle.css";
 
 class NewOfferForm extends Component {
   state = {
@@ -41,26 +43,15 @@ class NewOfferForm extends Component {
   };
 
   render() {
-    const { handleSubmit } = this.props;
-
     return (
       <div className="NewOfferForm">
         <div className="container">
-          <form className="postNewOfferForm" onSubmit={handleSubmit}>
+          <form className="postNewOfferForm" onSubmit={this.handleSubmit}>
             <div className="row align-items-center mt-4 mb-4">
               <div className="col-12 col-md-4 pr-1">
                 <label htmlFor="title">Titre de votre offre</label>
               </div>
               <div className="col-12 col-md-8">
-                {/* <Field
-                  className="NewOfferForm_field_title"
-                  component="input"
-                  type="text"
-                  name="title"
-                  id="title"
-                  placeholder="Ex: Développeur Web"
-                  onChange={this.handleChange}
-                /> */}
                 <input
                   className="NewOfferForm_field_title"
                   type="text"
@@ -74,14 +65,6 @@ class NewOfferForm extends Component {
                 <label htmlFor="place">Lieu</label>
               </div>
               <div className="col-12 col-md-auto">
-                {/* <Field
-                  className="NewOfferForm_field_place"
-                  component="input"
-                  type="text"
-                  name="place"
-                  id="place"
-                  placeholder="Ex: Paris"
-                /> */}
                 <input
                   className="NewOfferForm_field_place"
                   type="text"
@@ -95,12 +78,6 @@ class NewOfferForm extends Component {
                 <label htmlFor="contract_type">Type de contrat</label>
               </div>
               <div className="col-12 col-md-1">
-                {/* <Field
-                  className="NewOfferForm_field_contactType"
-                  component="select"
-                  name="contract_type"
-                  id="contract_type"
-                > */}
                 <select
                   className="NewOfferForm_field_contactType"
                   name="contract_type"
@@ -116,12 +93,6 @@ class NewOfferForm extends Component {
                 <label htmlFor="description">Description</label>
               </div>
               <div className="col-12">
-                {/* <Field
-                  className="NewOfferForm_field_description"
-                  component="textarea"
-                  name="description"
-                  id="description"
-                /> */}
                 <textarea
                   className="NewOfferForm_field_description"
                   name="description"
@@ -131,27 +102,26 @@ class NewOfferForm extends Component {
                 />
               </div>
             </div>
-            <NewOfferQuestions />
+            <NewOfferQuestions handleBoxChange={this.handleBoxChange} />
             <NewQuestion />
-            <div className="row justify-content-end m-2">
-              <div className="col-auto offset-4">
-                {/* <Field
-                  className="NewOfferForm_field"
-                  component="input"
-                  type="checkbox"
-                  name="is_published"
-                  value="1"
-                /> */}
-                <input
-                  className="NewOfferForm_field_online"
-                  type="checkbox"
-                  name="is_published"
-                  onChange={this.handleBoxChange}
-                />
-                &nbsp;
-                <span>Mise en ligne immédiate</span>
+            <div className="row justify-content-center">
+              <div className="col-auto offset-4 offset-md-8">
+                <div className="row align-items-center">
+                  <div className="col-3">
+                    <Toggle
+                      className="customToggleOrange"
+                      name="is_published"
+                      defaultChecked={false}
+                      icons={false}
+                      onChange={this.handleBoxChange}
+                    />
+                  </div>
+                  <div className="col-9 text-center">
+                    <span>Mettre en ligne</span>
+                  </div>
+                </div>
               </div>
-              <div className="col-auto offset-4">
+              <div className="col-auto offset-4 offset-md-8">
                 <OrangeButton text="Valider mon offre" />
               </div>
             </div>
