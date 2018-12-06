@@ -3,3 +3,4 @@ export const POST_NEW_QUESTION = "POST_NEW_QUESTION";
 export const POST_NEW_OFFER = 'POST_NEW_OFFER';
 export const GET_OFFERS_COMPANY = 'GET_OFFERS_COMPANY';
 export const GET_OFFERS = 'GET_OFFERS';
+export const GET_ID_COMPANY = 'GET_ID_COMPANY';
