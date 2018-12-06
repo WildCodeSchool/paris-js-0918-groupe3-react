@@ -1,7 +1,8 @@
 .OrangeButton {
+    font-weight: bold;
     background-color: #F49754;
     color: white;
-    border-radius: 3px;
+    border-radius: 2px;
     border: none;
     cursor: pointer;
     text-transform: uppercase;
@@ -9,4 +10,10 @@
     margin: 5px;
     font-weight: bold;
     width: 15%;
+}
+
+.OrangeButton:hover {
+    background-color:white;
+    color: #F49754;
+    border: solid 1px #F49754;
 }

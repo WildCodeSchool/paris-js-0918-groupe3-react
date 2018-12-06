@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postNewQuestion } from "../actions/newOfferActions";
 
-import './NewQuestion.css';
+import "./css/NewQuestion.css";
+import iconAdd from "../images/icons/iconAdd.png";
 
 class NewQuestion extends Component {
   state = {
@@ -19,10 +20,33 @@ class NewQuestion extends Component {
     const { newQuestion } = this.state;
     return (
       <div className="NewQuestion">
-        <input value={newQuestion} onChange={this.handleChange} />
-        <button onClick={() => this.props.postNewQuestion(newQuestion)}>
+        <div className="row align-items-center mt-3">
+          <div className="col-10 col-md-11">
+            <textarea
+              value={newQuestion}
+              onChange={this.handleChange}
+              placeholder="Ajouter une question..."
+            />
+            {/* <button onClick={() => this.props.postNewQuestion(newQuestion)}>
           &nbsp;+&nbsp;
-        </button>
+        </button> */}
+          </div>
+          <div className="col-2 col-md-1">
+            <img
+              src={iconAdd}
+              alt=""
+              onClick={() => this.props.postNewQuestion(newQuestion)}
+            />
+          </div>
+        </div>
+        <div className="row justify-content-start align-items-center mb-5">
+          <div className="col-auto">
+            <input type="checkbox" name="" value="" />
+          </div>
+          <div className="col-auto">
+            <span className="align-middle">Joindre un fichier</span>
+          </div>
+        </div>
       </div>
     );
   }
