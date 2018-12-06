@@ -6,6 +6,7 @@ import "./css/toggle.css";
 
 class NewOfferQUestion extends Component {
 
+
   render() {
     const { id, text, handleBoxChange } = this.props;
     return (

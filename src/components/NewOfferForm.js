@@ -10,6 +10,7 @@ import { postNewOffer } from "../actions/newOfferActions";
 import "./css/NewOfferForm.css";
 import "./css/toggle.css";
 
+
 class NewOfferForm extends Component {
   state = {
     title: "",
