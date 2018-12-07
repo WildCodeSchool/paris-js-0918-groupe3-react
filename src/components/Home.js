@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import SearchOffers from './SearchOffers';
 import OrangeButton from './OrangeButton';
+import Header from "./Header";
 import { connect } from 'react-redux';
 import { getIdCompany } from "../actions/connexionUsersActions";
 import './css/OrangeButton.css';
 import './css/Home.css';
-
 
 
 class Home extends Component {
@@ -46,7 +46,9 @@ class Home extends Component {
       )
 
     return (
+
       <div className='Home'>
+        <Header />
 
         <div className={modalDisplay}>
           <div className='backgroundModal' >
@@ -72,9 +74,10 @@ class Home extends Component {
         >
           Entreprise
         </button>
+
         <SearchOffers />
       </div>
-    )
+    );
   }
 }
 
@@ -83,3 +86,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getIdCompany })(Home);
+
