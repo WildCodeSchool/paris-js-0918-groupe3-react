@@ -2,18 +2,24 @@ import React, { Component } from 'react';
 import { getOffersCompany } from "../actions/accountCompanyActions";
 import { connect } from 'react-redux';
 import './AccountCompany.css';
+import Offer from './Offer';
+import { NavLink } from 'react-router-dom';
 
 class AccountCompany extends Component {
     componentDidMount = () => {
         this.props.getOffersCompany(this.props.match.params.id, 1)
+        
     }
 
     render() {
+        const {offersList} = this.props;
+        const {id} = this.props.match.params;
         return (
-            <div className='AccountCompany'>
-                <p>compte compagnie {this.props.match.params.id}</p>
-                {this.props.offersList.map((e, i) =>
-                    <p>{e.title}</p>
+            <div className='AccountCompany' aria-hidden="true">
+            <NavLink to='/'>Acceuil</NavLink>
+                <p>compte compagnie {id}</p>
+                {offersList.map((e, i) =>
+                    <Offer data = {e} key={e.id}/>
                 )}
             </div>
         );

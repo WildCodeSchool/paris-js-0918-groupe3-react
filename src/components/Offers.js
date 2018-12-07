@@ -5,10 +5,10 @@ import Offer from './Offer';
 
 class Offers extends Component {
   render() {
-    const {offersList} = this.props;
+    const { offersList } = this.props;
     return (
       <div className='Offers'>
-        {offersList.map(offer => 
+        {offersList.map(offer =>
           <Offer key={offer.id} data={offer} />
         )}
       </div>
@@ -20,4 +20,4 @@ const mapStateToProps = state => ({
   offersList: state.offers.offersList,
 });
 
-export default connect (mapStateToProps)(Offers);
+export default connect(mapStateToProps)(Offers);
