@@ -1,7 +1,7 @@
 import { GET_ID_COMPANY} from "../actions/types";
 
 const initialState = {
-    initialState: null
+    initialState: 0
 };
 
 export default function(state = initialState, action) {

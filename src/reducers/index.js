@@ -9,5 +9,5 @@ export default combineReducers({
   newOffer: newOfferReducer,
   offers: offersReducer,
   offersCompanyList: offersCompanyReducer,
-  idCompany: userConnexionReducer
+  usersInfo: userConnexionReducer
 });
