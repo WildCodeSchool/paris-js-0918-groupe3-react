@@ -38,21 +38,25 @@ class Home extends Component {
   }
 
   render() {
+
     const { redirection, showModal } = this.state
     const modalDisplay = showModal ? 'modal-actived' : 'modal-desactived'
+
     if (redirection === true)
       return (
         <Redirect to={`/company${this.props.idCompany}`} />
       )
 
     return (
-
       <div className='Home'>
-        <Header />
+        <Header openModal={this.openModal} />
+        <NavLink to='/newOffer'>Poster une offre</NavLink>
+        <SearchOffers />
 
+        {/* Modal */}
         <div className={modalDisplay}>
           <div className='backgroundModal' >
-            <div className='modalDIY animated fadeInDownBig faster'>
+            <div className='modalDIY animated fadeInDown faster'>
               <button className="close" onClick={this.openModal}>
                 <span>&times;</span>
               </button>
@@ -65,17 +69,6 @@ class Home extends Component {
           </div>
         </div>
 
-        <NavLink to='/newOffer'>Poster une offre</NavLink>
-
-        <button
-          type="button"
-          className='OrangeButton'
-          onClick={this.openModal}
-        >
-          Entreprise
-        </button>
-
-        <SearchOffers />
       </div>
     );
   }
