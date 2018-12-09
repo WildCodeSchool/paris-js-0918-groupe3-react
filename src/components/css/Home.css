@@ -3,6 +3,7 @@
 }
 
 .backgroundModal {
+    top: 0;
     position: absolute;
     display: flex;
     justify-content: center;

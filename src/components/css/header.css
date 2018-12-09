@@ -74,6 +74,7 @@
 .navbar-custom .dropdown-item:focus {
   color: #FFF;
   background-color: #F49754;
+  cursor: pointer
 }
 
 /* MEDIA QUERIES */
