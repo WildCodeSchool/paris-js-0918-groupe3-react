@@ -1,0 +1,28 @@
+.Home {
+    position: relative;
+}
+
+.backgroundModal {
+    top: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: rgb(0, 0, 0, 0.5);
+}
+
+.modal-actived {
+    display: block;
+}
+.modal-desactived {
+    display: none;
+}
+
+.modalDIY {
+    opacity: 1;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 5px 5px 10px;
+}
