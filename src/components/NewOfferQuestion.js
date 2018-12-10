@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Toggle from "react-toggle";
 
 import "react-toggle/style.css";
-import "./css/toggle.css";
+import "./css/Toggle.scss";
 
 class NewOfferQuestion extends Component {
 

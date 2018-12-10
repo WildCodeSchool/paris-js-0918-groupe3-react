@@ -9,10 +9,10 @@
     padding: 10px;
     margin: 5px;
     font-weight: bold;
-}
 
-.OrangeButton:hover {
-    background-color:white;
-    color: #F49754;
-    border: solid 1px #F49754;
+    &:hover {
+        background-color: white;
+        color: #F49754;
+        border: solid 1px #F49754;
+    }
 }

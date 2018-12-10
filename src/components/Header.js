@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
+import "./css/Header.scss";
+
 import logo from "../images/Logo.png";
 
-import "./css/header.css";
 
 class Header extends Component {
 

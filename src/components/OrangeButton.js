@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './css/OrangeButton.css';
+import './css/OrangeButton.scss';
 
  class OrangeButton extends Component {
   render() {
