@@ -1,0 +1,20 @@
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+
+.SearchOffer {
+  background-color: $MainBlue;
+  input {
+    width:90%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid$MainBlue;
+    border-radius: 3px;
+    &::placeholder{
+      font-size: 0.85em;
+    }
+  }
+  select {
+    height: 40px;
+    margin: 5px;
+  }
+}

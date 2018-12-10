@@ -1,0 +1,38 @@
+$MainBlue: #64C4D9;
+$MainOrange: #F49754;
+
+.NewOfferForm {
+    h2 {
+        color: $MainOrange;
+        font-weight: 600;
+    }
+
+    label {
+        font-size: large;
+        font-weight: bold;
+        color: $MainBlue;
+        margin: 10px;
+    }
+
+    input,
+    textarea {
+        border: 1px solid$MainBlue;
+        border-radius: 3px;
+    }
+}
+
+.NewOfferForm_field_title,
+.NewOfferForm_field_place,
+.NewOfferForm_field_description {
+    width: 100%;
+}
+
+.NewOfferForm_field_description {
+    height: 50vh;
+    resize: none;
+}
+
+.NewOfferForm_field_online {
+    width: 18px;
+    height: 18px;
+}

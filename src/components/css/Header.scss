@@ -1,0 +1,115 @@
+$MainBlue:#64C4D9;
+$SecondaryBlue: #52A5B8;
+$MainOrange:#F49754;
+$White: #FFF;
+
+.Header .logo {
+  width: 50px;
+  height: auto;
+}
+
+.navbar-custom {
+  background-color: $White !important;
+  box-shadow: 2px 0 5px #aaa;
+
+  .navbar-brand h2 {
+    font-weight: 600;
+    color: $MainOrange !important;
+  }
+
+  /* Center text menu burger*/
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  /* Link color */
+  .navbar-nav {
+    .nav-link {
+      color: $MainBlue;
+      font-weight: 600;
+    }
+
+    /* Color of active links */
+    .nav-item.active .nav-link {
+      color: $SecondaryBlue;
+    }
+
+    /* Color of hovered links */
+    .nav-item:hover .nav-link {
+      color: $MainOrange;
+    }
+
+    /* Dropdown */
+    .dropleft:hover>.dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu {
+      background-color: $White;
+    }
+
+    .dropdown-item {
+      font-weight: 600;
+      color: $MainOrange;
+
+      &:hover,
+      &:focus {
+        color: $White;
+        background-color: $MainOrange;
+      }
+    }
+  }
+
+  /* Button */
+  .btn {
+    font-weight: 600;
+    color: $White;
+    background-color: $MainOrange !important;
+  }
+
+  .btnMenuBurger {
+    &:hover {
+      color: $MainOrange;
+      border-color: $MainOrange;
+      background-color: $White !important;
+    }
+  }
+}
+
+/* Separator navbar*/
+.divider-vertical {
+  height: 25px;
+  margin: 5px 5px;
+  border-right: 1px solid $MainBlue;
+}
+
+
+/* MEDIA QUERIES */
+
+/* If the screen size is 601px wide or more */
+@media screen and (min-width: 901px) {
+  .navbar-brand h2 {
+    font-size: 30px;
+  }
+}
+
+/* If the screen size is 900px wide or less */
+@media screen and (max-width: 900px) {
+  .navbar-brand h2 {
+    font-size: 25px;
+  }
+}
+
+/* If the screen size is 500px wide or less */
+@media screen and (max-width: 500px) {
+  .navbar-brand h2 {
+    font-size: 20px;
+  }
+}
+
+/* If the screen size is 350px wide or less */
+@media screen and (max-width: 350px) {
+  .navbar-brand h2 {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,43 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+
+
+.Home {
+
+  h4,
+  h5 {
+    color: $MainBlue;
+  }
+
+  h6 {
+    color: $MainOrange;
+  }
+
+  .icone_CV,
+  .icone_LM,
+  .icone_ALGO {
+    width: 80px;
+
+    @include media-breakpoint-down(md) {
+      width: 45px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      width: 30px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      width: 25px;
+    }
+  }
+}
+
+/* Separator navbar*/
+.divider-vertical-home {
+  height: 100px;
+  border-right: 2px solid $MainOrange;
+}

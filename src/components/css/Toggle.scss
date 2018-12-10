@@ -1,0 +1,35 @@
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+
+
+/* Toggle Blue */
+
+.customToggleBlue.react-toggle--checked {
+  .react-toggle-track {
+    background-color: $MainBlue !important;
+
+    &:hover {
+      background-color: $MainBlue;
+    }
+  }
+
+  .react-toggle-thumb {
+    border-color: $MainBlue;
+  }
+}
+
+/* Toggle Orange */
+
+.customToggleOrange.react-toggle--checked {
+  .react-toggle-track {
+    background-color: $MainOrange !important;
+
+    &:hover {
+      background-color: $MainOrange;
+    }
+  }
+
+  .react-toggle-thumb {
+    border-color: $MainOrange;
+  }
+}

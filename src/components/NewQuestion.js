@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postNewQuestion } from "../actions/newOfferActions";
 
-import "./css/NewQuestion.css";
+import "./css/NewQuestion.scss";
 import iconAdd from "../images/icons/iconAdd.png";
 
 class NewQuestion extends Component {

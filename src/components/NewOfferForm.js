@@ -7,9 +7,8 @@ import OrangeButton from "./OrangeButton";
 import { connect } from "react-redux";
 import { postNewOffer } from "../actions/newOfferActions";
 
-import "./css/NewOfferForm.css";
-import "./css/toggle.css";
-
+import "./css/NewOfferForm.scss";
+import "./css/Toggle.scss";
 
 class NewOfferForm extends Component {
   state = {
@@ -47,6 +46,7 @@ class NewOfferForm extends Component {
     return (
       <div className="NewOfferForm">
         <div className="container">
+          <h2>Poster une offre</h2>
           <form className="postNewOfferForm" onSubmit={this.handleSubmit}>
             <div className="row align-items-center mt-4 mb-4">
               <div className="col-12 col-md-4 pr-1">

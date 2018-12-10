@@ -14,7 +14,6 @@ class NewOfferContainer extends Component {
       <div className="container NewOfferContainer">
         <div className="row justify-content-center mt-4 mb-4">
           <div className="col col-lg-8">
-            <h2>Poster une offre</h2>
             <NewOfferForm onSubmit={this.submit} />
           </div>
         </div>
