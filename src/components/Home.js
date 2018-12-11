@@ -19,6 +19,7 @@ import icone_ALGO from "../images/Icone_ALGO.png";
 class Home extends Component {
   state = {
     inputEmail: "",
+    inputPassword: "",
     redirection: false,
     showModal: false
   };
@@ -31,7 +32,8 @@ class Home extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    await this.props.getIdCompany(this.state.inputEmail);
+    const { inputEmail, inputPassword } = this.state
+    await this.props.getIdCompany(inputEmail, inputPassword);
     this.setState({
       redirection: true,
       showModal: false
@@ -68,14 +70,19 @@ class Home extends Component {
                   placeholder="entrer email entreprise"
                   onChange={this.handleChange}
                 />
+                <input
+                  type="password"
+                  name="inputPassword"
+                  placeholder="password"
+                  onChange={this.handleChange}
+                />
                 <OrangeButton text="Connection" />
               </form>
               <NavLink to="/newAccountCompagny">Inscription</NavLink>
             </div>
           </div>
         </div>
-        {/* <NavLink to="/newOffer">Poster une offre</NavLink>
-        <OrangeButton text="compte entreprise" /> */}
+
         <div className="container">
           <div className="row justify-content-center text-center m-3 m-md-4">
             <div className="col-12">
