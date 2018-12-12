@@ -17,7 +17,7 @@ class Offers extends Component {
 }
 
 const mapStateToProps = state => ({
-  offersList: state.offers.offersList,
+  offersList: state.searchOffers.offersList,
 });
 
 export default connect(mapStateToProps)(Offers);

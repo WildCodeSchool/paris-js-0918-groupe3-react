@@ -1,7 +1,8 @@
-import { GET_OFFERS } from "../actions/types";
+import { GET_OFFERS, FETCH_CITIES } from "../actions/types";
 
 const initialState = {
-  offersList: []
+  offersList: [],
+  citiesList: [],
 };
 
 export default function(state = initialState, action) {
@@ -11,6 +12,11 @@ export default function(state = initialState, action) {
         ...state,
         offersList: action.offersList
       };
+    case FETCH_CITIES:
+      return {
+        ...state,
+        citiesList: action.citiesList,
+      }
 
     default:
       return state;
