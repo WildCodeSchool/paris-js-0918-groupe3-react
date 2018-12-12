@@ -89,7 +89,7 @@ class Offer extends Component {
                 <h6>{`${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</h6>
               </div>
               {showElement && (
-                <div className="offerResume">
+                <div className="col-12 offerResume">
                   <p>{data.description}</p>
                 </div>
               )}
