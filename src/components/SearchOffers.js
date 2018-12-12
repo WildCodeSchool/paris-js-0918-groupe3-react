@@ -19,7 +19,7 @@ class SearchOffers extends Component {
     })
     const { place } = this.state;
     if (name === "place"){
-      this.props.fetchCities(place);
+      await this.props.fetchCities(place);
     }
   };
 
@@ -55,7 +55,7 @@ class SearchOffers extends Component {
               />
               <datalist id="cities">
                 {citiesList.length && citiesList.map(c =>
-                  <option>{c.nom}</option>
+                  <option key={c.code}>{c.nom} ({c.codesPostaux[0].substr(0,2)})</option>
                 )}
               </datalist>
             </div>

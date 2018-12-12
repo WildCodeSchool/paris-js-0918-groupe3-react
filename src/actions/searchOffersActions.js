@@ -15,7 +15,7 @@ export const searchOffers = data => dispatch => {
 };
 
 export const fetchCities = inputPlace => dispatch => {
-  const url = `https://geo.api.gouv.fr/communes?nom=${inputPlace}&fields=nom&format=json&geometry=centre`
+  const url = `https://geo.api.gouv.fr/communes?nom=${inputPlace}&fields=nom,codesPostaux&format=json&geometry=centre`
   axios.get(url).then(res => {
     dispatch({
       type: FETCH_CITIES,
