@@ -31,25 +31,26 @@ class Home extends Component {
 
   openModal = modalType => {
     this.setState({
-      [modalType]: !this.state[modalType]
+      [modalType]: !this.state.modalType
     });
   };
 
   render() {
     const { showModalSignIn } = this.state;
     const modalDisplay = showModalSignIn ? "modal-actived" : "modal-desactived";
-
+    console.log(this.state);
+    
     
 
     return (
       <div className="Home">
         <Header openModal={this.openModal} />
         {/* Modal Sign IN*/}
-        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} />}
+        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} closeModal={this.openModal} />}
 
         {/* Modal Sign Up */}
 
-        <div className={modalDisplay}>
+        {/* <div className={modalDisplay}>
           <div className="backgroundModal">
             <div className="modalDIY animated fadeInDown faster">
               <button
@@ -76,7 +77,7 @@ class Home extends Component {
               <NavLink to="/newAccountCompagny">Inscription</NavLink>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="container">
           <div className="row justify-content-center text-center m-3 m-md-4">

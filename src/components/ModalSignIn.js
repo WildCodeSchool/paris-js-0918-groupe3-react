@@ -42,7 +42,7 @@ class ModalSignIn extends Component {
             <div className="modalDIY animated fadeInDown faster">
               <button
                 className="close"
-                onClick={() => this.openModal("showModalSignIn")}
+                onClick={(showModalSignIn) => this.props.closeModal(showModalSignIn)}
               >
                 <span>&times;</span>
               </button>
