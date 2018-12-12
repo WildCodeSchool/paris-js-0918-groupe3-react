@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { connect } from "react-redux";
 
 import Header from "./Header";
@@ -15,13 +15,12 @@ import "./css/OrangeButton.scss";
 import icone_CV from "../images/Icone_CV.png";
 import icone_LM from "../images/Icone_LM.png";
 import icone_ALGO from "../images/Icone_ALGO.png";
+import ModalSignIn from "./ModalSignIn";
 
 class Home extends Component {
   state = {
-    inputEmail: "",
-    inputPassword: "",
-    redirection: false,
-    showModal: false
+    showModalSignIn: false,
+    showModalSignUp: false
   };
 
   handleChange = e => {
@@ -30,37 +29,33 @@ class Home extends Component {
     });
   };
 
-  handleSubmit = async e => {
-    e.preventDefault();
-    const { inputEmail, inputPassword } = this.state
-    await this.props.getIdCompany(inputEmail, inputPassword);
+  openModal = modalType => {
     this.setState({
-      redirection: true,
-      showModal: false
-    });
-  };
-
-  openModal = () => {
-    this.setState({
-      showModal: !this.state.showModal
+      [modalType]: !this.state[modalType]
     });
   };
 
   render() {
-    const { redirection, showModal } = this.state;
-    const modalDisplay = showModal ? "modal-actived" : "modal-desactived";
+    const { showModalSignIn } = this.state;
+    const modalDisplay = showModalSignIn ? "modal-actived" : "modal-desactived";
 
-    if (redirection === true)
-      return <Redirect to={`/company${this.props.idCompany}`} />;
+    
 
     return (
       <div className="Home">
         <Header openModal={this.openModal} />
-        {/* Modal */}
+        {/* Modal Sign IN*/}
+        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} />}
+
+        {/* Modal Sign Up */}
+
         <div className={modalDisplay}>
           <div className="backgroundModal">
             <div className="modalDIY animated fadeInDown faster">
-              <button className="close" onClick={this.openModal}>
+              <button
+                className="close"
+                onClick={() => this.openModal("showModalSignUp")}
+              >
                 <span>&times;</span>
               </button>
               <form onSubmit={this.handleSubmit}>

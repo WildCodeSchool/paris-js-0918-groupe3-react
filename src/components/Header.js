@@ -33,7 +33,7 @@ class Header extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <button type="button" className="btn btnMenuBurger d-lg-none m-2">Espace candidat</button>
-            <button type="button" className="btn btnMenuBurger d-lg-none m-2" onClick={e => openModal(e)}>Espace recruteur</button>
+            <button type="button" className="btn btnMenuBurger d-lg-none m-2" onClick={() => openModal("showModalSignIn")}>Espace recruteur</button>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <a className="nav-link" href="/">
@@ -67,7 +67,7 @@ class Header extends Component {
                   Espace candidat
                   </a>
                 <div className="dropdown-divider" />
-                <div className="dropdown-item" onClick={e => openModal(e)} >
+                <div className="dropdown-item" onClick={() => openModal("showModalSignIn")} >
                   Espace recruteur
                   </div>
               </div>
@@ -75,7 +75,7 @@ class Header extends Component {
           </ul>
           </div>
         </nav>
-
+        
       </div >
     );
   }
