@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { getOffersCompany } from "../actions/accountCompanyActions";
 import { connect } from 'react-redux';
-import './AccountCompany.css';
+// import './AccountCompany.css';
 import Offer from './Offer';
 import { NavLink } from 'react-router-dom';
 
 class AccountCompany extends Component {
     componentDidMount = () => {
         this.props.getOffersCompany(this.props.match.params.id, 1)
-        
+
     }
 
     render() {

@@ -3,6 +3,10 @@ $MainOrange:#F49754;
 
 .SearchOffer {
   background-color: $MainBlue;
+  p{
+    color: #FFF;
+    font-size: 115%;
+  }
   input {
     width:90%;
     padding: 10px;
@@ -16,5 +20,6 @@ $MainOrange:#F49754;
   select {
     height: 40px;
     margin: 5px;
+    border: 1px solid$MainBlue;
   }
 }
