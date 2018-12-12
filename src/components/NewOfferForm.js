@@ -6,6 +6,7 @@ import NewQuestion from "./NewQuestion";
 import OrangeButton from "./OrangeButton";
 import { connect } from "react-redux";
 import { postNewOffer } from "../actions/newOfferActions";
+import { fetchCities } from "../actions/searchOffersActions";
 
 import "./css/NewOfferForm.scss";
 import "./css/Toggle.scss";
@@ -19,13 +20,15 @@ class NewOfferForm extends Component {
     is_published: false
   };
 
-  handleChange = e => {
-    this.setState(
-      {
-        [e.target.name]: e.target.value
-      },
-      () => console.log(this.state)
-    );
+  handleChange = async e => {
+    const { name, value } = e.target;
+    await this.setState({
+      [name]: value
+    })
+    const { place } = this.state;
+    if (name === "place"){
+      this.props.fetchCities(place);
+    }
   };
 
   handleBoxChange = e => {
@@ -43,6 +46,7 @@ class NewOfferForm extends Component {
   };
 
   render() {
+    const { citiesList } = this.props;
     return (
       <div className="NewOfferForm">
         <div className="container">
@@ -71,9 +75,15 @@ class NewOfferForm extends Component {
                   type="text"
                   name="place"
                   id="place"
+                  list="cities"
                   placeholder="Ex: Paris"
                   onChange={this.handleChange}
                 />
+                <datalist id="cities">
+                {citiesList.length && citiesList.map(c =>
+                  <option key={c.code}>{c.nom} ({c.codesPostaux[0].substr(0,2)})</option>
+                )}
+              </datalist>
               </div>
               <div className="col-12 col-md-auto">
                 <label htmlFor="contract_type">Type de contrat</label>
@@ -134,11 +144,11 @@ class NewOfferForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  questionsList: state.newOffer.questionsList
-  // values : state.form.newOffer.values,
+  questionsList: state.newOffer.questionsList,
+  citiesList : state.searchOffers.citiesList,
 });
 
 export default connect(
   mapStateToProps,
-  { postNewOffer }
+  { postNewOffer, fetchCities }
 )(NewOfferForm);

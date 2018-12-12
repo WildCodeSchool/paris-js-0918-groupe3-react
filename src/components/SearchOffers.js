@@ -19,7 +19,7 @@ class SearchOffers extends Component {
     })
     const { place } = this.state;
     if (name === "place"){
-      await this.props.fetchCities(place);
+      this.props.fetchCities(place);
     }
   };
 
