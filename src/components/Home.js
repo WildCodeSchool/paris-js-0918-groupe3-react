@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import Header from "./Header";
 import SearchOffers from "./SearchOffers";
+import  CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
 import OrangeButton from "./OrangeButton";
 
@@ -82,15 +83,16 @@ class Home extends Component {
             </div>
           </div>
         </div>
-
-        <div className="container">
+        {/* <NavLink to="/newOffer">Poster une offre</NavLink>
+        <OrangeButton text="compte entreprise" /> */}
+        <div className="Home_intro container-fluid">
           <div className="row justify-content-center text-center m-3 m-md-4">
             <div className="col-12">
               <h5>
-                Grâce à un <b>QUESTIONNAIRE</b>,
+                Grâce à un <b>QUESTIONNAIRE</b>,
                 <br />
-                surprenez par vos réalisations, vos propositions et votre
-                imagination
+                surprenez par vos <b>réalisations</b>, vos <b>propositions</b> et votre
+                <b> imagination</b>
               </h5>
             </div>
             <div className="row m-4">
@@ -104,7 +106,6 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              {/* <div className="divider-vertical-home d-none d-md-block" /> */}
               <div className="col-12 col-md-4">
                 <div className="row justify-content-center align-items-center">
                   <div className="col-12 mb-3">
@@ -115,7 +116,6 @@ class Home extends Component {
                   </div>
                 </div>
               </div>
-              {/* <div className="divider-vertical-home d-none d-md-block" /> */}
               <div className="col-12 col-md-4">
                 <div className="row justify-content-center align-items-center">
                   <div className="col-12 mb-3">
@@ -133,12 +133,14 @@ class Home extends Component {
             </div>
             <div className="col-12">
               <h4>
-                Et jusqu’à l’entretien d’embauche : <b>l’ANONYMAT</b>
+                Et jusqu’à l’entretien d’embauche : <b>l’ANONYMAT</b>
               </h4>
             </div>
           </div>
         </div>
         <SearchOffers />
+        <CarouselCompaniesHome />
+        <hr/>
         <Offers />
       </div>
     );

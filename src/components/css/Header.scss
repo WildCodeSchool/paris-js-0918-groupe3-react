@@ -51,7 +51,7 @@ $White: #FFF;
     .dropdown-item {
       font-weight: 600;
       color: $MainOrange;
-
+      transition: 0.25s;
       &:hover,
       &:focus {
         color: $White;
