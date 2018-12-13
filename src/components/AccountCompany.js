@@ -17,6 +17,7 @@ class AccountCompany extends Component {
         return (
             <div className='AccountCompany' aria-hidden="true">
             <NavLink to='/'>Acceuil</NavLink>
+            <NavLink to="/newOffer">Poster une offre</NavLink>
                 <p>compte compagnie {id}</p>
                 {offersList.map((e, i) =>
                     <Offer data = {e} key={e.id}/>

@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 import newOfferReducer from './newOfferReducer';
 import offersCompanyReducer from './offersCompanyReducer';
-import offersReducer from './offersReducer';
+import searchOffersReducer from './searchOffersReducer';
 import userConnexionReducer from './userConnexionReducer';
 
 export default combineReducers({
   newOffer: newOfferReducer,
-  offers: offersReducer,
+  searchOffers: searchOffersReducer,
   offersCompanyList: offersCompanyReducer,
   usersInfo: userConnexionReducer
 });

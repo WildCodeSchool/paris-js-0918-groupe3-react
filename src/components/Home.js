@@ -20,6 +20,7 @@ import icone_ALGO from "../images/Icone_ALGO.png";
 class Home extends Component {
   state = {
     inputEmail: "",
+    inputPassword: "",
     redirection: false,
     showModal: false
   };
@@ -32,7 +33,8 @@ class Home extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    await this.props.getIdCompany(this.state.inputEmail);
+    const { inputEmail, inputPassword } = this.state
+    await this.props.getIdCompany(inputEmail, inputPassword);
     this.setState({
       redirection: true,
       showModal: false
@@ -69,6 +71,12 @@ class Home extends Component {
                   placeholder="entrer email entreprise"
                   onChange={this.handleChange}
                 />
+                <input
+                  type="password"
+                  name="inputPassword"
+                  placeholder="password"
+                  onChange={this.handleChange}
+                />
                 <OrangeButton text="Connection" />
               </form>
               <NavLink to="/newAccountCompagny">Inscription</NavLink>
@@ -81,9 +89,9 @@ class Home extends Component {
           <div className="row justify-content-center text-center m-3 m-md-4">
             <div className="col-12">
               <h5>
-                Grâce à un <b>QUESTIONNAIRE</b>,
+                Grâce à un <b>QUESTIONNAIRE</b>,
                 <br />
-                surprenez par vos <b>réalisations</b>, vos <b>propositions</b> et votre
+                surprenez par vos <b>réalisations</b>, vos <b>propositions</b> et votre
                 <b> imagination</b>
               </h5>
             </div>
@@ -125,7 +133,7 @@ class Home extends Component {
             </div>
             <div className="col-12">
               <h4>
-                Et jusqu’à l’entretien d’embauche : <b>l’ANONYMAT</b>
+                Et jusqu’à l’entretien d’embauche : <b>l’ANONYMAT</b>
               </h4>
             </div>
           </div>

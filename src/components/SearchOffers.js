@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { searchOffers } from "../actions/searchOffersActions";
+import { searchOffers, fetchCities } from "../actions/searchOffersActions";
 import OrangeButton from "./OrangeButton";
 
 import "./css/SearchOffer.scss";
@@ -12,10 +12,15 @@ class SearchOffers extends Component {
     contract_type: "CDI"
   };
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  handleChange = async e => {
+    const { name, value } = e.target;
+    await this.setState({
+      [name]: value
+    })
+    const { place } = this.state;
+    if (name === "place"){
+      this.props.fetchCities(place);
+    }
   };
 
   handleSubmit = e => {
@@ -23,6 +28,9 @@ class SearchOffers extends Component {
     this.props.searchOffers(this.state);
   };
   render() {
+    const { citiesList } = this.props;
+    console.log(citiesList);
+    
     return (
       <div className="SearchOffer container-fluid">
         <form className="container p-3 p-md-4" onSubmit={this.handleSubmit}>
@@ -46,9 +54,15 @@ class SearchOffers extends Component {
                 type="text"
                 name="place"
                 id="place"
+                list="cities"
                 placeholder="Lieu (Ex: Paris)"
                 onChange={this.handleChange}
               />
+              <datalist id="cities">
+                {citiesList.length && citiesList.map(c =>
+                  <option key={c.code}>{c.nom} ({c.codesPostaux[0].substr(0,2)})</option>
+                )}
+              </datalist>
             </div>
             <div className="col-12 col-lg-2">
               <select
@@ -80,9 +94,11 @@ class SearchOffers extends Component {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => ({
+  citiesList : state.searchOffers.citiesList,
+});
 
 export default connect(
   mapStateToProps,
-  { searchOffers }
+  { searchOffers, fetchCities }
 )(SearchOffers);
