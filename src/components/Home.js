@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { NavLink} from "react-router-dom";
 import { connect } from "react-redux";
 
 import Header from "./Header";
 import SearchOffers from "./SearchOffers";
 import Offers from "./Offers";
-import OrangeButton from "./OrangeButton";
 
 import { getIdCompany } from "../actions/connexionUsersActions";
+import { toggleModalAccount } from "../actions/modalsAccountActions"
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -23,17 +22,17 @@ class Home extends Component {
   
 
   render() {
-    const { showModalSignIn } = this.state;
+    const showModalSignIn  = this.props.openModal;
     const modalDisplay = showModalSignIn ? "modal-actived" : "modal-desactived";
-    console.log(this.state);
+  
     
     
 
     return (
       <div className="Home">
-        <Header showModal={this.showModal} />
+        <Header />
         {/* Modal Sign IN*/}
-        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} closeModal={this.showModal} />}
+        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay}/>}
 
         {/* Modal Sign Up */}
 
@@ -129,10 +128,11 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  idCompany: state.usersInfo.idCompany
+  idCompany: state.usersInfo.idCompany,
+  openModal: state.toggleModalsAccount.openModal
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany }
+  { getIdCompany, toggleModalAccount }
 )(Home);

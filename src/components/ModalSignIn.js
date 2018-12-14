@@ -5,6 +5,7 @@ import { getIdCompany } from "../actions/connexionUsersActions";
 
 import OrangeButton from "./OrangeButton";
 import "./css/OrangeButton.scss";
+import { toggleModalAccount } from "../actions/modalsAccountActions";
 
 class ModalSignIn extends Component {
   state = {
@@ -24,13 +25,12 @@ class ModalSignIn extends Component {
     const { inputEmail, inputPassword } = this.state;
     await this.props.getIdCompany(inputEmail, inputPassword);
     this.setState({
-      redirection: true,
-      showModalSignIn: false
+      redirection: true
     });
   };
   render() {
     const { redirection } = this.state;
-
+    const { toggleModalAccount } = this.props;
 
     if (redirection === true)
       return <Redirect to={`/company${this.props.idCompany}`} />;
@@ -40,10 +40,7 @@ class ModalSignIn extends Component {
         <div className={this.props.modalDisplay}>
           <div className="backgroundModal">
             <div className="modalDIY animated fadeInDown faster">
-              <button
-                className="close"
-                onClick={(showModalSignIn) => this.props.closeModal(showModalSignIn)}
-              >
+              <button className="close" onClick={toggleModalAccount}>
                 <span>&times;</span>
               </button>
               <form onSubmit={this.handleSubmit}>
@@ -71,10 +68,11 @@ class ModalSignIn extends Component {
 }
 
 const mapStateToProps = state => ({
-  idCompany: state.usersInfo.idCompany
+  idCompany: state.usersInfo.idCompany,
+  openModal: state.toggleModalsAccount.openModal
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany }
+  { getIdCompany, toggleModalAccount }
 )(ModalSignIn);
