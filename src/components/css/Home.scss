@@ -9,14 +9,21 @@ $MainOrange:#F49754;
 .Home {
   position: relative;
 
-  h4,
-  h5 {
-    color: $MainBlue;
+  .Home_intro {
+    h4,
+    h5 {
+      color: $MainBlue;
+    }
+
+    h6 {
+      color: $MainOrange;
+    }
   }
 
-  h6 {
-    color: $MainOrange;
+  hr {
+    margin-top: 0
   }
+
 
   .icone_CV,
   .icone_LM,
@@ -35,12 +42,6 @@ $MainOrange:#F49754;
       width: 25px;
     }
   }
-}
-
-/* Separator navbar*/
-.divider-vertical-home {
-  height: 100px;
-  border-right: 2px solid $MainOrange;
 }
 
 // Modal

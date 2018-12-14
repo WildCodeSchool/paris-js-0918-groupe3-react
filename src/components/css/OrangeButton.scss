@@ -1,18 +1,23 @@
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+
+
 .OrangeButton {
     font-weight: bold;
-    background-color: #F49754;
-    color: white;
+    background-color: $MainOrange;
+    color: #FFF;
+    border: solid 1px $MainOrange;
     border-radius: 2px;
-    border: none;
     cursor: pointer;
     text-transform: uppercase;
     padding: 10px;
     margin: 5px;
     font-weight: bold;
+    transition: 0.25s;
 
     &:hover {
-        background-color: white;
-        color: #F49754;
-        border: solid 1px #F49754;
+        background-color: #FFF;
+        color: $MainOrange;
+        border: solid 1px $MainOrange;
     }
 }

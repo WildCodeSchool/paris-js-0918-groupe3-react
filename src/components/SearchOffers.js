@@ -33,9 +33,14 @@ class SearchOffers extends Component {
     
     return (
       <div className="SearchOffer container-fluid">
-        <form className="container p-3 p-md-5" onSubmit={this.handleSubmit}>
+        <form className="container p-3 p-md-4" onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="col-12 text-center">
+              <p><i>« Peu importe qui vous êtes ou qui vous avez été, vous pouvez être qui vous voulez »</i></p>
+            </div>
+          </div>
           <div className="row text-center align-items-center">
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
               <input
                 type="text"
                 name="title"
@@ -44,7 +49,7 @@ class SearchOffers extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-lg-4">
               <input
                 type="text"
                 name="place"
@@ -55,26 +60,26 @@ class SearchOffers extends Component {
               />
               <datalist id="cities">
                 {citiesList.length && citiesList.map(c =>
-                  <option>{c.nom}</option>
+                  <option key={c.code}>{c.nom} ({c.codesPostaux[0].substr(0,2)})</option>
                 )}
               </datalist>
             </div>
-            <div className="col-12 col-md-2">
+            <div className="col-12 col-lg-2">
               <select
                 name="contract_type"
                 id="contract_type"
                 onChange={this.handleChange}
                 defaultValue="type"
               >
-                  <option value="type" disabled>
-                    Type de contrat&nbsp;
-                  </option>
+                <option value="type" disabled>
+                  Type de contrat&nbsp;
+                </option>
                 <optgroup>
                   <option>Tous</option>
                   <option>CDI</option>
                   <option>CDD</option>
                   <option>Stage</option>
-                  </optgroup>
+                </optgroup>
               </select>
             </div>
           </div>
