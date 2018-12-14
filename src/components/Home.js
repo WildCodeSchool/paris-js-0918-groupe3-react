@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import { NavLink, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Header from "./Header";
 import SearchOffers from "./SearchOffers";
 import  CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
-import OrangeButton from "./OrangeButton";
 
 import { getIdCompany } from "../actions/connexionUsersActions";
+import { toggleModalAccount } from "../actions/modalsAccountActions"
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -16,52 +15,35 @@ import "./css/OrangeButton.scss";
 import icone_CV from "../images/Icone_CV.png";
 import icone_LM from "../images/Icone_LM.png";
 import icone_ALGO from "../images/Icone_ALGO.png";
+import ModalSignIn from "./ModalSignIn";
 
 class Home extends Component {
-  state = {
-    inputEmail: "",
-    inputPassword: "",
-    redirection: false,
-    showModal: false
-  };
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
 
-  handleSubmit = async e => {
-    e.preventDefault();
-    const { inputEmail, inputPassword } = this.state
-    await this.props.getIdCompany(inputEmail, inputPassword);
-    this.setState({
-      redirection: true,
-      showModal: false
-    });
-  };
-
-  openModal = () => {
-    this.setState({
-      showModal: !this.state.showModal
-    });
-  };
+  
 
   render() {
-    const { redirection, showModal } = this.state;
-    const modalDisplay = showModal ? "modal-actived" : "modal-desactived";
-
-    if (redirection === true)
-      return <Redirect to={`/company${this.props.idCompany}`} />;
+    const showModalSignIn  = this.props.openModal;
+    const modalDisplay = showModalSignIn ? "modal-actived" : "modal-desactived";
+  
+    
+    
 
     return (
       <div className="Home">
-        <Header openModal={this.openModal} />
-        {/* Modal */}
-        <div className={modalDisplay}>
+        <Header />
+        {/* Modal Sign IN*/}
+        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay}/>}
+
+        {/* Modal Sign Up */}
+
+        {/* <div className={modalDisplay}>
           <div className="backgroundModal">
             <div className="modalDIY animated fadeInDown faster">
-              <button className="close" onClick={this.openModal}>
+              <button
+                className="close"
+                onClick={() => this.showModal("showModalSignUp")}
+              >
                 <span>&times;</span>
               </button>
               <form onSubmit={this.handleSubmit}>
@@ -82,7 +64,10 @@ class Home extends Component {
               <NavLink to="/newAccountCompagny">Inscription</NavLink>
             </div>
           </div>
-        </div>
+
+        </div> */}
+
+
         {/* <NavLink to="/newOffer">Poster une offre</NavLink>
         <OrangeButton text="compte entreprise" /> */}
         <div className="Home_intro container-fluid">
@@ -148,10 +133,11 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  idCompany: state.usersInfo.idCompany
+  idCompany: state.usersInfo.idCompany,
+  openModal: state.toggleModalsAccount.openModal
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany }
+  { getIdCompany, toggleModalAccount }
 )(Home);
