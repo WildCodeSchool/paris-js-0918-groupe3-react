@@ -18,22 +18,9 @@ import icone_ALGO from "../images/Icone_ALGO.png";
 import ModalSignIn from "./ModalSignIn";
 
 class Home extends Component {
-  state = {
-    showModalSignIn: false,
-    showModalSignUp: false
-  };
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
 
-  openModal = modalType => {
-    this.setState({
-      [modalType]: !this.state.modalType
-    });
-  };
+  
 
   render() {
     const { showModalSignIn } = this.state;
@@ -44,9 +31,9 @@ class Home extends Component {
 
     return (
       <div className="Home">
-        <Header openModal={this.openModal} />
+        <Header showModal={this.showModal} />
         {/* Modal Sign IN*/}
-        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} closeModal={this.openModal} />}
+        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} closeModal={this.showModal} />}
 
         {/* Modal Sign Up */}
 
@@ -55,7 +42,7 @@ class Home extends Component {
             <div className="modalDIY animated fadeInDown faster">
               <button
                 className="close"
-                onClick={() => this.openModal("showModalSignUp")}
+                onClick={() => this.showModal("showModalSignUp")}
               >
                 <span>&times;</span>
               </button>

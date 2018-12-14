@@ -10,7 +10,7 @@ class Header extends Component {
 
   render() {
 
-    const {openModal} = this.props
+    const {Modal} = this.props
     
     return (
       <div className="Header">
