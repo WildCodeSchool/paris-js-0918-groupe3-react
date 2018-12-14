@@ -1,17 +1,8 @@
-import { OPEN_MODAL, CLOSE_MODAL } from "./types";
+import { TOGGLE_ACCOUNT_MODAL } from "./types";
 
-export const openModal = dispatch => {
+export const toggleModalAccount = dispatch => {
   dispatch({
-    type: OPEN_MODAL,
-    openModal: true,
-    modalDisplay: "modal-activated"
+    type: TOGGLE_ACCOUNT_MODAL
   });
 };
 
-export const closeModal = dispatch => {
-  dispatch({
-    type: CLOSE_MODAL,
-    closeModal: false,
-    modalDisplay: "modal-desactivated"
-  });
-};

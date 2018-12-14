@@ -11,5 +11,5 @@ export default combineReducers({
   searchOffers: searchOffersReducer,
   offersCompanyList: offersCompanyReducer,
   usersInfo: userConnexionReducer,
-  modalsAccount: modalsAccountReducer
+  toggleModals: modalsAccountReducer
 });
