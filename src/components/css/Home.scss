@@ -7,8 +7,6 @@ $MainOrange:#F49754;
 
 
 .Home {
-  position: relative;
-
   .Home_intro {
     h4,
     h5 {
@@ -42,33 +40,4 @@ $MainOrange:#F49754;
       width: 25px;
     }
   }
-}
-
-// Modal
-.backgroundModal {
-  z-index: 1;
-  top: 0;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.modal-actived {
-  display: block;
-}
-
-.modal-desactived {
-  display: none;
-}
-
-.modalDIY {
-  z-index: 2;
-  opacity: 1;
-  background: white;
-  border-radius: 4px;
-  box-shadow: 5px 5px 10px;
 }

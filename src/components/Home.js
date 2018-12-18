@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Header from "./Header";
 import SearchOffers from "./SearchOffers";
-import  CarouselCompaniesHome from "./CarouselCompaniesHome";
+import CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
 
 import { getIdCompany } from "../actions/connexionUsersActions";
-import { toggleModalAccount } from "../actions/modalsAccountActions"
+import { toggleModalAccount } from "../actions/modalsAccountActions";
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -18,55 +17,16 @@ import icone_ALGO from "../images/Icone_ALGO.png";
 import ModalSignIn from "./ModalSignIn";
 
 class Home extends Component {
-
-
-  
-
   render() {
-    const showModalSignIn  = this.props.openModal;
+    const showModalSignIn = this.props.openModal;
     const modalDisplay = showModalSignIn ? "modal-actived" : "modal-desactived";
-  
-    
-    
 
     return (
       <div className="Home">
-        <Header />
         {/* Modal Sign IN*/}
-        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay}/>}
+        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} />}
 
         {/* Modal Sign Up */}
-
-        {/* <div className={modalDisplay}>
-          <div className="backgroundModal">
-            <div className="modalDIY animated fadeInDown faster">
-              <button
-                className="close"
-                onClick={() => this.showModal("showModalSignUp")}
-              >
-                <span>&times;</span>
-              </button>
-              <form onSubmit={this.handleSubmit}>
-                <input
-                  type="text"
-                  name="inputEmail"
-                  placeholder="entrer email entreprise"
-                  onChange={this.handleChange}
-                />
-                <input
-                  type="password"
-                  name="inputPassword"
-                  placeholder="password"
-                  onChange={this.handleChange}
-                />
-                <OrangeButton text="Connection" />
-              </form>
-              <NavLink to="/newAccountCompagny">Inscription</NavLink>
-            </div>
-          </div>
-
-        </div> */}
-
 
         {/* <NavLink to="/newOffer">Poster une offre</NavLink>
         <OrangeButton text="compte entreprise" /> */}
@@ -76,7 +36,8 @@ class Home extends Component {
               <h5>
                 Grâce à un <b>QUESTIONNAIRE</b>,
                 <br />
-                surprenez par vos <b>réalisations</b>, vos <b>propositions</b> et votre
+                surprenez par vos <b>réalisations</b>, vos <b>propositions</b>{" "}
+                et votre
                 <b> imagination</b>
               </h5>
             </div>
@@ -87,7 +48,9 @@ class Home extends Component {
                     <img className="icone_CV" src={icone_CV} alt="Icone CV" />
                   </div>
                   <div className="col-12 mb-3">
-                    <h6>NI CURRICULUM VITAE</h6>
+                    <h6>
+                      <b>NI CURRICULUM VITAE</b>
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -97,7 +60,9 @@ class Home extends Component {
                     <img className="icone_LM" src={icone_LM} alt="Icone LM" />
                   </div>
                   <div className="col-12 mb-3">
-                    <h6>NI LETTRE DE MOTIVATION</h6>
+                    <h6>
+                      <b>NI LETTRE DE MOTIVATION</b>
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -111,7 +76,9 @@ class Home extends Component {
                     />
                   </div>
                   <div className="col-12">
-                    <h6>NI ALGORITHME</h6>
+                    <h6>
+                      <b>NI ALGORITHME</b>
+                    </h6>
                   </div>
                 </div>
               </div>
@@ -125,7 +92,7 @@ class Home extends Component {
         </div>
         <SearchOffers />
         <CarouselCompaniesHome />
-        <hr/>
+        <hr />
         <Offers />
       </div>
     );

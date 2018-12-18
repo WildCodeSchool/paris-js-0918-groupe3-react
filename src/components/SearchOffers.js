@@ -30,13 +30,13 @@ class SearchOffers extends Component {
   render() {
     const { citiesList } = this.props;
     console.log(citiesList);
-    
+
     return (
       <div className="SearchOffer container-fluid">
         <form className="container p-3 p-md-4" onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="col-12 text-center">
-              <p><i>« Peu importe qui vous êtes ou qui vous avez été, vous pouvez être qui vous voulez »</i></p>
+          <div className="row text-center justify-content-center m-2">
+            <div className="col-11">
+              <h5><i>« Peu importe qui vous êtes ou qui vous avez été, vous pouvez être qui vous voulez »</i></h5>
             </div>
           </div>
           <div className="row text-center align-items-center">

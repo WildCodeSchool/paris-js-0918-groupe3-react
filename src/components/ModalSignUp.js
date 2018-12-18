@@ -28,7 +28,7 @@ class ModalSignUp extends Component {
                 />
                 <OrangeButton text="Connexion" />
               </form>
-              <NavLink to="/newAccountCompagny">Inscription</NavLink>
+              <NavLink to="/newAccountCompagny">Se connecter</NavLink>
             </div>
           </div>
         </div>
