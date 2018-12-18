@@ -56,7 +56,7 @@ class ModalSignIn extends Component {
                   placeholder="password"
                   onChange={this.handleChange}
                 />
-                <OrangeButton text="Connection" />
+                <OrangeButton text="Connexion" />
               </form>
               <NavLink to="/newAccountCompagny">Inscription</NavLink>
             </div>

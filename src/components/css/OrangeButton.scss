@@ -20,4 +20,8 @@ $MainOrange:#F49754;
         color: $MainOrange;
         border: solid 1px $MainOrange;
     }
+
+    &:focus {
+        outline: none;
+    }
 }
