@@ -15,8 +15,16 @@ $MainOrange:#F49754;
 
   .react-toggle-thumb {
     border-color: $MainBlue;
+    box-shadow: none;
   }
 }
+
+.customToggleBlue.react-toggle--focus {
+  .react-toggle-thumb {
+    box-shadow: none;
+  }
+}
+
 
 /* Toggle Orange */
 
@@ -31,5 +39,20 @@ $MainOrange:#F49754;
 
   .react-toggle-thumb {
     border-color: $MainOrange;
+    box-shadow: none;
+
+  }
+}
+
+.customToggleOrange.react-toggle--focus {
+  .react-toggle-thumb {
+    box-shadow: none;
+  }
+}
+
+/* ALL */
+.react-toggle:active:not(.react-toggle--disabled) {
+  .react-toggle-thumb {
+    box-shadow: none;
   }
 }
