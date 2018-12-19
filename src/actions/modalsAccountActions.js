@@ -1,11 +1,16 @@
-import { TOGGLE_MODAL_SIGNIN_USER, TOGGLE_MODAL_SIGNIN_COMPANY, TOGGLE_MODAL_SIGNUP_USER, TOGGLE_MODAL_SIGNUP_COMPANY } from "./types";
+import {
+  TOGGLE_MODAL_SIGNIN_USER,
+  TOGGLE_MODAL_SIGNIN_COMPANY,
+  TOGGLE_MODAL_SIGNUP_USER,
+  TOGGLE_MODAL_SIGNUP_COMPANY,
+  TOGGLE_MODAL_CLOSE
+} from "./types";
 
 export const toggleModalSignInUser = () => dispatch => {
   dispatch({
     type: TOGGLE_MODAL_SIGNIN_USER
   });
 };
-
 
 export const toggleModalSignInCompany = () => dispatch => {
   dispatch({

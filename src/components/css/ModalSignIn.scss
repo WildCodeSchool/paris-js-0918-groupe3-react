@@ -1,0 +1,62 @@
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+
+.modal-signin-actived {
+  display: block;
+}
+
+.modal-signin-desactived {
+  display: none;
+}
+
+.ModalSignIn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+
+
+
+  .modal-single {
+    z-index: 2;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 2px 0 5px #aaa;
+
+
+    h3 {
+      color: $MainBlue;
+    }
+
+    span {
+      color: $MainBlue;
+      font-size: 0.85em;
+      cursor: pointer;
+    }
+
+    .close span {
+      font-size: 1.5em;
+    }
+
+    input {
+      width: 90%;
+      padding: 5px;
+      border: 1px solid$MainBlue;
+      border-radius: 3px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        font-size: 0.85em;
+      }
+    }
+
+  }
+}
