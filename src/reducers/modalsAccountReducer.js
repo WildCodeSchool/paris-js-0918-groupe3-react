@@ -6,10 +6,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  openModalSignInUser: false,
-  openModalSignInCompany: false,
-  openModalSignUpUser: false,
-  openModalSignUpCompany: false,
+  modalAccountType: "",
   classDisplaySignInModal: "modal-desactived",
   classDisplaySignUpModal: "modal-desactived"
 };
@@ -19,30 +16,28 @@ export default function(state = initialState, action) {
     case TOGGLE_MODAL_SIGNIN_USER:
       return {
         ...state,
-        openModalSignInUser: !state.openModalSignInUser,
+        modalAccountType: "COMPANY",
         classDisplaySignInModal: "modal-actived",
         classDisplaySignupModal: "modal-desactived"
       };
     case TOGGLE_MODAL_SIGNIN_COMPANY:
       return {
         ...state,
-        openModalSignInCompany: !state.openModalSignInCompany,
+        modalAccountType: "COMPANY",
         classDisplaySignInModal: "modal-actived",
         classDisplaySignupModal: "modal-desactived"
       };
     case TOGGLE_MODAL_SIGNUP_USER:
       return {
         ...state,
-        openModalSignInUser: false,
-        openModalSignUpUser: !state.openModalSignUpUser,
+        modalAccountType: "USER",
         classDisplaySignInModal: "modal-desactived",
         classDisplaySignupModal: "modal-actived"
       };
     case TOGGLE_MODAL_SIGNUP_COMPANY:
       return {
         ...state,
-        openModalSignInCompany: false,
-        openModalSignUpCompany: !state.openModalSignUpCompany,
+        modalAccountType: "COMPANY",
         classDisplaySignInModal: "modal-desactived",
         classDisplaySignupModal: "modal-actived"
       };
