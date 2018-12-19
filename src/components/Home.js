@@ -6,7 +6,7 @@ import CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
 
 import { getIdCompany } from "../actions/connexionUsersActions";
-import { toggleModalAccount } from "../actions/modalsAccountActions";
+import { toggleModalUserAccount, toggleModalEntAccount } from "../actions/modalsAccountActions";
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -16,17 +16,22 @@ import icone_LM from "../images/Icone_LM.png";
 import icone_ALGO from "../images/Icone_ALGO.png";
 import ModalSignIn from "./ModalSignIn";
 
+
 class Home extends Component {
   render() {
-    const showModalSignIn = this.props.openModal;
-    const modalDisplay = showModalSignIn ? "modal-actived" : "modal-desactived";
+    const showUserModal = this.props.openUserModal;
+    const showEntModal = this.props.openEntModal;
+    const modalUserDisplay = showUserModal ? "modal-actived" : "modal-desactived";
+    const modalEntDisplay = showEntModal ? "modal-actived" : "modal-desactived";
+
 
     return (
       <div className="Home">
-        {/* Modal Sign IN*/}
-        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} />}
+        {/* Modal USER Sign IN*/}
+        {showUserModal && <ModalSignIn modalDisplay={modalUserDisplay} to={"/"} modalToggle={this.props.toggleModalUserAccount} />}
 
-        {/* Modal Sign Up */}
+        {/* Modal ENTERPRISE Sign Up */}
+        {showEntModal && <ModalSignIn modalDisplay={modalEntDisplay} to ={"/newAccountCompagny"} modalToggle={this.props.toggleModalEntAccount}  />}
 
         {/* <NavLink to="/newOffer">Poster une offre</NavLink>
         <OrangeButton text="compte entreprise" /> */}
@@ -101,10 +106,12 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   idCompany: state.usersInfo.idCompany,
-  openModal: state.toggleModalsAccount.openModal
+  openUserModal: state.toggleModalsAccount.openUserModal,
+  openEntModal: state.toggleModalsAccount.openEntModal,
+
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany, toggleModalAccount }
+  { getIdCompany, toggleModalUserAccount, toggleModalEntAccount }
 )(Home);

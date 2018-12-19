@@ -1,17 +1,24 @@
-import {TOGGLE_ACCOUNT_MODAL } from "../actions/types";
+import {TOGGLE_USER_ACCOUNT_MODAL, TOGGLE_ENT_ACCOUNT_MODAL  } from "../actions/types";
 
 const initialState = {
-  openModal: false,
+  openEntModal: false,
+  openUserModal:false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_ACCOUNT_MODAL:
+    case TOGGLE_USER_ACCOUNT_MODAL:
       return {
         ...state,
-        openModal:!state.openModal
+        openUserModal:!state.openUserModal,
+        openEntModal:!state.openEntModal
       };
-   
+      case TOGGLE_ENT_ACCOUNT_MODAL:
+      return {
+        ...state,
+        openEntModal:!state.openEntModal,
+        openUserModal:!state.openUserModal
+      };
     default:
       return state;
   }

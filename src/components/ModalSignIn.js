@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getIdCompany } from "../actions/connexionUsersActions";
-import { toggleModalAccount } from "../actions/modalsAccountActions";
+
 
 import OrangeButton from "./OrangeButton";
 import "./css/OrangeButton.scss";
@@ -31,7 +31,7 @@ class ModalSignIn extends Component {
   };
   render() {
     const { redirection } = this.state;
-    const { toggleModalAccount } = this.props;
+    const { modalToggle, to } = this.props;
 
     if (redirection === true)
       return <Redirect to={`/company${this.props.idCompany}`} />;
@@ -43,7 +43,7 @@ class ModalSignIn extends Component {
             <div className="modalDIY animated fadeInDown faster p-2">
               <div className="row">
                 <div className="col-12">
-                  <button className="close" onClick={toggleModalAccount}>
+                  <button className="close" onClick={modalToggle}>
                     <span>&times;</span>
                   </button>
                 </div>
@@ -78,7 +78,7 @@ class ModalSignIn extends Component {
               </div>
               <div className="row align-items-end text-right">
                 <div className="col-12">
-                  <NavLink to="/newAccountCompagny">S'inscrire</NavLink>
+                  <NavLink to={to}>S'inscrire</NavLink>
                 </div>
               </div>
             </div>
@@ -91,10 +91,10 @@ class ModalSignIn extends Component {
 
 const mapStateToProps = state => ({
   idCompany: state.usersInfo.idCompany,
-  openModal: state.toggleModalsAccount.openModal
+  openEntModal: state.toggleModalsAccount.openEntModal,
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany, toggleModalAccount }
+  { getIdCompany }
 )(ModalSignIn);
