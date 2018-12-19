@@ -2,7 +2,8 @@ import {
   TOGGLE_MODAL_SIGNIN_USER,
   TOGGLE_MODAL_SIGNIN_COMPANY,
   TOGGLE_MODAL_SIGNUP_USER,
-  TOGGLE_MODAL_SIGNUP_COMPANY
+  TOGGLE_MODAL_SIGNUP_COMPANY,
+  TOGGLE_MODAL_CLOSE
 } from "../actions/types";
 
 const initialState = {
@@ -16,7 +17,7 @@ export default function(state = initialState, action) {
     case TOGGLE_MODAL_SIGNIN_USER:
       return {
         ...state,
-        modalAccountType: "COMPANY",
+        modalAccountType: "USER",
         classDisplaySignInModal: "modal-actived",
         classDisplaySignupModal: "modal-desactived"
       };
@@ -40,6 +41,13 @@ export default function(state = initialState, action) {
         modalAccountType: "COMPANY",
         classDisplaySignInModal: "modal-desactived",
         classDisplaySignupModal: "modal-actived"
+      };
+      case TOGGLE_MODAL_CLOSE:
+      return {
+        ...state,
+        modalAccountType: "",
+        classDisplaySignInModal: "modal-desactived",
+        classDisplaySignInModal: "modal-desactived"
       };
     default:
       return state;

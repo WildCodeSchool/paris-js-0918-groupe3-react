@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import "./css/Header.scss";
 
 import logo from "../images/Logo.png";
-import { toggleModaSignInUser, toggleModaSignInCompany } from "../actions/modalsAccountActions";
+import { toggleModalSignInUser, toggleModalSignInCompany } from "../actions/modalsAccountActions";
 
 class Header extends Component {
   render() {
-    const {toggleModaSignInUser, toggleModaSignInCompany}  = this.props;
+    const {toggleModalSignInUser, toggleModalSignInCompany}  = this.props;
 
     return (
       <div className="Header">
@@ -30,13 +30,13 @@ class Header extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <button type="button" className="btn btnMenuBurger d-lg-none m-2" onClick={toggleModaSignInUser}>
+            <button type="button" className="btn btnMenuBurger d-lg-none m-2" onClick={toggleModalSignInUser}>
               Espace candidat
             </button>
             <button
               type="button"
               className="btn btnMenuBurger d-lg-none m-2"
-              onClick={toggleModaSignInCompany}
+              onClick={toggleModalSignInCompany}
             >
               Espace recruteur
             </button>
@@ -69,13 +69,13 @@ class Header extends Component {
                   Connexion
                 </button>
                 <div className="dropdown-menu">
-                  <div className="dropdown-item" onClick={toggleModaSignInUser}>
+                  <div className="dropdown-item" onClick={toggleModalSignInUser}>
                     Espace candidat
                   </div>
                   <div className="dropdown-divider" />
                   <div
                     className="dropdown-item"
-                    onClick= {toggleModaSignInCompany}
+                    onClick= {toggleModalSignInCompany}
                   >
                     Espace recruteur
                   </div>
@@ -96,5 +96,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { toggleModaSignInUser, toggleModaSignInCompany }
+  { toggleModalSignInUser, toggleModalSignInCompany }
 )(Header);

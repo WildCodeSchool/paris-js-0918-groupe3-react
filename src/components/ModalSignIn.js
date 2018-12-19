@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getIdCompany } from "../actions/connexionUsersActions";
-import { toggleModalSignUp } from "../actions/modalsAccountActions";
+import {  toggleModaSignUpCompany, toggleModaSignUpUser  } from "../actions/modalsAccountActions";
 
 import OrangeButton from "./OrangeButton";
 import "./css/OrangeButton.scss";
@@ -100,5 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getIdCompany, toggleModalSignUp }
+  { getIdCompany,  toggleModaSignUpCompany, toggleModaSignUpUser  }
 )(ModalSignIn);

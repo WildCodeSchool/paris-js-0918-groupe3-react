@@ -8,7 +8,7 @@ import ModalSignIn from "./ModalSignIn";
 import ModalSignUp from "./ModalSignUp";
 
 import { getIdCompany } from "../actions/connexionUsersActions";
-import { toggleModaSignInCompany, toggleModaSignInUser, toggleModaSignUpCompany, toggleModaSignUpUser } from "../actions/modalsAccountActions";
+import { toggleModalSignInCompany, toggleModalSignInUser} from "../actions/modalsAccountActions";
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -22,25 +22,19 @@ import icone_ALGO from "../images/Icone_ALGO.png";
 class Home extends Component {
   render() {
 
-    const {openModalSignUpCompany, openModalSignUpUser, openModalSignInCompany, openModalSignInUser, toggleModalUserAccount, toggleModalEntAccount} = this.props
-    const modalSignInUserDisplay = openModalSignInUser ? "modal-actived" : "modal-desactived";
-    const modalEntDisplay = openModalSignInCompany ? "modal-actived" : "modal-desactived";
+    const {  modalAccountType, classDisplaySignInModal, classDisplaySignUpModal, toggleModalSignInUser, toggleModalSignInCompany } = this.props
+   
    
 
 
     return (
       <div className="Home">
         {/* Modal USER Sign IN*/}
-        {openModalSignInUser && <ModalSignIn modalDisplay={modalSignInUserDisplay} to={"/"} modalToggle={toggleModalUserAccount} redirect={`/user`} />}
+        {modalAccountType === "USER" && <ModalSignIn modalDisplay={classDisplaySignInModal} to={"/"} modalToggle={toggleModalSignInUser} redirect={`/user`} />}
 
         {/* Modal COMPANY Sign IN */}
-        {openModalSignInCompany && <ModalSignIn modalDisplay={modalEntDisplay} to ={"/newAccountCompagny"} modalToggle={toggleModalEntAccount} redirect={`/company${this.props.idCompany}`}   />}
+        {modalAccountType === "COMPANY" && <ModalSignIn modalDisplay={classDisplaySignInModal} to ={"/newAccountCompagny"} modalToggle={toggleModalSignInCompany} redirect={`/company${this.props.idCompany}`}   />}
 
-        {/* Modal COMPANY Sign UP */}
-        {openModalSignUpCompany && <ModalSignUp />}
-
-        {/* Modal USER Sign UP */}
-        {openModalSignUpUser && <ModalSignUp />}
 
         {/* <NavLink to="/newOffer">Poster une offre</NavLink>
         <OrangeButton text="compte entreprise" /> */}
@@ -115,14 +109,13 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   idCompany: state.usersInfo.idCompany,
-  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
-  openModalSignInCompany: state.toggleModalsAccount.openModalSignInCompany,
-  openModalSignUpUser: state.toggleModalsAccount.openModalSignUpUser,
-  openModalSignUpCompany: state.toggleModalsAccount.openModalSignUpCompany,
+  modalAccountType: state.toggleModalsAccount.modalAccountType,
+  classDisplaySignInModal: state.toggleModalsAccount.classDisplaySignInModal,
+  classDisplaySignupModal: state.toggleModalsAccount.classDisplaySignupModal
 
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany, toggleModaSignInUser, toggleModaSignInCompany }
+  { getIdCompany, toggleModalSignInUser, toggleModalSignInCompany }
 )(Home);
