@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getIdCompany } from "../actions/connexionUsersActions";
-
+import { toggleModalSignUp } from "../actions/modalsAccountActions";
 
 import OrangeButton from "./OrangeButton";
 import "./css/OrangeButton.scss";
@@ -31,10 +31,9 @@ class ModalSignIn extends Component {
   };
   render() {
     const { redirection } = this.state;
-    const { modalToggle, to } = this.props;
+    const { modalToggle } = this.props;
 
-    if (redirection === true)
-      return <Redirect to={`/company${this.props.idCompany}`} />;
+    if (redirection === true) return <Redirect to={this.props.redirect} />;
 
     return (
       <div>
@@ -51,9 +50,9 @@ class ModalSignIn extends Component {
               <div className="row p-3 pl-5 pr-5 justify-content-center text-center">
                 <div className="row">
                   <form onSubmit={this.handleSubmit}>
-                  <div className="col-12 mb-4">
-                    <h3>Connexion</h3>
-                  </div>
+                    <div className="col-12 mb-4">
+                      <h3>Connexion</h3>
+                    </div>
                     <div className="col-12 mb-4">
                       <input
                         type="text"
@@ -78,7 +77,9 @@ class ModalSignIn extends Component {
               </div>
               <div className="row align-items-end text-right">
                 <div className="col-12">
-                  <NavLink to={to}>S'inscrire</NavLink>
+                  <button onClick={this.props.toggleModalSignUp}>
+                    S'inscrire
+                  </button>
                 </div>
               </div>
             </div>
@@ -91,10 +92,13 @@ class ModalSignIn extends Component {
 
 const mapStateToProps = state => ({
   idCompany: state.usersInfo.idCompany,
-  openEntModal: state.toggleModalsAccount.openEntModal,
+  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
+  openModalSignInCompany: state.toggleModalsAccount.openModalSignInCompany,
+  openModalSignUpUser: state.toggleModalsAccount.openModalSignUpUser,
+  openModalSignUpCompany: state.toggleModalsAccount.openModalSignUpCompany,
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany }
+  { getIdCompany, toggleModalSignUp }
 )(ModalSignIn);

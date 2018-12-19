@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import "./css/Header.scss";
 
 import logo from "../images/Logo.png";
-import { toggleModalUserAccount, toggleModalEntAccount } from "../actions/modalsAccountActions";
+import { toggleModaSignInUser, toggleModaSignInCompany } from "../actions/modalsAccountActions";
 
 class Header extends Component {
   render() {
-    const {toggleModalUserAccount, toggleModalEntAccount}  = this.props;
+    const {toggleModaSignInUser, toggleModaSignInCompany}  = this.props;
 
     return (
       <div className="Header">
@@ -30,13 +30,13 @@ class Header extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <button type="button" className="btn btnMenuBurger d-lg-none m-2" onClick={toggleModalUserAccount}>
+            <button type="button" className="btn btnMenuBurger d-lg-none m-2" onClick={toggleModaSignInUser}>
               Espace candidat
             </button>
             <button
               type="button"
               className="btn btnMenuBurger d-lg-none m-2"
-              onClick={toggleModalEntAccount}
+              onClick={toggleModaSignInCompany}
             >
               Espace recruteur
             </button>
@@ -69,13 +69,13 @@ class Header extends Component {
                   Connexion
                 </button>
                 <div className="dropdown-menu">
-                  <div className="dropdown-item" onClick={toggleModalUserAccount}>
+                  <div className="dropdown-item" onClick={toggleModaSignInUser}>
                     Espace candidat
                   </div>
                   <div className="dropdown-divider" />
                   <div
                     className="dropdown-item"
-                    onClick= {toggleModalEntAccount}
+                    onClick= {toggleModaSignInCompany}
                   >
                     Espace recruteur
                   </div>
@@ -90,11 +90,11 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  openUserModal: state.toggleModalsAccount.openUserModal,
-  openEntModal: state.toggleModalsAccount.openEntModal,
+  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
+  openModalSignInCompany: state.toggleModalsAccount.openModalSignInCompany,
 });
 
 export default connect(
   mapStateToProps,
-  { toggleModalUserAccount, toggleModalEntAccount }
+  { toggleModaSignInUser, toggleModaSignInCompany }
 )(Header);

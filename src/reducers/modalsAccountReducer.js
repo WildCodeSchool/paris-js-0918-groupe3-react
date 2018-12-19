@@ -1,23 +1,50 @@
-import {TOGGLE_USER_ACCOUNT_MODAL, TOGGLE_ENT_ACCOUNT_MODAL  } from "../actions/types";
+import {
+  TOGGLE_MODAL_SIGNIN_USER,
+  TOGGLE_MODAL_SIGNIN_COMPANY,
+  TOGGLE_MODAL_SIGNUP_USER,
+  TOGGLE_MODAL_SIGNUP_COMPANY
+} from "../actions/types";
 
 const initialState = {
-  openEntModal: false,
-  openUserModal:false
+  openModalSignInUser: false,
+  openModalSignInCompany: false,
+  openModalSignUpUser: false,
+  openModalSignUpCompany: false,
+  classDisplaySignInModal: "modal-desactived",
+  classDisplaySignUpModal: "modal-desactived"
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_USER_ACCOUNT_MODAL:
+    case TOGGLE_MODAL_SIGNIN_USER:
       return {
         ...state,
-        openUserModal:!state.openUserModal,
-        openEntModal:!state.openEntModal
+        openModalSignInUser: !state.openModalSignInUser,
+        classDisplaySignInModal: "modal-actived",
+        classDisplaySignupModal: "modal-desactived"
       };
-      case TOGGLE_ENT_ACCOUNT_MODAL:
+    case TOGGLE_MODAL_SIGNIN_COMPANY:
       return {
         ...state,
-        openEntModal:!state.openEntModal,
-        openUserModal:!state.openUserModal
+        openModalSignInCompany: !state.openModalSignInCompany,
+        classDisplaySignInModal: "modal-actived",
+        classDisplaySignupModal: "modal-desactived"
+      };
+    case TOGGLE_MODAL_SIGNUP_USER:
+      return {
+        ...state,
+        openModalSignInUser: false,
+        openModalSignUpUser: !state.openModalSignUpUser,
+        classDisplaySignInModal: "modal-desactived",
+        classDisplaySignupModal: "modal-actived"
+      };
+    case TOGGLE_MODAL_SIGNUP_COMPANY:
+      return {
+        ...state,
+        openModalSignInCompany: false,
+        openModalSignUpCompany: !state.openModalSignUpCompany,
+        classDisplaySignInModal: "modal-desactived",
+        classDisplaySignupModal: "modal-actived"
       };
     default:
       return state;

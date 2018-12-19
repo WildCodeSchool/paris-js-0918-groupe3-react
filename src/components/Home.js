@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 import SearchOffers from "./SearchOffers";
 import CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
+import ModalSignIn from "./ModalSignIn";
+import ModalSignUp from "./ModalSignUp";
 
 import { getIdCompany } from "../actions/connexionUsersActions";
-import { toggleModalUserAccount, toggleModalEntAccount } from "../actions/modalsAccountActions";
+import { toggleModaSignInCompany, toggleModaSignInUser, toggleModaSignUpCompany, toggleModaSignUpUser } from "../actions/modalsAccountActions";
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -14,24 +16,31 @@ import "./css/OrangeButton.scss";
 import icone_CV from "../images/Icone_CV.png";
 import icone_LM from "../images/Icone_LM.png";
 import icone_ALGO from "../images/Icone_ALGO.png";
-import ModalSignIn from "./ModalSignIn";
+
 
 
 class Home extends Component {
   render() {
-    const showUserModal = this.props.openUserModal;
-    const showEntModal = this.props.openEntModal;
-    const modalUserDisplay = showUserModal ? "modal-actived" : "modal-desactived";
-    const modalEntDisplay = showEntModal ? "modal-actived" : "modal-desactived";
+
+    const {openModalSignUpCompany, openModalSignUpUser, openModalSignInCompany, openModalSignInUser, toggleModalUserAccount, toggleModalEntAccount} = this.props
+    const modalSignInUserDisplay = openModalSignInUser ? "modal-actived" : "modal-desactived";
+    const modalEntDisplay = openModalSignInCompany ? "modal-actived" : "modal-desactived";
+   
 
 
     return (
       <div className="Home">
         {/* Modal USER Sign IN*/}
-        {showUserModal && <ModalSignIn modalDisplay={modalUserDisplay} to={"/"} modalToggle={this.props.toggleModalUserAccount} />}
+        {openModalSignInUser && <ModalSignIn modalDisplay={modalSignInUserDisplay} to={"/"} modalToggle={toggleModalUserAccount} redirect={`/user`} />}
 
-        {/* Modal ENTERPRISE Sign Up */}
-        {showEntModal && <ModalSignIn modalDisplay={modalEntDisplay} to ={"/newAccountCompagny"} modalToggle={this.props.toggleModalEntAccount}  />}
+        {/* Modal COMPANY Sign IN */}
+        {openModalSignInCompany && <ModalSignIn modalDisplay={modalEntDisplay} to ={"/newAccountCompagny"} modalToggle={toggleModalEntAccount} redirect={`/company${this.props.idCompany}`}   />}
+
+        {/* Modal COMPANY Sign UP */}
+        {openModalSignUpCompany && <ModalSignUp />}
+
+        {/* Modal USER Sign UP */}
+        {openModalSignUpUser && <ModalSignUp />}
 
         {/* <NavLink to="/newOffer">Poster une offre</NavLink>
         <OrangeButton text="compte entreprise" /> */}
@@ -106,12 +115,14 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   idCompany: state.usersInfo.idCompany,
-  openUserModal: state.toggleModalsAccount.openUserModal,
-  openEntModal: state.toggleModalsAccount.openEntModal,
+  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
+  openModalSignInCompany: state.toggleModalsAccount.openModalSignInCompany,
+  openModalSignUpUser: state.toggleModalsAccount.openModalSignUpUser,
+  openModalSignUpCompany: state.toggleModalsAccount.openModalSignUpCompany,
 
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany, toggleModalUserAccount, toggleModalEntAccount }
+  { getIdCompany, toggleModaSignInUser, toggleModaSignInCompany }
 )(Home);

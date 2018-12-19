@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import OrangeButton from './OrangeButton';
 
 class ModalSignUp extends Component {
   render() {
     return (
       <div>
-        <div className={modalDisplay}>
+        <div className="activated">
           <div className="backgroundModal">
             <div className="modalDIY animated fadeInDown faster">
               <button
@@ -28,7 +29,7 @@ class ModalSignUp extends Component {
                 />
                 <OrangeButton text="Connexion" />
               </form>
-              <NavLink to="/newAccountCompagny">Se connecter</NavLink>
+              <button>Valider</button>
             </div>
           </div>
         </div>
