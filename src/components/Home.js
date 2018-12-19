@@ -4,9 +4,14 @@ import { connect } from "react-redux";
 import SearchOffers from "./SearchOffers";
 import CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
+import ModalSignIn from "./ModalSignIn";
+import ModalSignUp from "./ModalSignUp";
 
 import { getIdCompany } from "../actions/connexionUsersActions";
-import { toggleModalAccount } from "../actions/modalsAccountActions";
+import {
+  toggleModalSignInCompany,
+  toggleModalSignInUser
+} from "../actions/modalsAccountActions";
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -14,19 +19,42 @@ import "./css/OrangeButton.scss";
 import icone_CV from "../images/Icone_CV.png";
 import icone_LM from "../images/Icone_LM.png";
 import icone_ALGO from "../images/Icone_ALGO.png";
-import ModalSignIn from "./ModalSignIn";
 
 class Home extends Component {
   render() {
-    const showModalSignIn = this.props.openModal;
-    const modalDisplay = showModalSignIn ? "modal-actived" : "modal-desactived";
-
+    const {
+      modalAccountType,
+    } = this.props;
     return (
       <div className="Home">
-        {/* Modal Sign IN*/}
-        {showModalSignIn && <ModalSignIn modalDisplay={modalDisplay} />}
-
-        {/* Modal Sign Up */}
+        {/* Modal USER Sign IN*/}
+        {modalAccountType === "USER" && (
+          <ModalSignIn
+            to={"/"}
+            redirect={`/user`}
+          />
+        )}
+        {/* Modal COMPANY Sign IN */}
+        {modalAccountType === "COMPANY" && (
+          <ModalSignIn
+            to={"/newAccountCompagny"}
+            redirect={`/company${this.props.idCompany}`}
+          />
+        )}
+        {/* Modal USER Sign UP */}
+        {modalAccountType === "USER" && (
+          <ModalSignUp
+            to={"/newAccountCompagny"}
+            redirect={`/company${this.props.idCompany}`}
+          />
+        )}
+        {/* Modal COMPANY Sign UP */}
+        {modalAccountType === "COMPANY" && (
+          <ModalSignUp
+            to={"/newAccountCompagny"}
+            redirect={`/company${this.props.idCompany}`}
+          />
+        )}
 
         {/* <NavLink to="/newOffer">Poster une offre</NavLink>
         <OrangeButton text="compte entreprise" /> */}
@@ -101,10 +129,12 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   idCompany: state.usersInfo.idCompany,
-  openModal: state.toggleModalsAccount.openModal
+  modalAccountType: state.toggleModalsAccount.modalAccountType,
+  classDisplaySignInModal: state.toggleModalsAccount.classDisplaySignInModal,
+  classDisplaySignUpModal: state.toggleModalsAccount.classDisplaySignUpModal
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany, toggleModalAccount }
+  { getIdCompany, toggleModalSignInUser, toggleModalSignInCompany }
 )(Home);

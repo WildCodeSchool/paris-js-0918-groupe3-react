@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import "./css/Header.scss";
 
 import logo from "../images/Logo.png";
-import { toggleModalAccount } from "../actions/modalsAccountActions";
+import { toggleModalSignInUser, toggleModalSignInCompany } from "../actions/modalsAccountActions";
 
 class Header extends Component {
   render() {
-    const {toggleModalAccount}  = this.props;
+    const {toggleModalSignInUser, toggleModalSignInCompany}  = this.props;
 
     return (
       <div className="Header">
@@ -30,13 +30,13 @@ class Header extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <button type="button" className="btn btnMenuBurger d-lg-none m-2">
+            <button type="button" className="btn btnMenuBurger d-lg-none m-2" onClick={toggleModalSignInUser}>
               Espace candidat
             </button>
             <button
               type="button"
               className="btn btnMenuBurger d-lg-none m-2"
-              onClick={toggleModalAccount}
+              onClick={toggleModalSignInCompany}
             >
               Espace recruteur
             </button>
@@ -69,13 +69,13 @@ class Header extends Component {
                   Connexion
                 </button>
                 <div className="dropdown-menu">
-                  <a className="dropdown-item" href="/">
+                  <div className="dropdown-item" onClick={toggleModalSignInUser}>
                     Espace candidat
-                  </a>
+                  </div>
                   <div className="dropdown-divider" />
                   <div
                     className="dropdown-item"
-                    onClick= {toggleModalAccount}
+                    onClick= {toggleModalSignInCompany}
                   >
                     Espace recruteur
                   </div>
@@ -90,10 +90,11 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  openModal: state.toggleModalsAccount.openModal
+  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
+  openModalSignInCompany: state.toggleModalsAccount.openModalSignInCompany,
 });
 
 export default connect(
   mapStateToProps,
-  { toggleModalAccount }
+  { toggleModalSignInUser, toggleModalSignInCompany }
 )(Header);

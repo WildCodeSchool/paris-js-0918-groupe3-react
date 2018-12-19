@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { getIdCompany } from "../actions/connexionUsersActions";
-import { toggleModalAccount } from "../actions/modalsAccountActions";
+import {
+  toggleModalSignUpUser,
+  toggleModalSignUpCompany,
+  toggleModalClose
+} from "../actions/modalsAccountActions";
 
 import OrangeButton from "./OrangeButton";
+
 import "./css/OrangeButton.scss";
-import "./css/Modal.scss";
+import "./css/ModalSignIn.scss";
 
 class ModalSignIn extends Component {
   state = {
@@ -31,55 +37,63 @@ class ModalSignIn extends Component {
   };
   render() {
     const { redirection } = this.state;
-    const { toggleModalAccount } = this.props;
+    const {
+      modalAccountType,
+      classDisplaySignInModal,
+      toggleModalSignUpUser,
+      toggleModalSignUpCompany,
+      toggleModalClose
+    } = this.props;
 
-    if (redirection === true)
-      return <Redirect to={`/company${this.props.idCompany}`} />;
+    if (redirection === true) return <Redirect to={this.props.redirect} />;
 
     return (
-      <div>
-        <div className={this.props.modalDisplay}>
-          <div className="backgroundModal">
-            <div className="modalDIY animated fadeInDown faster p-2">
-              <div className="row">
-                <div className="col-12">
-                  <button className="close" onClick={toggleModalAccount}>
-                    <span>&times;</span>
-                  </button>
-                </div>
+      <div className={classDisplaySignInModal}>
+        <div className="ModalSignIn">
+          <div className="modal-single animated fadeInDown faster p-2">
+            <div className="row">
+              <div className="col-12">
+                <button className="close" onClick={toggleModalClose}>
+                  <span>&times;</span>
+                </button>
               </div>
-              <div className="row p-3 pl-5 pr-5 justify-content-center text-center">
-                <div className="row">
-                  <form onSubmit={this.handleSubmit}>
-                  <div className="col-12 mb-4">
+            </div>
+            <div className="row p-3 pl-5 pr-5 justify-content-center text-center">
+              <div className="row">
+                <form onSubmit={this.handleSubmit}>
+                  <div className="col-12 mb-3">
                     <h3>Connexion</h3>
                   </div>
-                    <div className="col-12 mb-4">
-                      <input
-                        type="text"
-                        name="inputEmail"
-                        placeholder="Email"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-12 mb-4">
-                      <input
-                        type="password"
-                        name="inputPassword"
-                        placeholder="password"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-12">
-                      <OrangeButton text="Connexion" />
-                    </div>
-                  </form>
-                </div>
+                  <div className="col-12 mb-3">
+                    <input
+                      type="text"
+                      name="inputEmail"
+                      placeholder="Email"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="col-12 mb-3">
+                    <input
+                      type="password"
+                      name="inputPassword"
+                      placeholder="Mot de passe"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="col-12">
+                    <OrangeButton text="Connexion" />
+                  </div>
+                </form>
               </div>
-              <div className="row align-items-end text-right">
-                <div className="col-12">
-                  <NavLink to="/newAccountCompagny">S'inscrire</NavLink>
-                </div>
+            </div>
+            <div className="row align-items-end text-right">
+              <div className="col-12">
+                {modalAccountType === "USER" && (
+                  <span onClick={toggleModalSignUpUser}>Créer mon compte</span>
+                )}
+                {modalAccountType === "COMPANY" && (
+                  <span onClick={toggleModalSignUpCompany}>Créer mon compte</span>
+                )}
               </div>
             </div>
           </div>
@@ -91,10 +105,16 @@ class ModalSignIn extends Component {
 
 const mapStateToProps = state => ({
   idCompany: state.usersInfo.idCompany,
-  openModal: state.toggleModalsAccount.openModal
+  modalAccountType: state.toggleModalsAccount.modalAccountType,
+  classDisplaySignInModal: state.toggleModalsAccount.classDisplaySignInModal
 });
 
 export default connect(
   mapStateToProps,
-  { getIdCompany, toggleModalAccount }
+  {
+    getIdCompany,
+    toggleModalClose,
+    toggleModalSignUpUser,
+    toggleModalSignUpCompany
+  }
 )(ModalSignIn);
