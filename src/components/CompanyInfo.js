@@ -18,7 +18,7 @@ class CompanyInfo extends Component {
         </div>
         <div className="content">
           <div>
-            <img src="" alt="comany logo" />
+            <img src="" alt="company logo" />
           </div>
           <div>
             <p>E-mail : {email}</p>
