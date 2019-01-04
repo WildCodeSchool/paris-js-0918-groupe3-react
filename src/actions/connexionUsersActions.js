@@ -4,7 +4,7 @@ import axios from "axios";
 const domain = process.env.REACT_APP_DOMAIN_NAME;
 
 export const getIdCompany = (email, password) => async dispatch => {
-  const url = `${domain}api/auth/signin/companies`;
+  const url = `${domain}api/auth/signin/company`;
   const body = { 
     email: email, 
     password: password
