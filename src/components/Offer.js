@@ -17,7 +17,7 @@ dateFormat.i18n = {
     "Jeu",
     "Ven",
     "Sam",
-    "dimanch",
+    "dimanche",
     "lundi",
     "mardi",
     "mercredi",
@@ -64,7 +64,7 @@ class Offer extends Component {
     this.setState({ showElement: !showElement });
   };
   render() {
-    const { data } = this.props;
+    const { data, origin } = this.props;
     const { showElement } = this.state;
 
     return (
@@ -112,6 +112,7 @@ class Offer extends Component {
               <div className="descriptionCompleteOffer col-12 offset-md-2 col-md-9">
                 <p>{data.description}</p>
               </div>
+              {origin === 'home' && 
               <div className="col-12 text-right">
                 <img src={iconStar} className="iconStar" alt="icone star" />
                 <a href="/" className="textFavoris">
@@ -119,7 +120,16 @@ class Offer extends Component {
                 </a>
                 &nbsp;&nbsp;
                 <OrangeButton text="Postuler" />
-              </div>
+              </div>}
+              {origin === 'company' && 
+              <div className="col-12 text-right">
+                <OrangeButton text="Voir les candidatures" />
+              </div>}
+              {origin === 'candidate' && 
+              <div className="col-12 text-right">
+                <OrangeButton text="Voir mes réponses" />
+              </div>}
+              
             </div>
           </div>
         </div>
