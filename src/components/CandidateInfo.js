@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getCompanyInfo } from "../actions/accountCompanyActions";
+import { getCandidateInfo } from "../actions/accountCandidateActions";
 
 class CandidateInfo extends Component {
   componentDidMount() {
@@ -9,11 +9,11 @@ class CandidateInfo extends Component {
   }
 
   render() {
-    const { email, phone} = this.props.companyInfo;
+    const { email, phone} = this.props.candidateInfo;
     return (
       <div className="CandidateInfo">
         <div className="head">
-          <h3>Vos informations personnelles : {name}</h3>
+          <h3>Vos informations personnelles</h3>
           <a href="">Editer</a>
         </div>
         <div className="content">
@@ -31,10 +31,10 @@ class CandidateInfo extends Component {
 }
 
 const mapStateToProps = state => ({
-  companyInfo: state.accountCompany.companyInfo
+  candidateInfo: state.accountCandidate.candidateInfo
 });
 
 export default connect(
   mapStateToProps,
-  { getCompanyInfo }
+  { getCandidateInfo }
 )(CandidateInfo);
