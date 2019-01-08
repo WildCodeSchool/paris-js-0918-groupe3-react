@@ -6,7 +6,7 @@ import {
 } from "./types";
 
 const domain = process.env.REACT_APP_DOMAIN_NAME;
-const token = localStorage.getItem('token');
+const token = localStorage.getItem("token");
 
 export const getOriginalQuestions = () => dispatch => {
   const url = `${domain}api/questions/originals`;
@@ -45,13 +45,16 @@ export const postNewOffer = values => dispatch => {
     is_published
   };
   const url = `${domain}api/offers?questions=${questionsList}`;
-  axios({
-    method: "POST",
-    url,
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }, body)
+  axios(
+    {
+      method: "POST",
+      url,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    },
+    body
+  )
     .then(() => {
       dispatch({
         type: POST_NEW_OFFER
