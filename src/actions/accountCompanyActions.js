@@ -10,7 +10,7 @@ export const getCompanyInfo = id => (dispatch) => {
         method: 'GET',
         url,
         headers: {
-            Autorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         }
     })
     .then(res => {
@@ -27,7 +27,7 @@ export const getOffersCompany = (id, bool) => (dispatch) => {
         method: 'GET',
         url,
         headers: {
-            Autorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         }
     })
     .then(res => {

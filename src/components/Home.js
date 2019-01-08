@@ -121,7 +121,7 @@ class Home extends Component {
         <SearchOffers />
         <CarouselCompaniesHome />
         <hr />
-        <Offers />
+        <Offers origin='home' />
       </div>
     );
   }
