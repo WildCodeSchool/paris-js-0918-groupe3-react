@@ -5,6 +5,8 @@ const domain = process.env.REACT_APP_DOMAIN_NAME;
 const token = localStorage.getItem("token");
 
 export const getCompanyInfo = () => dispatch => {
+
+  
   const url = `${domain}api/companies`;
   axios({
     method: "GET",
@@ -21,6 +23,7 @@ export const getCompanyInfo = () => dispatch => {
 };
 
 export const getOffersCompany = bool => dispatch => {
+  console.log("va dans offersCompany");
   const url = `${domain}api/offers?is_active=${bool}`;
   axios({
     method: "GET",
@@ -29,6 +32,8 @@ export const getOffersCompany = bool => dispatch => {
       Authorization: `Bearer ${token}`
     }
   }).then(res => {
+    console.log(res);
+    
     dispatch({
       type: GET_OFFERS_COMPANY,
       offersCompanyList: res.data

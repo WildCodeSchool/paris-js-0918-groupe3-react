@@ -9,7 +9,9 @@ import CompanyInfo from "./CompanyInfo";
 
 class AccountCompany extends Component {
   componentDidMount = () => {
-    this.props.getOffersCompany(this.props.match.params.id, 1);
+    console.log("vav dans didmount getofferscompany");
+    
+    this.props.getOffersCompany(1);
   };
 
   render() {

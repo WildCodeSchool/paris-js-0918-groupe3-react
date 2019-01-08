@@ -6,6 +6,7 @@ import { getCompanyInfo } from "../actions/accountCompanyActions";
 class CompanyInfo extends Component {
   componentDidMount() {
     this.props.getCompanyInfo(this.props.id);
+    
   }
 
   render() {
