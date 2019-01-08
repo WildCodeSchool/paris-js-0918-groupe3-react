@@ -1,10 +1,10 @@
-import { GET_OFFERS_COMPANY, GET_COMPANY_INFO } from './types';
+import { GET_OFFERS_COMPANY, GET_COMPANY_INFO, GET_APPLICATIONS_COMPANY } from './types';
 import axios from 'axios';
 
 const domain = process.env.REACT_APP_DOMAIN_NAME;
 const token = localStorage.getItem('token');
 
-export const getCompanyInfo = id => (dispatch) => {
+export const getCompanyInfo = (id) => (dispatch) => {
     const url = `${domain}api/companies/${id}`;
     axios({
         method: 'GET',
@@ -38,3 +38,20 @@ export const getOffersCompany = (id, bool) => (dispatch) => {
     }
     )
 };
+
+export const getApplicationsOnOffers = (id) => (dispatch) => {
+    const url = `${domain}api/offers/${id}/applications`;
+    axios({
+        method: 'GET',
+        url,
+        headers:{
+            Autorization: `Bearer ${token}`,
+        }
+    })
+    .then(res => {
+        dispatch({
+            type: GET_APPLICATIONS_COMPANY,
+            applicationsCompanyList: res.data
+        })
+    })
+}
