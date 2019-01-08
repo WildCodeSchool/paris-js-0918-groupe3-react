@@ -8,8 +8,9 @@ import Offer from "./Offer";
 import CompanyInfo from "./CompanyInfo";
 
 class AccountCompany extends Component {
-  componentDidMount() {
-    this.props.getOffersCompany(this.props.match.params.id, 1);
+  componentDidMount = () => {
+    this.props.getOffersCompany(1);
+
   };
 
   render() {

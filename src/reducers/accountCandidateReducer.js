@@ -1,15 +1,15 @@
-import { GET_ID_USER } from "../actions/types";
+import { GET_CANDIDATE_INFO } from "../actions/types";
 
 const initialState = {
-  idUser: null
+  candidateInfo: []
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_ID_USER:
+    case GET_CANDIDATE_INFO:
       return {
         ...state,
-        idUser: action.idUser
+        candidateInfo: action.candidateInfo
       };
 
     default:
