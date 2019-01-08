@@ -4,6 +4,7 @@ import axios from "axios";
 const domain = process.env.REACT_APP_DOMAIN_NAME;
 const token = localStorage.getItem("token");
 
+
 export const getCompanyInfo = () => dispatch => {
   const url = `${domain}api/companies`;
   axios({

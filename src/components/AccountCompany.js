@@ -10,6 +10,7 @@ import CompanyInfo from "./CompanyInfo";
 class AccountCompany extends Component {
   componentDidMount = () => {
     this.props.getOffersCompany(1);
+
   };
 
   render() {
@@ -21,7 +22,7 @@ class AccountCompany extends Component {
         <NavLink to="/newOffer">Poster une offre</NavLink>
         <CompanyInfo id={id} />
         {offersList.map((e, i) => (
-          <Offer data={e} key={e.id} />
+          <Offer origin='company' data={e} key={e.id} />
         ))}
       </div>
     );
