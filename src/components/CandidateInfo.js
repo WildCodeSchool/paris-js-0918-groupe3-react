@@ -5,7 +5,7 @@ import { getCandidateInfo } from "../actions/accountCandidateActions";
 
 class CandidateInfo extends Component {
   componentDidMount() {
-    this.props.getCompanyInfo(this.props.id);
+    this.props.getCandidateInfo(this.props.id);
   }
 
   render() {

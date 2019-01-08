@@ -1,10 +1,11 @@
-import { GET_ID_COMPANY } from "./types";
+import { GET_ID_USER } from "./types";
 import axios from "axios";
 
 const domain = process.env.REACT_APP_DOMAIN_NAME;
 
-export const getIdCompany = (email, password) => async dispatch => {
-  const url = `${domain}api/auth/signin/companies`;
+export const getIdUser = (email, password, userType) => async dispatch => {
+  
+  const url = `${domain}api/auth/signin/${userType}`;
   const body = { 
     email: email, 
     password: password
@@ -12,11 +13,16 @@ export const getIdCompany = (email, password) => async dispatch => {
   await axios
     .post(url, body)
       .then(res => {
+       
+       
+        
         localStorage.setItem("token", res.headers["x-access-token"]);
         dispatch({
-          type: GET_ID_COMPANY,
-          idCompany: res.data.id
+          type: GET_ID_USER,
+          idUser: res.data.id
         });
+        
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log("getIdUser", err));
 };
+

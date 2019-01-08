@@ -1,18 +1,18 @@
-import { GET_ID_COMPANY} from "../actions/types";
+import { GET_ID_USER } from "../actions/types";
 
 const initialState = {
-    initialState: 0
+  idUser: null
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_ID_COMPANY:
+    case GET_ID_USER:
       return {
         ...state,
-        idCompany : action.idCompany
+        idUser: action.idUser
       };
 
-    default: 
+    default:
       return state;
   }
-};
+}
