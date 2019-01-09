@@ -57,7 +57,7 @@ class Header extends Component {
                 <a className="nav-link" href="/">
                   Comment postuler ?
                 </a>
-              </li>
+              </li>              
               <div className="btn-group dropleft ml-3 d-none d-lg-block">
                 <button
                   type="button"

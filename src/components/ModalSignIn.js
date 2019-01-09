@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getIdCompany } from "../actions/connexionUsersActions";
+import { getIdUser} from "../actions/connexionUsersActions";
 import {
   toggleModalSignUpUser,
   toggleModalSignUpCompany,
@@ -30,7 +30,8 @@ class ModalSignIn extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const { inputEmail, inputPassword } = this.state;
-    await this.props.getIdCompany(inputEmail, inputPassword);
+    const {userType} = this.props;
+    await this.props.getIdUser(inputEmail, inputPassword, userType);
     this.setState({
       redirection: true
     });
@@ -104,7 +105,7 @@ class ModalSignIn extends Component {
 }
 
 const mapStateToProps = state => ({
-  idCompany: state.usersInfo.idCompany,
+  idUser: state.usersInfo.idUser,
   modalAccountType: state.toggleModalsAccount.modalAccountType,
   classDisplaySignInModal: state.toggleModalsAccount.classDisplaySignInModal
 });
@@ -112,7 +113,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    getIdCompany,
+    getIdUser,
     toggleModalClose,
     toggleModalSignUpUser,
     toggleModalSignUpCompany
