@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getOffersCompany } from "../actions/accountCompanyActions";
+import { getOffersCompany, getApplicationsOnOffers } from "../actions/accountCompanyActions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
@@ -9,13 +9,16 @@ import CompanyInfo from "./CompanyInfo";
 
 class AccountCompany extends Component {
   componentDidMount = () => {
+    const { id } = this.props.match.params
     this.props.getOffersCompany(1);
-
+    this.props.getApplicationsOnOffers(id)
   };
 
   render() {
-    const { offersList } = this.props;
+    const { offersList, applicationsCompany } = this.props;
     const { id } = this.props.match.params;
+    console.log(id)
+    console.log(applicationsCompany)
     return (
       <div className="AccountCompany" aria-hidden="true">
         <NavLink to="/">Acceuil</NavLink>
@@ -30,10 +33,11 @@ class AccountCompany extends Component {
 }
 
 const mapStateToProps = state => ({
-  offersList: state.accountCompany.offersList
+  offersList: state.accountCompany.offersList,
+  applicationsCompany: state.accountCompany.applicationsCompany
 });
 
 export default connect(
   mapStateToProps,
-  { getOffersCompany }
+  { getOffersCompany, getApplicationsOnOffers }
 )(AccountCompany);
