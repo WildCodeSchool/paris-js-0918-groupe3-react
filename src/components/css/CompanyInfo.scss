@@ -1,0 +1,18 @@
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
+
+.CompanyInfo{
+  color: $MainOrange;
+
+  .logoCompany {
+    width: 70px;
+  }
+
+  .descriptionResume {
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
