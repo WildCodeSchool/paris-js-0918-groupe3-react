@@ -1,17 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getApplicationQuestions } from "../actions/applicationActions";
+import { getApplicationDescription, getApplicationQuestions } from "../actions/applicationActions";
 
 class Application extends Component {
-  componentDidMount() {
-    this.props.getApplicationQuestions
-(this.props.match.params.id);
+    state = {
+        isLoading : true,
+    }
+  componentDidMount = async () => {
+    await this.props.getApplicationDescription(this.props.match.params.id);
+    await this.props.getApplicationQuestions([1,2]);
+    this.setState({ isLoading :false })
   }
 
+
   render() {
-    const { title, description, contract_type, place } = this.props.applicationQuestions;
-    console.log(this.props.id)
+    const { title, description, contract_type, place } = this.props.applicationDescription;
+    const questions = this.props.applicationQuestions
+    console.log("HELLOOOOOOO", questions)
+    if(this.state.isLoading) return <div>LOADING</div> 
+        else{
     return (
       <div className="Application">
         <div className="head">
@@ -26,18 +34,21 @@ class Application extends Component {
           </div>
           <div>
             <p>Place : {place}</p>
+            <p>Place : {questions[0]}</p>
+            {questions.map(e => {console.log(e.text); return <p>{e.text}</p>})}
           </div>
         </div>
       </div>
-    );
+    );}
   }
 }
 
 const mapStateToProps = state => ({
-  applicationQuestions: state.application.applicationQuestions
+  applicationDescription: state.application.applicationDescription,
+  applicationQuestions: state.application.applicationQuestions,
 });
 
 export default connect(
   mapStateToProps,
-  { getApplicationQuestions }
+  { getApplicationDescription, getApplicationQuestions }
 )(Application);
