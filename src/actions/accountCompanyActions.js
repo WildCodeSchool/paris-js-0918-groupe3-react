@@ -40,18 +40,18 @@ export const getOffersCompany = bool => dispatch => {
 };
 
 export const getApplicationsOnOffers = (id) => (dispatch) => {
-    const url = `${domain}api/offers/${id}/applications`;
-    axios({
-        method: 'GET',
-        url,
-        headers:{
-            Autorization: `Bearer ${token}`,
-        }
-    })
+  const url = `${domain}api/offers/${id}/applications`;
+  axios({
+    method: 'GET',
+    url,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
     .then(res => {
-        dispatch({
-            type: GET_APPLICATIONS_COMPANY,
-            applicationsCompanyList: res.data
-        })
+      dispatch({
+        type: GET_APPLICATIONS_COMPANY,
+        applicationsCompanyList: res.data
+      })
     })
 }

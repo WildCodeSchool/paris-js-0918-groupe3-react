@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import dateFormat from "dateformat";
+import axios from 'axios';
 
 import { Link } from 'react-router-dom';
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconStar from "../images/icons/iconStar.png";
 import logoCompany from "../images/Icone_ALGO.png";
+import sortApplicationsByCandidate from "../helpers/sortApplicationsByCandidate";
 
 import "./css/Offer.scss";
 import OrangeButton from "./OrangeButton";
@@ -58,17 +61,41 @@ dateFormat.i18n = {
 
 class Offer extends Component {
   state = {
+    applicationsCompanyList: [],
     showElement: true
   };
+
+  componentDidMount = () => {
+    this.getApplicationsOnOffers(this.props.id)
+  };
+
+  getApplicationsOnOffers = (id) => {
+    const domain = process.env.REACT_APP_DOMAIN_NAME;
+    const token = localStorage.getItem("token");
+    const url = `${domain}api/offers/${id}/applications`;
+    axios({
+      method: 'GET',
+      url,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+      .then(res => {
+        this.setState({
+          applicationsCompanyList: res.data
+        })
+      })
+  }
 
   handleShowElement = () => {
     const { showElement } = this.state;
     this.setState({ showElement: !showElement });
   };
-  render() {
-    const { data, origin } = this.props;
-    const { showElement } = this.state;
 
+  render() {
+    const { data, origin, id } = this.props;
+    const { showElement, applicationsCompanyList } = this.state;
+    const nbApplications = sortApplicationsByCandidate(applicationsCompanyList).length
     return (
       <div className="Offer container">
         <div className="row align-items-start p-2 m-2">
@@ -78,7 +105,7 @@ class Offer extends Component {
           </div>
           {/* Body */}
           <div className="col-9">
-              <div className={showElement ? "row text-left" : "row text-left mt-3 mt-md-4" }>
+            <div className={showElement ? "row text-left" : "row text-left mt-3 mt-md-4"}>
               <div className="col-auto">
                 <h6>
                   <b>{`${data.title}`}</b>
@@ -90,9 +117,10 @@ class Offer extends Component {
               <div className="col-12 col-sm-12 col-md-auto">
                 <h6>{`${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</h6>
               </div>
+              <h5>{nbApplications}</h5>
               {showElement && (
                 <div className="col-12 offerResume">
-                  <p>{data.description}</p>
+                  <p>{data.description}</p> 
                 </div>
               )}
             </div>
@@ -114,26 +142,23 @@ class Offer extends Component {
               <div className="descriptionCompleteOffer col-12 offset-md-2 col-md-9">
                 <p>{data.description}</p>
               </div>
-              {origin === 'home' && 
-              <div className="col-12 text-right">
-                <img src={iconStar} className="iconStar" alt="icone star" />
-                <a href="/" className="textFavoris">
-                  Favoris
+              {origin === 'home' &&
+                <div className="col-12 text-right">
+                  <img src={iconStar} className="iconStar" alt="icone star" />
+                  <a href="/" className="textFavoris">
+                    Favoris
                 </a>
-                &nbsp;&nbsp;
-
+                  &nbsp;&nbsp;
                 <Link to={`apply${data.id}`}><OrangeButton text="Postuler"/></Link>
-             
-              </div>}
-              {origin === 'company' && 
-              <div className="col-12 text-right">
-                <OrangeButton text="Voir les candidatures" />
-              </div>}
-              {origin === 'candidate' && 
-              <div className="col-12 text-right">
-                <OrangeButton text="Voir mes réponses" />
-              </div>}
-              
+                </div>}
+              {(origin === 'company' && nbApplications != 0) &&
+                <div className="col-12 text-right">
+                  <Link to={`/offers${id}`}><OrangeButton text="Voir les candidatures" /></Link>
+                </div>}
+              {origin === 'candidate' &&
+                <div className="col-12 text-right">
+                  <OrangeButton text="Voir mes réponses" />
+                </div>}
             </div>
           </div>
         </div>
@@ -142,4 +167,4 @@ class Offer extends Component {
   }
 }
 
-export default Offer;
+export default Offer
