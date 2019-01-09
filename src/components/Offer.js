@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from 'axios';
 
@@ -90,10 +91,9 @@ class Offer extends Component {
   };
 
   render() {
-    const nbApplications = sortApplicationsByCandidate(this.state.applicationsCompanyList).length
-    console.log(nbApplications)
-    const { data, origin } = this.props;
-    const { showElement } = this.state;
+    const { data, origin, id } = this.props;
+    const { showElement, applicationsCompanyList } = this.state;
+    const nbApplications = sortApplicationsByCandidate(applicationsCompanyList).length
     return (
       <div className="Offer container">
         <div className="row align-items-start p-2 m-2">
@@ -151,7 +151,7 @@ class Offer extends Component {
                 </div>}
               {(origin === 'company' && nbApplications != 0) &&
                 <div className="col-12 text-right">
-                  <OrangeButton text="Voir les candidatures" />
+                  <Link to={`/offers${id}`}><OrangeButton text="Voir les candidatures" /></Link>
                 </div>}
               {origin === 'candidate' &&
                 <div className="col-12 text-right">
