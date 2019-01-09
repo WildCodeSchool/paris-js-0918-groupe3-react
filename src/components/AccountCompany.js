@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getOffersCompany } from "../actions/accountCompanyActions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import OrangeButton from "./OrangeButton";
 
 
 // import './AccountCompany.css';
@@ -17,11 +18,14 @@ class AccountCompany extends Component {
     const { offersList } = this.props;
     return (
       <div className="AccountCompany" aria-hidden="true">
-        <NavLink to="/">Acceuil</NavLink>
-        <NavLink to="/newOffer">Poster une offre</NavLink>
-        <CompanyInfo />
+
+        <CompanyInfo id={id} />
+        <NavLink to="/newOffer">
+          <OrangeButton text="Poster une offre" />
+        </NavLink>
         {offersList.map((e, i) => (
           <Offer origin='company' data={e} id={e.id} key={e.id} />
+
         ))}
       </div>
     );
