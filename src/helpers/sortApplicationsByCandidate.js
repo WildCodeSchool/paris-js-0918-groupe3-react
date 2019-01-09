@@ -1,4 +1,4 @@
-const getApplicationsForOffers = (arr) => {
+const sortApplicationsByCandidate = (arr) => {
     const arrCandidatesId = arr.map(e => e.id_candidates).sort((a, b) => a - b).filter((e, i, a) => e != a[i - 1] || i === 0)
 
     const arrFinal = []
@@ -20,4 +20,4 @@ const getApplicationsForOffers = (arr) => {
     return arrFinal
 }
 
-module.exports = getApplicationsForOffers
+module.exports = sortApplicationsByCandidate

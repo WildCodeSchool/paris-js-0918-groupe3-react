@@ -3,13 +3,14 @@ import { getOffersCompany } from "../actions/accountCompanyActions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+
 // import './AccountCompany.css';
 import Offer from "./Offer";
 import CompanyInfo from "./CompanyInfo";
 
 class AccountCompany extends Component {
   componentDidMount = () => {
-    this.props.getOffersCompany(1);
+    this.props.getOffersCompany(1);      
   };
 
   render() {

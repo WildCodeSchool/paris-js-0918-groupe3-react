@@ -6,6 +6,7 @@ import Home from './components/Home';
 import AccountCompany from './components/AccountCompany';
 import AccountCandidate from './components/AccountCandidate';
 import Header from "../src/components/Header";
+import Applications from "../src/components/Applications"
 
 
 
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path='/newOffer' component={NewOfferContainer} />
           <Route path='/company:id(\d+)' component={AccountCompany}/>
           <Route path='/candidate:id(\d+)' component={AccountCandidate}/>
+          <Route path='/offers:id(\d+)' component={Applications}/>
         </Switch>
       </div>
     );

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import dateFormat from "dateformat";
-import { getApplicationsOnOffers } from "../actions/accountCompanyActions";
-import { connect } from "react-redux";
+import axios from 'axios';
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconStar from "../images/icons/iconStar.png";
 import logoCompany from "../images/Icone_ALGO.png";
-import getApplicationsForOffers from "../helpers/getApplicationsForOffers"
+import sortApplicationsByCandidate from "../helpers/sortApplicationsByCandidate";
 
 import "./css/Offer.scss";
 import OrangeButton from "./OrangeButton";
@@ -59,21 +58,42 @@ dateFormat.i18n = {
 
 class Offer extends Component {
   state = {
+    applicationsCompanyList: [],
     showElement: true
   };
 
+  componentDidMount = () => {
+    this.getApplicationsOnOffers(this.props.id)
+  };
+
+  getApplicationsOnOffers = (id) => {
+    const domain = process.env.REACT_APP_DOMAIN_NAME;
+    const token = localStorage.getItem("token");
+    const url = `${domain}api/offers/${id}/applications`;
+    axios({
+      method: 'GET',
+      url,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+      .then(res => {
+        this.setState({
+          applicationsCompanyList: res.data
+        })
+      })
+  }
+
   handleShowElement = () => {
-    console.log(this.props.id)
     const { showElement } = this.state;
     this.setState({ showElement: !showElement });
-    if (this.props.origin === 'company') {
-      this.props.getApplicationsOnOffers(this.props.id)
-    }
   };
+
   render() {
-    const { data, origin, applicationsCompany } = this.props;
+    const nbApplications = sortApplicationsByCandidate(this.state.applicationsCompanyList).length
+    console.log(nbApplications)
+    const { data, origin } = this.props;
     const { showElement } = this.state;
-    console.log(getApplicationsForOffers(applicationsCompany))
     return (
       <div className="Offer container">
         <div className="row align-items-start p-2 m-2">
@@ -95,9 +115,10 @@ class Offer extends Component {
               <div className="col-12 col-sm-12 col-md-auto">
                 <h6>{`${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</h6>
               </div>
+              <h5>{nbApplications}</h5>
               {showElement && (
                 <div className="col-12 offerResume">
-                  <p>{data.description}</p>
+                  <p>{data.description}</p> 
                 </div>
               )}
             </div>
@@ -128,7 +149,7 @@ class Offer extends Component {
                   &nbsp;&nbsp;
                 <OrangeButton text="Postuler" />
                 </div>}
-              {origin === 'company' &&
+              {(origin === 'company' && nbApplications != 0) &&
                 <div className="col-12 text-right">
                   <OrangeButton text="Voir les candidatures" />
                 </div>}
@@ -145,11 +166,4 @@ class Offer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  applicationsCompany: state.accountCompany.applicationsCompany
-});
-
-export default connect(
-  mapStateToProps,
-  { getApplicationsOnOffers }
-)(Offer);
+export default Offer
