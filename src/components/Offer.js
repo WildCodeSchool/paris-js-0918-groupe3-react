@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import dateFormat from "dateformat";
+import { getApplicationsOnOffers } from "../actions/accountCompanyActions";
+import { connect } from "react-redux";
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconStar from "../images/icons/iconStar.png";
 import logoCompany from "../images/Icone_ALGO.png";
+import getApplicationsForOffers from "../helpers/getApplicationsForOffers"
 
 import "./css/Offer.scss";
 import OrangeButton from "./OrangeButton";
@@ -60,13 +63,17 @@ class Offer extends Component {
   };
 
   handleShowElement = () => {
+    console.log(this.props.id)
     const { showElement } = this.state;
     this.setState({ showElement: !showElement });
+    if (this.props.origin === 'company') {
+      this.props.getApplicationsOnOffers(this.props.id)
+    }
   };
   render() {
-    const { data, origin } = this.props;
+    const { data, origin, applicationsCompany } = this.props;
     const { showElement } = this.state;
-
+    console.log(getApplicationsForOffers(applicationsCompany))
     return (
       <div className="Offer container">
         <div className="row align-items-start p-2 m-2">
@@ -76,7 +83,7 @@ class Offer extends Component {
           </div>
           {/* Body */}
           <div className="col-9">
-              <div className={showElement ? "row text-left" : "row text-left mt-3 mt-md-4" }>
+            <div className={showElement ? "row text-left" : "row text-left mt-3 mt-md-4"}>
               <div className="col-auto">
                 <h6>
                   <b>{`${data.title}`}</b>
@@ -112,24 +119,24 @@ class Offer extends Component {
               <div className="descriptionCompleteOffer col-12 offset-md-2 col-md-9">
                 <p>{data.description}</p>
               </div>
-              {origin === 'home' && 
-              <div className="col-12 text-right">
-                <img src={iconStar} className="iconStar" alt="icone star" />
-                <a href="/" className="textFavoris">
-                  Favoris
+              {origin === 'home' &&
+                <div className="col-12 text-right">
+                  <img src={iconStar} className="iconStar" alt="icone star" />
+                  <a href="/" className="textFavoris">
+                    Favoris
                 </a>
-                &nbsp;&nbsp;
+                  &nbsp;&nbsp;
                 <OrangeButton text="Postuler" />
-              </div>}
-              {origin === 'company' && 
-              <div className="col-12 text-right">
-                <OrangeButton text="Voir les candidatures" />
-              </div>}
-              {origin === 'candidate' && 
-              <div className="col-12 text-right">
-                <OrangeButton text="Voir mes réponses" />
-              </div>}
-              
+                </div>}
+              {origin === 'company' &&
+                <div className="col-12 text-right">
+                  <OrangeButton text="Voir les candidatures" />
+                </div>}
+              {origin === 'candidate' &&
+                <div className="col-12 text-right">
+                  <OrangeButton text="Voir mes réponses" />
+                </div>}
+
             </div>
           </div>
         </div>
@@ -138,4 +145,11 @@ class Offer extends Component {
   }
 }
 
-export default Offer;
+const mapStateToProps = state => ({
+  applicationsCompany: state.accountCompany.applicationsCompany
+});
+
+export default connect(
+  mapStateToProps,
+  { getApplicationsOnOffers }
+)(Offer);
