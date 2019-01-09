@@ -5,11 +5,11 @@ import Offer from "./Offer";
 
 class Offers extends Component {
   render() {
-    const { offersList } = this.props;
+    const { offersList, origin } = this.props;
     return (
       <div className="Offers">
         {offersList.map(offer => (
-          <Offer key={offer.id} data={offer} />
+          <Offer origin={origin} key={offer.id} data={offer} />
         ))}
       </div>
     );

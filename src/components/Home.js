@@ -7,7 +7,7 @@ import Offers from "./Offers";
 import ModalSignIn from "./ModalSignIn";
 import ModalSignUp from "./ModalSignUp";
 
-import { getIdCompany } from "../actions/connexionUsersActions";
+import { getIdUser } from "../actions/connexionUsersActions";
 import {
   toggleModalSignInCompany,
   toggleModalSignInUser
@@ -30,29 +30,33 @@ class Home extends Component {
         {/* Modal USER Sign IN*/}
         {modalAccountType === "USER" && (
           <ModalSignIn
-            to={"/"}
-            redirect={`/user`}
+            to={"/newAccountCandidate"}
+            redirect={`/candidate${this.props.idUser}`}
+            userType="candidates"
           />
         )}
         {/* Modal COMPANY Sign IN */}
         {modalAccountType === "COMPANY" && (
           <ModalSignIn
             to={"/newAccountCompagny"}
-            redirect={`/company${this.props.idCompany}`}
+            redirect={`/company${this.props.idUser}`}
+            userType="companies"
           />
         )}
         {/* Modal USER Sign UP */}
         {modalAccountType === "USER" && (
           <ModalSignUp
-            to={"/newAccountCompagny"}
-            redirect={`/company${this.props.idCompany}`}
+            to={"/newAccountCandidate"}
+            redirect={`/candidate${this.props.idUser}`}
+            userType="candidates"
           />
         )}
         {/* Modal COMPANY Sign UP */}
         {modalAccountType === "COMPANY" && (
           <ModalSignUp
             to={"/newAccountCompagny"}
-            redirect={`/company${this.props.idCompany}`}
+            redirect={`/company${this.props.idUser}`}
+            userType="companies"
           />
         )}
 
@@ -121,14 +125,14 @@ class Home extends Component {
         <SearchOffers />
         <CarouselCompaniesHome />
         <hr />
-        <Offers />
+        <Offers origin='home' />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  idCompany: state.usersInfo.idCompany,
+  idUser: state.usersInfo.idUser,
   modalAccountType: state.toggleModalsAccount.modalAccountType,
   classDisplaySignInModal: state.toggleModalsAccount.classDisplaySignInModal,
   classDisplaySignUpModal: state.toggleModalsAccount.classDisplaySignUpModal
@@ -136,5 +140,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getIdCompany, toggleModalSignInUser, toggleModalSignInCompany }
+  {getIdUser, toggleModalSignInUser, toggleModalSignInCompany }
 )(Home);
