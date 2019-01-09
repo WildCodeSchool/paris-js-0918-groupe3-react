@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import dateFormat from "dateformat";
 
+import { Link } from 'react-router-dom';
+
 import iconArrow from "../images/icons/iconArrow.png";
 import iconStar from "../images/icons/iconStar.png";
 import logoCompany from "../images/Icone_ALGO.png";
@@ -118,7 +120,7 @@ class Offer extends Component {
                   Favoris
                 </a>
                 &nbsp;&nbsp;
-                <OrangeButton text="Postuler" onClick={}/>
+                <Link to={`apply${data.id}`}><OrangeButton text="Postuler"/></Link>
               </div>
             </div>
           </div>
