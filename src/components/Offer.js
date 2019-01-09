@@ -118,7 +118,7 @@ class Offer extends Component {
                   Favoris
                 </a>
                 &nbsp;&nbsp;
-                <OrangeButton text="Postuler" />
+                <OrangeButton text="Postuler" onClick={}/>
               </div>
             </div>
           </div>
