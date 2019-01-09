@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {
@@ -6,14 +7,50 @@ import {
   toggleModalSignInCompany,
   toggleModalClose
 } from "../actions/modalsAccountActions";
+import { signUpUser } from "../actions/connexionUsersActions";
 
 import OrangeButton from "./OrangeButton";
 
 import "./css/ModalSignUp.scss";
 
-import iconAdd from "../images/icons/iconAdd.png";
-
 class ModalSignUp extends Component {
+  state = {
+    email: "",
+    password: "",
+    passwordBis: "",
+    description: "",
+    name: "",
+    siret: "",
+    link: "",
+    phone: "",
+    logo: "",
+    redirection: false
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleSubmit = async e => {
+    e.preventDefault();
+    const { password, passwordBis } = this.state;
+
+    const { userType } = this.props;
+    if (password === passwordBis) {
+      await this.props.signUpUser(
+        this.state,
+
+        userType
+      );
+      this.props.toggleModalClose();
+      alert("votre compte à bien été créé");
+    } else {
+      alert("Veuillez entrer des mots de passe identiques");
+    }
+  };
+
   render() {
     const {
       modalAccountType,
@@ -45,7 +82,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="text"
-                        name="inputEmail"
+                        name="email"
                         placeholder="Email"
                         onChange={this.handleChange}
                       />
@@ -53,7 +90,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="text"
-                        name="inputTelephone"
+                        name="phone"
                         placeholder="Telephone"
                         onChange={this.handleChange}
                       />
@@ -61,7 +98,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="password"
-                        name="inputPassword"
+                        name="password"
                         placeholder="Mot de passe"
                         onChange={this.handleChange}
                       />
@@ -69,7 +106,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="password"
-                        name="inputPassword"
+                        name="passwordBis"
                         placeholder="Confirmation mot de passe"
                         onChange={this.handleChange}
                       />
@@ -86,18 +123,23 @@ class ModalSignUp extends Component {
                       <h3>Créer mon compte</h3>
                     </div>
                     <div className="col-12 mb-3">
-                      <label htmlFor="file-input" className="textLabelFileInput" >Ajouter votre logo</label>
+                      <label
+                        htmlFor="file-input"
+                        className="textLabelFileInput"
+                      >
+                        Ajouter votre logo
+                      </label>
                       <input
                         id="file-input"
                         type="file"
-                        name="inputLogo"
+                        name="logo"
                         accept="image/png,image/gif,image/jpeg"
                       />
                     </div>
                     <div className="col-12 mb-3">
                       <input
                         type="text"
-                        name="inputNom"
+                        name="name"
                         placeholder="Nom entreprise"
                         onChange={this.handleChange}
                       />
@@ -105,7 +147,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <textarea
                         type="text"
-                        name="inputDescription"
+                        name="description"
                         placeholder="Description entreprise"
                         onChange={this.handleChange}
                       />
@@ -113,7 +155,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="text"
-                        name="inputEmail"
+                        name="email"
                         placeholder="Email"
                         onChange={this.handleChange}
                       />
@@ -121,7 +163,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="text"
-                        name="inputSiteweb"
+                        name="link"
                         placeholder="Site web"
                         onChange={this.handleChange}
                       />
@@ -129,7 +171,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="text"
-                        name="inputSIRET"
+                        name="siret"
                         placeholder="SIRET"
                         onChange={this.handleChange}
                       />
@@ -137,7 +179,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="password"
-                        name="inputPassword"
+                        name="password"
                         placeholder="Mot de passe"
                         onChange={this.handleChange}
                       />
@@ -145,7 +187,7 @@ class ModalSignUp extends Component {
                     <div className="col-12 mb-3">
                       <input
                         type="password"
-                        name="inputPassword"
+                        name="passwordBis"
                         placeholder="Confirmation mot de passe"
                         onChange={this.handleChange}
                       />
@@ -181,7 +223,8 @@ class ModalSignUp extends Component {
 const mapStateToProps = state => ({
   // idCompany: state.usersInfo.idCompany,
   modalAccountType: state.toggleModalsAccount.modalAccountType,
-  classDisplaySignUpModal: state.toggleModalsAccount.classDisplaySignUpModal
+  classDisplaySignUpModal: state.toggleModalsAccount.classDisplaySignUpModal,
+  id: state.usersInfo.idUser
 });
 
 export default connect(
@@ -190,6 +233,7 @@ export default connect(
     // getIdCompany,
     toggleModalSignInUser,
     toggleModalSignInCompany,
-    toggleModalClose
+    toggleModalClose,
+    signUpUser
   }
 )(ModalSignUp);
