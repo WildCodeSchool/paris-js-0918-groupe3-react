@@ -43,10 +43,13 @@ class ModalSignIn extends Component {
       classDisplaySignInModal,
       toggleModalSignUpUser,
       toggleModalSignUpCompany,
-      toggleModalClose
+      toggleModalClose,
+      idUser
     } = this.props;
+    console.log(idUser, "FRONT idUser");
+    
 
-    if (redirection === true) return <Redirect to={this.props.redirect} />;
+    if (redirection === true) return <Redirect to={`/candidate${idUser}`} />;
 
     return (
       <div className={classDisplaySignInModal}>
