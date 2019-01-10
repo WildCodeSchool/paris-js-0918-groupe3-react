@@ -3,8 +3,6 @@ import {Link} from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
-
 import iconArrow from "../images/icons/iconArrow.png";
 import iconStar from "../images/icons/iconStar.png";
 import logoCompany from "../images/Icone_ALGO.png";
