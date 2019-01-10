@@ -45,16 +45,14 @@ export const postNewOffer = values => dispatch => {
     is_published
   };
   const url = `${domain}api/offers?questions=${questionsList}`;
-  axios(
-    {
-      method: "POST",
-      url,
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+  axios({
+    method: "POST",
+    url,
+    headers: {
+      Authorization: `Bearer ${token}`
     },
-    body
-  )
+    data: body
+  })
     .then(() => {
       dispatch({
         type: POST_NEW_OFFER

@@ -152,7 +152,7 @@ class Offer extends Component {
                   &nbsp;&nbsp;
                 <Link to={`apply${data.id}`}><OrangeButton text="Postuler" /></Link>
                 </div>}
-              {(origin === 'company' && nbApplications != 0) &&
+              {(origin === 'company' && nbApplications !== 0) &&
                 <div className="col-12 text-right">
                   <Link to={`/offers${id}`}><OrangeButton text="Voir les candidatures" /></Link>
                 </div>}
