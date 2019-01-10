@@ -1,0 +1,35 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
+
+.ApplicationCompany {
+  border-radius: 2px;
+  box-shadow: 0 2px 5px #aaa;
+
+  h6 {
+    color: $MainBlue;
+  }
+
+  .textFavoris {
+    color: $MainOrange
+  }
+
+  .offerResume {
+    color:$MainGrey;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .answers{
+    color:$MainGrey;
+  }
+
+  .iconArrow {
+    width: 20px;
+  }
+}

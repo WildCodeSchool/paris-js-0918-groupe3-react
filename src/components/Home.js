@@ -39,7 +39,7 @@ class Home extends Component {
         {modalAccountType === "COMPANY" && (
           <ModalSignIn
             to={"/newAccountCompagny"}
-            redirect={`/company${this.props.idUser}`}
+            redirect={`/companies${this.props.idUser}`}
             userType="companies"
           />
         )}
@@ -55,7 +55,7 @@ class Home extends Component {
         {modalAccountType === "COMPANY" && (
           <ModalSignUp
             to={"/newAccountCompagny"}
-            redirect={`/company${this.props.idUser}`}
+            redirect={`/companies${this.props.idUser}`}
             userType="companies"
           />
         )}
