@@ -4,11 +4,14 @@ import { connect } from "react-redux";
 import "./css/Header.scss";
 
 import logo from "../images/Logo.png";
-import { toggleModalSignInUser, toggleModalSignInCompany } from "../actions/modalsAccountActions";
+import {
+  toggleModalSignInUser,
+  toggleModalSignInCompany
+} from "../actions/modalsAccountActions";
 
 class Header extends Component {
   render() {
-    const {toggleModalSignInUser, toggleModalSignInCompany}  = this.props;
+    const { toggleModalSignInUser, toggleModalSignInCompany } = this.props;
 
     return (
       <div className="Header">
@@ -30,7 +33,11 @@ class Header extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <button type="button" className="btn btnMenuBurger d-lg-none m-2" onClick={toggleModalSignInUser}>
+            <button
+              type="button"
+              className="btn btnMenuBurger d-lg-none m-2"
+              onClick={toggleModalSignInUser}
+            >
               Espace candidat
             </button>
             <button
@@ -48,16 +55,16 @@ class Header extends Component {
               </li>
               <li className="divider-vertical d-none d-lg-block" />
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href="/why">
                   Pourquoi ?
                 </a>
               </li>
               <li className="divider-vertical d-none d-lg-block" />
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href="/how">
                   Comment postuler ?
                 </a>
-              </li>              
+              </li>
               <div className="btn-group dropleft ml-3 d-none d-lg-block">
                 <button
                   type="button"
@@ -69,13 +76,16 @@ class Header extends Component {
                   Connexion
                 </button>
                 <div className="dropdown-menu">
-                  <div className="dropdown-item" onClick={toggleModalSignInUser}>
+                  <div
+                    className="dropdown-item"
+                    onClick={toggleModalSignInUser}
+                  >
                     Espace candidat
                   </div>
                   <div className="dropdown-divider" />
                   <div
                     className="dropdown-item"
-                    onClick= {toggleModalSignInCompany}
+                    onClick={toggleModalSignInCompany}
                   >
                     Espace recruteur
                   </div>
@@ -91,7 +101,7 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
-  openModalSignInCompany: state.toggleModalsAccount.openModalSignInCompany,
+  openModalSignInCompany: state.toggleModalsAccount.openModalSignInCompany
 });
 
 export default connect(

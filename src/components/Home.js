@@ -16,9 +16,9 @@ import {
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
 
-import icone_CV from "../images/Icone_CV.png";
-import icone_LM from "../images/Icone_LM.png";
-import icone_ALGO from "../images/Icone_ALGO.png";
+import icone_CV from "../images/Icone_CV_No.png";
+import icone_LM from "../images/Icone_LM_No.png";
+import icone_ALGO from "../images/Icone_ALGO_No.png";
 
 class Home extends Component {
   render() {
@@ -63,7 +63,7 @@ class Home extends Component {
         {/* <NavLink to="/newOffer">Poster une offre</NavLink>
         <OrangeButton text="compte entreprise" /> */}
         <div className="Home_intro container-fluid">
-          <div className="row justify-content-center text-center m-3 m-md-4">
+          <div className="row justify-content-center text-center p-3 p-md-4">
             <div className="col-12">
               <h5>
                 Grâce à un <b>QUESTIONNAIRE</b>,
