@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from 'axios';
-
-import { Link } from 'react-router-dom';
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconStar from "../images/icons/iconStar.png";
@@ -66,7 +64,9 @@ class Offer extends Component {
   };
 
   componentDidMount = () => {
-    this.getApplicationsOnOffers(this.props.id)
+    if (this.props.origin === 'company') {
+      this.getApplicationsOnOffers(this.props.id)
+    }
   };
 
   getApplicationsOnOffers = (id) => {
@@ -120,7 +120,8 @@ class Offer extends Component {
               <h5>{nbApplications}</h5>
               {showElement && (
                 <div className="col-12 offerResume">
-                  <p>{data.description}</p> 
+                  {origin === 'company' &&
+                    <p>{data.description}</p>}
                 </div>
               )}
             </div>
@@ -149,7 +150,7 @@ class Offer extends Component {
                     Favoris
                 </a>
                   &nbsp;&nbsp;
-                <Link to={`apply${data.id}`}><OrangeButton text="Postuler"/></Link>
+                <Link to={`apply${data.id}`}><OrangeButton text="Postuler" /></Link>
                 </div>}
               {(origin === 'company' && nbApplications != 0) &&
                 <div className="col-12 text-right">

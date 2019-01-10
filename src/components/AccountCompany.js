@@ -16,6 +16,7 @@ class AccountCompany extends Component {
 
   render() {
     const { offersList } = this.props;
+    const { id } = this.props.match.params
     return (
       <div className="AccountCompany" aria-hidden="true">
 
