@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from 'axios';
 
@@ -64,7 +64,9 @@ class Offer extends Component {
   };
 
   componentDidMount = () => {
-    this.getApplicationsOnOffers(this.props.id)
+    if (this.props.origin === 'company') {
+      this.getApplicationsOnOffers(this.props.id)
+    }
   };
 
   getApplicationsOnOffers = (id) => {
@@ -115,10 +117,11 @@ class Offer extends Component {
               <div className="col-12 col-sm-12 col-md-auto">
                 <h6>{`${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</h6>
               </div>
-              <h5>{nbApplications}</h5>
+              {origin === 'company' &&
+                <h5>{nbApplications}</h5>}
               {showElement && (
                 <div className="col-12 offerResume">
-                  <p>{data.description}</p> 
+                  <p>{data.description}</p>
                 </div>
               )}
             </div>
@@ -147,7 +150,7 @@ class Offer extends Component {
                     Favoris
                 </a>
                   &nbsp;&nbsp;
-                <Link to={`apply${data.id}`}><OrangeButton text="Postuler"/></Link>
+                <Link to={`apply${data.id}`}><OrangeButton text="Postuler" /></Link>
                 </div>}
               {(origin === 'company' && nbApplications != 0) &&
                 <div className="col-12 text-right">
