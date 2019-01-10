@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getCompanyInfo } from "../actions/accountCompanyActions";
 
 import logoCompany from "../images/Icone_ALGO.png";
+import iconEdit from "../images/icons/iconEdit.png";
 
 import "./css/CompanyInfo.scss";
 
@@ -16,26 +17,40 @@ class CompanyInfo extends Component {
     const { name, description, email, siret, link } = this.props.companyInfo;
     return (
       <div className="CompanyInfo">
-        <div className="container">
-          <div className="row align-items-center mt-3">
+        <div className="container p-3">
+          <div className="row align-self-center">
             <div className="col-auto">
               <h4>{name}</h4>
             </div>
-            <div className="col-2">
-              <a href="">Editer</a>
+            <div className="col-auto">
+              <a href="" title="Editer">
+                <img src={iconEdit} className="iconEdit" alt="icone editer" />
+              </a>
             </div>
           </div>
-          <div className="row align-items-center">
-            <div className="col-auto col-md-4 text-center">
+          <div className="row align-items-center infosDetail">
+            <div className="col-4 col-md-2 text-right p-0">
               <img src={logoCompany} className="logoCompany" alt="logo" />
             </div>
-            <div className="col-auto col-md-4">
-              <p>E-mail : <b>{email}</b></p>
-              <p>Site Web : <b>{link}</b></p>
-              <p>Siret : <b>{siret}</b></p>
+            <div className="col-8 col-md-4 text-center">
+              <p className="m-1">
+                <b>E-mail : </b>
+                {email}
+              </p>
+              <p className="m-1">
+                <b>Site Web : </b>
+                {link}
+              </p>
+              <p className="m-1">
+                <b>Siret : </b>
+                {siret}
+              </p>
             </div>
-            <div className="col-12 col-md-4">
-              <p className="descriptionResume">Description : <b>{description}</b></p>
+            <div className="col-12 col-md-6">
+              <p className="descriptionResume m-1">
+                <b>Description : </b>
+                {description}
+              </p>
             </div>
           </div>
         </div>

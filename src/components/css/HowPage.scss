@@ -1,0 +1,21 @@
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: #D3D3D3;
+$VeryLightGrey: #EDEDED;
+$LightOrange:#F7EEE3;
+
+.HowPage {
+
+  h2,
+  h4 {
+    color: $MainBlue;
+    font-weight: bold;
+  }
+
+  p {
+    // text-align: justify;
+    color: $MainGrey;
+    font-size: 14px;
+  }
+}
