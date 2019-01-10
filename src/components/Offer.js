@@ -117,11 +117,11 @@ class Offer extends Component {
               <div className="col-12 col-sm-12 col-md-auto">
                 <h6>{`${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</h6>
               </div>
-              <h5>{nbApplications}</h5>
+              {origin === 'company' &&
+                <h5>{nbApplications}</h5>}
               {showElement && (
                 <div className="col-12 offerResume">
-                  {origin === 'company' &&
-                    <p>{data.description}</p>}
+                  <p>{data.description}</p>
                 </div>
               )}
             </div>
