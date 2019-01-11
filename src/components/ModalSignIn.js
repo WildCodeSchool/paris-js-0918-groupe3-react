@@ -50,7 +50,7 @@ class ModalSignIn extends Component {
     console.log(idUser, "FRONT idUser");
 
 
-    if (redirection === true) return <Redirect to={`/${userType}${idUser}`} />;
+    if (redirection === true && idUser) return <Redirect to={`/${userType}`} />;
 
     return (
       <div className={classDisplaySignInModal}>

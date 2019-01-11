@@ -24,8 +24,8 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/newOffer' component={NewOfferContainer} />
-          <Route path='/companies:id(\d+)' component={AccountCompany}/>
-          <Route path='/candidates:id(\d+)' component={AccountCandidate}/>
+          <Route path='/companies' component={AccountCompany}/>
+          <Route path='/candidates' component={AccountCandidate}/>
 
           <Route path='/offers:id(\d+)' component={Applications}/>
 

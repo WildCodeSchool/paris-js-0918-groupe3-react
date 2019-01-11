@@ -6,7 +6,7 @@ import CandidateInfo from "./CandidateInfo";
 
 class AccountCandidate extends Component {
   render() {
-    const { id } = this.props.match.params;
+    const id = localStorage.getItem('idUser');
     return (
       <div className="AccountCandidate" aria-hidden="true">
         <NavLink to="/">Acceuil</NavLink>
