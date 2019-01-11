@@ -1,17 +1,32 @@
 $MainBlue:#64C4D9;
 $MainOrange:#F49754;
 $MainGrey: #6C6C6C;
-$LightGrey: lightGrey;
+$LightGrey: #D3D3D3;
+$VeryLightGrey: #f5f6fa;
+$LightOrange:#F7EEE3;
 
-.CompanyInfo{
+.CompanyInfo {
+  background-color: $VeryLightGrey;
   color: $MainOrange;
 
   .logoCompany {
     width: 70px;
   }
 
+  .iconEdit{
+    width: 25px;
+    &:hover{
+      color:red;
+      content: 'Text affiche lors du hover';
+    }
+  }
+
+  .infosDetail {
+    color: $MainBlue;
+  }
+
   .descriptionResume {
-    height: 100px;
+    height: 120px;
     overflow: hidden;
     text-overflow: ellipsis;
   }

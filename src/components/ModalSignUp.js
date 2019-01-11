@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {
@@ -23,10 +22,10 @@ class ModalSignUp extends Component {
     siret: "",
     link: "",
     phone: "",
-    logo: "",
-    redirection: false
+    logo: ""
   };
 
+  handleChangeFile = e => this.setState({logo:e.target.files[0]})
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -118,7 +117,12 @@ class ModalSignUp extends Component {
                 )}
                 {/* Content modal SignUp COMPANY*/}
                 {modalAccountType === "COMPANY" && (
-                  <form onSubmit={this.handleSubmit}>
+                  <form
+                    onSubmit={this.handleSubmit}
+                    method="post"
+                    action="upload"
+                    encType="multipart/form-data"
+                  >
                     <div className="col-12 mb-3">
                       <h3>Créer mon compte</h3>
                     </div>
@@ -134,6 +138,7 @@ class ModalSignUp extends Component {
                         type="file"
                         name="logo"
                         accept="image/png,image/gif,image/jpeg"
+                        onChange={this.handleChangeFile}
                       />
                     </div>
                     <div className="col-12 mb-3">

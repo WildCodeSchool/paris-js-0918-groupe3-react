@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getIdUser} from "../actions/connexionUsersActions";
+import { getIdUser } from "../actions/connexionUsersActions";
 import {
   toggleModalSignUpUser,
   toggleModalSignUpCompany,
@@ -30,7 +30,7 @@ class ModalSignIn extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const { inputEmail, inputPassword } = this.state;
-    const {userType} = this.props;
+    const { userType } = this.props;
     await this.props.getIdUser(inputEmail, inputPassword, userType);
     this.setState({
       redirection: true
@@ -44,12 +44,13 @@ class ModalSignIn extends Component {
       toggleModalSignUpUser,
       toggleModalSignUpCompany,
       toggleModalClose,
-      idUser
+      idUser,
+      userType
     } = this.props;
     console.log(idUser, "FRONT idUser");
-    
 
-    if (redirection === true) return <Redirect to={`/candidate${idUser}`} />;
+
+    if (redirection === true && idUser) return <Redirect to={`/${userType}`} />;
 
     return (
       <div className={classDisplaySignInModal}>

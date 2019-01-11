@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+
+
+.carouselCitations{
+  height: 150px;
+
+  .nameAuteur i{
+    margin-right:10%;
+  }
+
+  @include media-breakpoint-down(xs) {
+    display: none;
+  }
+}

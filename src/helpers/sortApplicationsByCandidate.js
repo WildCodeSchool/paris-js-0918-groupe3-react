@@ -1,5 +1,5 @@
 const sortApplicationsByCandidate = (arr) => {
-    const arrCandidatesId = arr.map(e => e.id_candidates).sort((a, b) => a - b).filter((e, i, a) => e != a[i - 1] || i === 0)
+    const arrCandidatesId = arr.map(e => e.id_candidates).sort((a, b) => a - b).filter((e, i, a) => e !== a[i - 1] || i === 0)
 
     const arrFinal = []
     for (let i = 0; i < arrCandidatesId.length; i++) {
