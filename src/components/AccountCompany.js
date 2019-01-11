@@ -17,7 +17,7 @@ class AccountCompany extends Component {
   render() {
 
     const { offersList } = this.props;
-    const { id } = this.props.match.params
+    const id = localStorage.getItem('idUser');
 
     return (
       <div className="AccountCompany" aria-hidden="true">
