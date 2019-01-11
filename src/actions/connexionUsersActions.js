@@ -13,8 +13,9 @@ export const getIdUser = (email, password, userType) => dispatch => {
     .post(url, body)
     .then(res => {
       localStorage.setItem("token", res.headers["x-access-token"]);
-
+      localStorage.setItem("userType", userType);
       localStorage.setItem("idUser", res.data.id)
+
       dispatch({
         type: GET_ID_USER,
         idUser: res.data.id
