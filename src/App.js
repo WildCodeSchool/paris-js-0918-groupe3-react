@@ -9,9 +9,13 @@ import Header from "../src/components/Header";
 
 import Applications from "../src/components/Applications"
 
-import Application from './components/Application';
+
+import ApplicationCandidate from './components/ApplicationCandidate';
+import AnswersApplication from './components/AnswersApplication';
+
 import WhyPage from './components/WhyPage';
 import HowPage from './components/HowPage';
+
 
 
 
@@ -24,14 +28,17 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/newOffer' component={NewOfferContainer} />
+
+          <Route path='/offers:id(\d+)' component={Applications}/>
+          <Route path='/apply:id(\d+)' component={ApplicationCandidate}/>
+          <Route path='/answers/offers:idOffer(\d+)/question:idQuestion(\d+)' component={AnswersApplication}/>
+
           <Route path='/companies' component={AccountCompany}/>
           <Route path='/candidates' component={AccountCandidate}/>
 
-          <Route path='/offers:id(\d+)' component={Applications}/>
-
-          <Route path='/apply:id(\d+)' component={Application}/>
           <Route path='/why' component={WhyPage}/>
           <Route path='/how' component={HowPage}/>
+
         </Switch>
       </div>
     );

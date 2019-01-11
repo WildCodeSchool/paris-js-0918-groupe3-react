@@ -64,9 +64,11 @@ class Offer extends Component {
   };
 
   componentDidMount = () => {
+
     if (this.props.origin === 'company') {
       this.getApplicationsOnOffers(this.props.id)
     }
+
   };
 
   getApplicationsOnOffers = (id) => {
@@ -117,8 +119,10 @@ class Offer extends Component {
               <div className="col-12 col-sm-12 col-md-auto">
                 <h6>{`${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</h6>
               </div>
+
               {origin === 'company' &&
                 <h5>{nbApplications}</h5>}
+
               {showElement && (
                 <div className="col-12 offerResume">
                   <p>{data.description}</p>
