@@ -8,6 +8,7 @@ $MainOrange:#F49754;
 
 .Home {
   .Home_intro {
+
     h4,
     h5 {
       color: $MainBlue;
@@ -16,7 +17,13 @@ $MainOrange:#F49754;
     h6 {
       color: $MainOrange;
     }
+
+    .ni {
+      font-weight: 700;
+    }
   }
+
+
 
   hr {
     margin-top: 0
