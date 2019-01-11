@@ -102,7 +102,7 @@ class Header extends Component {
                   <button
                     type="button"
                     className="btn btnMenuBurger d-lg-none m-2"
-                    // onClick={}
+                    onClick={this.handleClickDeconnexion}
                   >
                     Déconnexion
                   </button>
@@ -192,7 +192,7 @@ class Header extends Component {
                       <div className="dropdown-divider" />
                       <div
                         className="dropdown-item"
-                        // onClick={}
+                        onClick={this.handleClickDeconnexion}
                       >
                         Déconnexion
                       </div>
