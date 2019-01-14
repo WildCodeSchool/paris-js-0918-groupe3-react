@@ -36,8 +36,10 @@ class SearchOffers extends Component {
     return (
       <div className="SearchOffer container-fluid">
         <form className="container p-3 p-md-4">
-          <div className="row text-center justify-content-center">
-            {<CarouselCitations />}
+          <div className="row text-center justify-content-center mb-4">
+            <h2>
+              <b>Rechercher une offre</b>
+            </h2>
           </div>
           <div className="row text-center align-items-center">
             <div className="col-12 col-lg-6">
@@ -89,7 +91,7 @@ class SearchOffers extends Component {
           <div className="row text-center mt-4">
             <div className="col-12">
               <Link to="/#anchorOffer" smooth onClick={this.handleSubmit}>
-                <OrangeButton text="Rechercher"  />
+                <OrangeButton text="Rechercher" />
               </Link>
             </div>
           </div>
