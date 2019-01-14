@@ -99,7 +99,7 @@ class Offer extends Component {
     const { showElement, applicationsCompanyList } = this.state;
     const nbApplications = sortApplicationsByCandidate(applicationsCompanyList).length
     return (
-      <div className="Offer container">
+      <div className="Offer container" id="anchorOffer">
         <div className="row align-items-start p-2 m-2">
           {/* Img logo */}
           <div className="col-2 text-right align-self-center">
