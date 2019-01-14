@@ -21,7 +21,7 @@ export const getIdUser = (email, password, userType) => dispatch => {
         idUser: res.data.id
       });
     })
-    .catch(err => console.log("getIdUser", err));
+    .catch(err => alert('Mot de passe ou email incorrect'));
 };
 
 export const signUpUser = (data, userType) => dispatch => {
