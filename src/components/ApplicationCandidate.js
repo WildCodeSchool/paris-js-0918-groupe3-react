@@ -7,49 +7,46 @@ import { getApplicationDescription } from "../actions/applicationActions";
 import OrangeButton from "./OrangeButton";
 
 class ApplicationCandidate extends Component {
-    state = {
-        applicationQuestions: []
-    }
+  state = {
+    applicationQuestions: []
+  }
 
-    getApplicationQuestions = ids => {
-        console.log('OK',ids);
-        
-        const domain = process.env.REACT_APP_DOMAIN_NAME;
-        const questions = [];
-        const promises = [];
-        ids.forEach(id => {
-            const url = `${domain}api/questions/${id}`;
-            promises.push(axios.get(url).then(res => {
-                questions.push(res.data)
-            }))
-        }); 
-        Promise.all(promises).then( () => { 
-        this.setState ({
-            applicationQuestions: questions,
-        });
+  getApplicationQuestions = ids => {
+    const domain = process.env.REACT_APP_DOMAIN_NAME;
+    const questions = [];
+    const promises = [];
+    ids.forEach(id => {
+      const url = `${domain}api/questions/${id}`;
+      promises.push(axios.get(url).then(res => {
+        questions.push(res.data)
+      }))
+    });
+    Promise.all(promises).then(() => {
+      this.setState({
+        applicationQuestions: questions,
+      });
     })
-    };
-            
-    
-  componentDidMount = async () => {
-    await this.props.getApplicationDescription(this.props.match.params.id);
-    console.log('componentDidMount', this.state.applicationQuestions);
-    
+  };
+
+
+  componentDidMount = () => {
+    this.props.getApplicationDescription(this.props.match.params.id);
   }
 
   handleClick = (e) => {
     e.preventDefault()
     const arrQ = this.props.applicationDescription.questions;
-    console.log('TEST', arrQ);
-    if(arrQ.length){this.getApplicationQuestions(arrQ)}
+    if (arrQ.length) { 
+      this.getApplicationQuestions(arrQ)
+      localStorage.setItem("answersRank", 0)
+     }
   }
 
   render() {
+    const { idOffer } = this.props
     const { title, description, contract_type, place, questions } = this.props.applicationDescription;
-    const question = this.state.applicationQuestions
-    console.log("HELLOOOOOOO", question)
-    console.log(this.props.answersRank);
-    
+    const questionList = this.state.applicationQuestions
+
     return (
       <div className="Application">
         <div className="head">
@@ -64,15 +61,15 @@ class ApplicationCandidate extends Component {
           </div>
           <div>
             <p>Place : {place}</p>
-            {question.map((e,id) => {return <p>{e.text}</p>})}
-            {this.state.applicationQuestions.length === 0 && 
-            <div onClick={this.handleClick} >
-                <OrangeButton text='VOIR LES QUESTIONS'/>
-            </div>}
-            {this.state.applicationQuestions.length != 0 && 
-            <Link to={`/answers/offers${this.props.idOffer}/question${questions[this.props.answersRank]}`}>
-                <OrangeButton text="Postuler"/>
-            </Link> } 
+            {questionList.map((e, id) => <p key={`question-${id}`}>{e.text}</p> )}
+            {questionList.length === 0 &&
+              <div onClick={this.handleClick} >
+                <OrangeButton text='VOIR LES QUESTIONS' />
+              </div>}
+            {questionList.length !== 0 &&
+              <Link to={`/answers/offers${idOffer}/question${questions[0]}`}>
+                <OrangeButton text="Postuler" />
+              </Link>}
           </div>
         </div>
       </div>
@@ -82,8 +79,7 @@ class ApplicationCandidate extends Component {
 
 const mapStateToProps = state => ({
   applicationDescription: state.application.applicationDescription,
-  idOffer: state.application.idOfferApplication,
-  answersRank: state.application.answersRank
+  idOffer: state.application.idOfferApplication
 });
 
 export default connect(

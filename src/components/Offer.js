@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from 'axios';
+import { connect } from "react-redux";
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconStar from "../images/icons/iconStar.png";
 import logoCompany from "../images/Icone_ALGO.png";
 import sortApplicationsByCandidate from "../helpers/sortApplicationsByCandidate";
+import { toggleModalSignInUser } from "../actions/modalsAccountActions";
 
 import "./css/Offer.scss";
 import OrangeButton from "./OrangeButton";
@@ -147,7 +149,7 @@ class Offer extends Component {
               <div className="descriptionCompleteOffer col-12 offset-md-2 col-md-9">
                 <p>{data.description}</p>
               </div>
-              {origin === 'home' &&
+              {(origin === 'home' && localStorage.getItem("userType") === 'candidates') &&
                 <div className="col-12 text-right">
                   <img src={iconStar} className="iconStar" alt="icone star" />
                   <a href="/" className="textFavoris">
@@ -164,6 +166,11 @@ class Offer extends Component {
                 <div className="col-12 text-right">
                   <OrangeButton text="Voir mes réponses" />
                 </div>}
+              {!localStorage.getItem("userType") &&
+                <div className="col-12 text-right" onClick={this.props.toggleModalSignInUser}>
+                  <p>Vous devez vous connecter pour postuler</p>
+                  <OrangeButton text="Connexion" />
+                </div>}
             </div>
           </div>
         </div>
@@ -172,4 +179,11 @@ class Offer extends Component {
   }
 }
 
-export default Offer
+const mapStateToProps = state => ({
+  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
+});
+
+export default connect(
+  mapStateToProps,
+  { toggleModalSignInUser }
+)(Offer);
