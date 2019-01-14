@@ -120,8 +120,10 @@ class Home extends Component {
         </div>
         <SearchOffers />
         <CarouselCompaniesHome />
-        <hr />
-        <Offers origin="home" />
+        <hr/>
+        {/* <section id="anchorOffer"> */}
+          <Offers origin="home" />
+        {/* </section> */}
       </div>
     );
   }
