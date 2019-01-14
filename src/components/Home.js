@@ -4,14 +4,6 @@ import { connect } from "react-redux";
 import SearchOffers from "./SearchOffers";
 import CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
-import ModalSignIn from "./ModalSignIn";
-import ModalSignUp from "./ModalSignUp";
-
-import { getIdUser } from "../actions/connexionUsersActions";
-import {
-  toggleModalSignInCompany,
-  toggleModalSignInUser
-} from "../actions/modalsAccountActions";
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -22,42 +14,8 @@ import icone_ALGO from "../images/Icone_ALGO_No.png";
 
 class Home extends Component {
   render() {
-    const { modalAccountType } = this.props;
     return (
       <div className="Home">
-        {/* Modal USER Sign IN*/}
-        {modalAccountType === "USER" && (
-          <ModalSignIn
-            to={"/newAccountCandidate"}
-            redirect={`/candidate${this.props.idUser}`}
-            userType="candidates"
-          />
-        )}
-        {/* Modal COMPANY Sign IN */}
-        {modalAccountType === "COMPANY" && (
-          <ModalSignIn
-            to={"/newAccountCompagny"}
-            redirect={`/companies${this.props.idUser}`}
-            userType="companies"
-          />
-        )}
-        {/* Modal USER Sign UP */}
-        {modalAccountType === "USER" && (
-          <ModalSignUp
-            to={"/newAccountCandidate"}
-            redirect={`/candidate${this.props.idUser}`}
-            userType="candidates"
-          />
-        )}
-        {/* Modal COMPANY Sign UP */}
-        {modalAccountType === "COMPANY" && (
-          <ModalSignUp
-            to={"/newAccountCompagny"}
-            redirect={`/companies${this.props.idUser}`}
-            userType="companies"
-          />
-        )}
-
         {/* <NavLink to="/newOffer">Poster une offre</NavLink>
         <OrangeButton text="compte entreprise" /> */}
         <div className="Home_intro container-fluid">
@@ -130,13 +88,10 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  idUser: state.usersInfo.idUser,
-  modalAccountType: state.toggleModalsAccount.modalAccountType,
-  classDisplaySignInModal: state.toggleModalsAccount.classDisplaySignInModal,
-  classDisplaySignUpModal: state.toggleModalsAccount.classDisplaySignUpModal
+
 });
 
 export default connect(
   mapStateToProps,
-  { getIdUser, toggleModalSignInUser, toggleModalSignInCompany }
+  { }
 )(Home);
