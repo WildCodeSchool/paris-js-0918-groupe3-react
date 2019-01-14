@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import OrangeButton from "./OrangeButton";
 
 // import './AccountCompany.css';
-import Offer from "./Offer";
+import OfferCompany from "./OfferCompany";
 import CompanyInfo from "./CompanyInfo";
 
 class AccountCompany extends Component {
@@ -38,7 +38,7 @@ class AccountCompany extends Component {
         <div className="row">
           <div className="col">
             {offersList.map((e, i) => (
-              <Offer origin="company" data={e} id={e.id} key={e.id} />
+              <OfferCompany origin="company" data={e} id={e.id} key={e.id} />
             ))}
           </div>
         </div>
