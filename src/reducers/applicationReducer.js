@@ -1,11 +1,11 @@
-import { GET_APPLICATION_DESCRIPTION, GET_APPLICATION_QUESTIONS, POST_ANSWERS} from "../actions/types";
+import { GET_APPLICATION_DESCRIPTION, GET_APPLICATION_QUESTIONS, POST_ANSWERS, GET_QUESTION} from "../actions/types";
 
 const initialState = {
   applicationDescription: [],
   applicationQuestions: [],
   idOfferApplication: null,
   applicationAnswers: '',
-  answersRank: 0
+  questionText: ''
 };
 
 export default function(state = initialState, action) {
@@ -24,9 +24,13 @@ export default function(state = initialState, action) {
       case POST_ANSWERS:
       return {
         ...state,
-        applicationAnswers : action.postAnswers,
-        answersRank: state.answersRank + 1
+        applicationAnswers : action.postAnswers
       };
+      case GET_QUESTION:
+      return {
+        ...state,
+        questionText: action.getQuestionText
+      }
     default: 
       return state;
   }

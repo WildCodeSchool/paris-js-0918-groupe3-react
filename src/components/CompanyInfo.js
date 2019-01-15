@@ -23,7 +23,7 @@ class CompanyInfo extends Component {
               <h4>{name}</h4>
             </div>
             <div className="col-auto">
-              <a href="" title="Editer">
+              <a href="/companies" title="Editer">
                 <img src={iconEdit} className="iconEdit" alt="icone editer" />
               </a>
             </div>

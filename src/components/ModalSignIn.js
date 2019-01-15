@@ -35,7 +35,10 @@ class ModalSignIn extends Component {
     this.setState({
       redirection: true
     });
+    this.props.toggleModalClose()
+    setTimeout(() => window.location.reload(),500)
   };
+  
   render() {
     const { redirection } = this.state;
     const {
@@ -47,10 +50,7 @@ class ModalSignIn extends Component {
       idUser,
       userType
     } = this.props;
-    console.log(idUser, "FRONT idUser");
-
-
-    if (redirection === true && idUser) return <Redirect to={`/${userType}`} />;
+    if (redirection === true && idUser && userType === 'companies') return <Redirect to={`/companies${idUser}`} />;
 
     return (
       <div className={classDisplaySignInModal}>

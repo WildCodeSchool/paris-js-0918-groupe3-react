@@ -14,7 +14,7 @@ class CandidateInfo extends Component {
       <div className="CandidateInfo">
         <div className="head">
           <h3>Vos informations personnelles</h3>
-          <a href="">Editer</a>
+          <a href="/candidates">Editer</a>
         </div>
         <div className="content">
           <div>

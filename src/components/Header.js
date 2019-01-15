@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import ModalSignIn from "./ModalSignIn";
 import ModalSignUp from "./ModalSignUp";

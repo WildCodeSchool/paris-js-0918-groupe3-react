@@ -80,10 +80,11 @@ class ModalSignUp extends Component {
                     </div>
                     <div className="col-12 mb-3">
                       <input
-                        type="text"
+                        type="email"
                         name="email"
                         placeholder="Email"
                         onChange={this.handleChange}
+                        required
                       />
                     </div>
                     <div className="col-12 mb-3">
@@ -92,6 +93,7 @@ class ModalSignUp extends Component {
                         name="phone"
                         placeholder="Telephone"
                         onChange={this.handleChange}
+                        required
                       />
                     </div>
                     <div className="col-12 mb-3">
@@ -100,6 +102,7 @@ class ModalSignUp extends Component {
                         name="password"
                         placeholder="Mot de passe"
                         onChange={this.handleChange}
+                        required
                       />
                     </div>
                     <div className="col-12 mb-3">
@@ -108,6 +111,7 @@ class ModalSignUp extends Component {
                         name="passwordBis"
                         placeholder="Confirmation mot de passe"
                         onChange={this.handleChange}
+                        required
                       />
                     </div>
                     <div className="col-12">
