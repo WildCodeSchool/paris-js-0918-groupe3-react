@@ -1,7 +1,7 @@
 import { GET_ID_USER, SIGNUP_USER } from "../actions/types";
 
 const initialState = {
-  idUser: null,
+  idUser: null
 };
 
 export default function(state = initialState, action) {
@@ -11,11 +11,9 @@ export default function(state = initialState, action) {
         ...state,
         idUser: action.idUser
       };
-      case SIGNUP_USER:
+    case SIGNUP_USER:
       return {
-        ...state,
-        idUser:action.idUser
-        
+        ...state
       };
 
     default:
