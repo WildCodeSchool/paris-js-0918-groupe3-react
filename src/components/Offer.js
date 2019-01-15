@@ -167,7 +167,7 @@ class Offer extends Component {
                     <OrangeButton text="Postuler" />
                   </Link>
                 </div>
-              )}
+              }
               {origin === "company" && nbApplications !== 0 && (
                 <div className="col-10 col-sm-auto">
                   <Link to={`/offers${id}`}>
@@ -175,19 +175,18 @@ class Offer extends Component {
                   </Link>
                 </div>
               )}
-              {origin === "candidate" && (
+              {origin === "candidate" &&
                 <div className="col-10 col-sm-auto">
                   <OrangeButton text="Voir mes réponses" />
 
-           //     </div>}
-            //  {!localStorage.getItem("userType") &&
-             //   <div className="col-12 text-right" onClick={this.props.toggleModalSignInUser}>
-              //    <p>Vous devez vous connecter pour postuler</p>
-              //    <OrangeButton text="Connexion" />
-              //  </div>}
-
                 </div>
-              )}
+              }
+              {!localStorage.getItem("userType") &&
+                <div className="col-12 text-right" onClick={this.props.toggleModalSignInUser}>
+                  <p>Vous devez vous connecter pour postuler</p>
+                  <OrangeButton text="Connexion" />
+                </div>
+              }
               {!showElement && (
                 <div className="col-2 col-sm-auto">
                   <a
