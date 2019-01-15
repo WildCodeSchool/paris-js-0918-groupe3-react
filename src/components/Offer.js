@@ -4,7 +4,9 @@ import dateFormat from "dateformat";
 import axios from 'axios';
 import { connect } from "react-redux";
 
+
 import iconArrow from "../images/icons/iconArrow.png";
+import iconArrowReverse from "../images/icons/iconArrowReverse.png";
 import iconStar from "../images/icons/iconStar.png";
 import logoCompany from "../images/Icone_ALGO.png";
 import sortApplicationsByCandidate from "../helpers/sortApplicationsByCandidate";
@@ -66,30 +68,27 @@ class Offer extends Component {
   };
 
   componentDidMount = () => {
-
-    if (this.props.origin === 'company') {
-      this.getApplicationsOnOffers(this.props.id)
+    if (this.props.origin === "company") {
+      this.getApplicationsOnOffers(this.props.id);
     }
-
   };
 
-  getApplicationsOnOffers = (id) => {
+  getApplicationsOnOffers = id => {
     const domain = process.env.REACT_APP_DOMAIN_NAME;
     const token = localStorage.getItem("token");
     const url = `${domain}api/offers/${id}/applications`;
     axios({
-      method: 'GET',
+      method: "GET",
       url,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`
       }
-    })
-      .then(res => {
-        this.setState({
-          applicationsCompanyList: res.data
-        })
-      })
-  }
+    }).then(res => {
+      this.setState({
+        applicationsCompanyList: res.data
+      });
+    });
+  };
 
   handleShowElement = () => {
     const { showElement } = this.state;
@@ -99,31 +98,35 @@ class Offer extends Component {
   render() {
     const { data, origin, id } = this.props;
     const { showElement, applicationsCompanyList } = this.state;
-    const nbApplications = sortApplicationsByCandidate(applicationsCompanyList).length
+    const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
+      .length;
     return (
-      <div className="Offer container">
-        <div className="row align-items-start p-2 m-2">
+      <div className="Offer container" id="anchorOffer">
+        <div className="row align-items-center p-2 m-2">
           {/* Img logo */}
           <div className="col-2 text-right align-self-center">
             <img src={logoCompany} className="logoCompany" alt="logo" />
           </div>
           {/* Body */}
-          <div className="col-9">
-            <div className={showElement ? "row text-left" : "row text-left mt-3 mt-md-4"}>
-              <div className="col-auto">
+          <div className="col-7 col-md-9">
+            <div
+              className={
+                showElement ? "row text-left" : "row text-left mt-2 mt-md-3"
+              }
+            >
+              <div className="col-12">
                 <h6>
                   <b>{`${data.title}`}</b>
                 </h6>
               </div>
-              <div className="col-1 col-sm-1 col-md-1">
+              <div className="col-auto">
                 <h6> {`${data.contract_type}`}</h6>
               </div>
-              <div className="col-12 col-sm-12 col-md-auto">
+              <div className="col-auto">
                 <h6>{`${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</h6>
               </div>
 
-              {origin === 'company' &&
-                <h5>{nbApplications}</h5>}
+              {origin === "company" && <h5>{nbApplications}</h5>}
 
               {showElement && (
                 <div className="col-12 offerResume">
@@ -134,43 +137,73 @@ class Offer extends Component {
             {/* <b> | ${data.contract_type} | ${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</b> */}
           </div>
           {/* Button open collapse */}
-          <div className="col-1 mb-3">
-            <a
-              href={"#A" + data.id}
-              data-toggle="collapse"
-              onClick={this.handleShowElement}
-            >
-              <img src={iconArrow} alt="icon arrow" className="iconArrow" />
-            </a>
-          </div>
+          {showElement && (
+            <div className="col-auto">
+              <a
+                href={"#A" + data.id}
+                data-toggle="collapse"
+                onClick={this.handleShowElement}
+              >
+                <img src={iconArrow} alt="icon arrow" className="iconArrow" />
+              </a>
+            </div>
+          )}
           {/* Collapse Open */}
           <div className="collapse" id={"A" + data.id}>
-            <div className="row m-2">
-              <div className="descriptionCompleteOffer col-12 offset-md-2 col-md-9">
+            <div className="row justify-content-end align-items-center m-2">
+              <div className="descriptionCompleteOffer col-10 offset-md-2 col-md-10">
                 <p>{data.description}</p>
               </div>
+
               {(origin === 'home' && localStorage.getItem("userType") === 'candidates') &&
-                <div className="col-12 text-right">
+                <div className="col-10 col-sm-auto">
+
                   <img src={iconStar} className="iconStar" alt="icone star" />
                   <a href="/" className="textFavoris">
                     Favoris
-                </a>
+                  </a>
                   &nbsp;&nbsp;
-                <Link to={`apply${data.id}`}><OrangeButton text="Postuler" /></Link>
-                </div>}
-              {(origin === 'company' && nbApplications !== 0) &&
-                <div className="col-12 text-right">
-                  <Link to={`/offers${id}`}><OrangeButton text="Voir les candidatures" /></Link>
-                </div>}
-              {origin === 'candidate' &&
-                <div className="col-12 text-right">
+                  <Link to={`apply${data.id}`}>
+                    <OrangeButton text="Postuler" />
+                  </Link>
+                </div>
+              )}
+              {origin === "company" && nbApplications !== 0 && (
+                <div className="col-10 col-sm-auto">
+                  <Link to={`/offers${id}`}>
+                    <OrangeButton text="Voir les candidatures" />
+                  </Link>
+                </div>
+              )}
+              {origin === "candidate" && (
+                <div className="col-10 col-sm-auto">
                   <OrangeButton text="Voir mes réponses" />
-                </div>}
-              {!localStorage.getItem("userType") &&
-                <div className="col-12 text-right" onClick={this.props.toggleModalSignInUser}>
-                  <p>Vous devez vous connecter pour postuler</p>
-                  <OrangeButton text="Connexion" />
-                </div>}
+
+           //     </div>}
+            //  {!localStorage.getItem("userType") &&
+             //   <div className="col-12 text-right" onClick={this.props.toggleModalSignInUser}>
+              //    <p>Vous devez vous connecter pour postuler</p>
+              //    <OrangeButton text="Connexion" />
+              //  </div>}
+
+                </div>
+              )}
+              {!showElement && (
+                <div className="col-2 col-sm-auto">
+                  <a
+                    href={"#A" + data.id}
+                    data-toggle="collapse"
+                    onClick={this.handleShowElement}
+                  >
+                    <img
+                      src={iconArrowReverse}
+                      alt="icon arrow"
+                      className="iconArrow"
+                    />
+                  </a>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
@@ -187,3 +220,4 @@ export default connect(
   mapStateToProps,
   { toggleModalSignInUser }
 )(Offer);
+

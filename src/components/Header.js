@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import ModalSignIn from "./ModalSignIn";
+import ModalSignUp from "./ModalSignUp";
+
 import "./css/Header.scss";
 
 import logo from "../images/Logo.png";
+
+import { getIdUser } from "../actions/connexionUsersActions";
 import {
   toggleModalSignInUser,
   toggleModalSignInCompany
@@ -29,7 +34,11 @@ class Header extends Component {
   };
 
   render() {
-    const { toggleModalSignInUser, toggleModalSignInCompany } = this.props;
+    const {
+      toggleModalSignInUser,
+      toggleModalSignInCompany,
+      modalAccountType
+    } = this.props;
     const { redirectionHome, redirectionMySpace } = this.state;
     const userType = localStorage.getItem("userType");
     const currentLocation = window.location.pathname;
@@ -51,6 +60,38 @@ class Header extends Component {
 
     return (
       <div className="Header">
+        {/* Modal USER Sign IN*/}
+        {modalAccountType === "USER" && (
+          <ModalSignIn
+            to={"/newAccountCandidate"}
+            redirect={`/candidate${this.props.idUser}`}
+            userType="candidates"
+          />
+        )}
+        {/* Modal COMPANY Sign IN */}
+        {modalAccountType === "COMPANY" && (
+          <ModalSignIn
+            to={"/newAccountCompagny"}
+            redirect={`/companies${this.props.idUser}`}
+            userType="companies"
+          />
+        )}
+        {/* Modal USER Sign UP */}
+        {modalAccountType === "USER" && (
+          <ModalSignUp
+            to={"/newAccountCandidate"}
+            redirect={`/candidate${this.props.idUser}`}
+            userType="candidates"
+          />
+        )}
+        {/* Modal COMPANY Sign UP */}
+        {modalAccountType === "COMPANY" && (
+          <ModalSignUp
+            to={"/newAccountCompagny"}
+            redirect={`/companies${this.props.idUser}`}
+            userType="companies"
+          />
+        )}
         <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
           <a className="navbar-brand" href="/">
             <img className="logo" src={logo} alt="Logo" />
@@ -89,7 +130,8 @@ class Header extends Component {
               </div>
             )}
             {/* Button "Mon espace" home Menu burger */}
-            {currentLocation === "/" &&
+            {currentLocation !== "/companies" &&
+              currentLocation !== "/candidates" &&
               (userType === "companies" || userType === "candidates") && (
                 <div>
                   <button
@@ -170,7 +212,8 @@ class Header extends Component {
                 </div>
               )}
               {/* Button "Mon espace" home */}
-              {currentLocation === "/" &&
+              {currentLocation !== "/companies" &&
+                currentLocation !== "/candidates" &&
                 (userType === "companies" || userType === "candidates") && (
                   <div className="btn-group dropleft ml-3 d-none d-lg-block">
                     <button
@@ -225,11 +268,13 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
-  openModalSignInCompany: state.toggleModalsAccount.openModalSignInCompany
+  idUser: state.usersInfo.idUser,
+  modalAccountType: state.toggleModalsAccount.modalAccountType,
+  classDisplaySignInModal: state.toggleModalsAccount.classDisplaySignInModal,
+  classDisplaySignUpModal: state.toggleModalsAccount.classDisplaySignUpModal
 });
 
 export default connect(
   mapStateToProps,
-  { toggleModalSignInUser, toggleModalSignInCompany }
+  { getIdUser, toggleModalSignInUser, toggleModalSignInCompany }
 )(Header);

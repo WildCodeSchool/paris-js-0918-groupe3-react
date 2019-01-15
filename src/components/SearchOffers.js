@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { HashLink as Link } from "react-router-hash-link";
 
 import { searchOffers, fetchCities } from "../actions/searchOffersActions";
 import OrangeButton from "./OrangeButton";
@@ -11,9 +12,8 @@ class SearchOffers extends Component {
   state = {
     title: "",
     place: "",
-    contract_type: "CDI",
+    contract_type: "CDI"
   };
-
 
   handleChange = async e => {
     const { name, value } = e.target;
@@ -33,12 +33,13 @@ class SearchOffers extends Component {
   render() {
     const { citiesList } = this.props;
 
-
     return (
       <div className="SearchOffer container-fluid">
-        <form className="container p-3 p-md-4" onSubmit={this.handleSubmit}>
-          <div className="row text-center justify-content-center">
-            {<CarouselCitations/>}
+        <form className="container p-3 p-md-4">
+          <div className="row text-center justify-content-center mb-4">
+            <h2>
+              <b>Rechercher une offre</b>
+            </h2>
           </div>
           <div className="row text-center align-items-center">
             <div className="col-12 col-lg-6">
@@ -89,7 +90,9 @@ class SearchOffers extends Component {
           </div>
           <div className="row text-center mt-4">
             <div className="col-12">
-              <OrangeButton text="Rechercher" />
+              <Link to="/#anchorOffer" smooth onClick={this.handleSubmit}>
+                <OrangeButton text="Rechercher" />
+              </Link>
             </div>
           </div>
         </form>

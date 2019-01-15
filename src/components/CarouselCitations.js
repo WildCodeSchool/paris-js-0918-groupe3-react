@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import "./css/CarouselCitations.scss"
+import "./css/CarouselCitations.scss";
 
 class CarouselCitations extends Component {
   state = {
@@ -26,16 +26,8 @@ class CarouselCitations extends Component {
 
   render() {
     const { allCitation, isLoaded } = this.state;
-    if (isLoaded) {
-      // console.log(allCitation);
-      // console.log(
-      //   allCitation.map(e => {
-      //     return e.citation;
-      //   })
-      // );
-    }
     return (
-      <div className="carouselCitations container p-3 m-2">
+      <div className="carouselCitations container p-1">
         <div
           // id="carouselExampleControls"
           id="carouselExampleSlidesOnly"
@@ -49,38 +41,40 @@ class CarouselCitations extends Component {
               <div className="row" />
               <div className="col-12">
                 <h5>
-                  <i>{isLoaded && allCitation[0].citation}</i>
+                  <i>
+                    <b>{isLoaded && allCitation[0].citation}</b>
+                  </i>
                 </h5>
               </div>
               <div className="nameAuteur col-12 text-right p-3">
                 <h5>
-                  <i>
-                    <b>{isLoaded && allCitation[0].auteur}</b>
-                  </i>
+                  <i>{isLoaded && allCitation[0].auteur}</i>
                 </h5>
               </div>
             </div>
             {/* Carousel other slides */}
             {isLoaded &&
-              allCitation.filter((e,i) => i > 0).map((e, i) => {
-                return (
-                    <div className="carousel-item " key={`citation${i}`}>
+              allCitation
+                .filter((e, i) => i > 0)
+                .map((e, i) => {
+                  return (
+                    <div className="carousel-item" key={`citation${i}`}>
                       <div className="row" />
-                      <div className="col-12">
+                      <div className="col-12 p-0">
                         <h5>
-                          <i>{e.citation}</i>
+                          <i>
+                            <b>{e.citation}</b>
+                          </i>
                         </h5>
                       </div>
                       <div className="nameAuteur col-12 text-right p-3">
                         <h5>
-                          <i>
-                            <b>{e.auteur}</b>
-                          </i>
+                          <i>{e.auteur}</i>
                         </h5>
                       </div>
                     </div>
-                );
-              })}
+                  );
+                })}
           </div>
         </div>
         {/* <a
