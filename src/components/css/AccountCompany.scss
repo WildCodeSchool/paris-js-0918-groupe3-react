@@ -1,0 +1,33 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
+
+.AccountCompany {
+  .tabsContainer {
+    margin-top: -1px;
+    border: solid 1px $MainBlue;
+  }
+
+  .nav-link.active {
+    color: #FFF;
+    border: solid 1px $MainBlue;
+    background-color: $MainBlue;
+  }
+
+  .nav-link {
+    color: $MainBlue;
+    border: solid 1px $MainBlue !important;
+
+    &:hover {
+      color: #FFF;
+      background-color: $MainBlue;
+    border: solid 1px $MainBlue;
+
+    }
+  }
+}

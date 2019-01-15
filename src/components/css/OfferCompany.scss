@@ -1,0 +1,49 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
+
+.OfferCompany {
+  border-radius: 2px;
+  box-shadow: 0 2px 5px #aaa;
+
+  h6 {
+    color: $MainBlue;
+  }
+
+  .nbApplications {
+    background-color: $MainOrange;
+    position: absolute;
+    margin-left: 15px;
+    margin-top: -5px;
+    height: 23px;
+    width: 23px;
+    border-radius: 15px;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 700;
+
+    p {
+      text-align: center;
+      margin-top: 3px;
+    }
+  }
+
+  .descriptionCompleteOffer {
+    color: $MainGrey;
+    font-size: 14px;
+
+  }
+
+  .icon {
+    width: 30px;
+  }
+
+  .iconArrow {
+    width: 20px;
+  }
+}
