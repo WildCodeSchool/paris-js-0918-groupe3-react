@@ -35,7 +35,7 @@ class SearchOffers extends Component {
 
     return (
       <div className="SearchOffer container-fluid">
-        <form className="container p-3 p-md-4">
+        <form className="container p-5">
           <div className="row text-center justify-content-center mb-4">
             <h2>
               <b>Rechercher une offre</b>

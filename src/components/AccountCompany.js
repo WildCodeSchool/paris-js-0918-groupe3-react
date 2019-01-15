@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import OrangeButton from "./OrangeButton";
 
-// import './AccountCompany.css';
-import Offer from "./Offer";
+import "./css/AccountCompany.scss";
+import OfferCompany from "./OfferCompany";
 import CompanyInfo from "./CompanyInfo";
 
 class AccountCompany extends Component {
@@ -15,31 +15,39 @@ class AccountCompany extends Component {
 
   render() {
     const { offersList } = this.props;
-    const id = localStorage.getItem('idUser');
-
+    const id = localStorage.getItem("idUser");
 
     return (
       <div className="AccountCompany" aria-hidden="true">
         <div className="container-fluid p-0">
           <CompanyInfo id={id} />
-          <div className="row text-center m-4">
-            <div className="col">
+        </div>
+        <div className="container mt-5">
+          <div className="row">
+            <ul className="nav nav-tabs">
+              <li className="nav-item">
+                <a className="nav-link active" href="#">
+                  <b>Mes annonces</b>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  <b>Archivées</b>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="row tabsContainer p-3">
+            <div className="col-12 text-center">
               <NavLink to="/newOffer">
                 <OrangeButton text="Poster une offre" />
               </NavLink>
             </div>
-          </div>
-          <div className="row ml-5">
-            <div className="col">
-              <h4>Mes offres</h4>
+            <div className="col-12">
+              {offersList.map((e, i) => (
+                <OfferCompany origin="company" data={e} id={e.id} key={e.id} />
+              ))}
             </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            {offersList.map((e, i) => (
-              <Offer origin="company" data={e} id={e.id} key={e.id} />
-            ))}
           </div>
         </div>
       </div>
