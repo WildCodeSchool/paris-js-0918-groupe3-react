@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from 'axios';
 import { connect } from "react-redux";
@@ -64,13 +64,15 @@ dateFormat.i18n = {
 class Offer extends Component {
   state = {
     applicationsCompanyList: [],
-    showElement: true
+    showElement: true,
+    redirectionAnswersCandidate: false
   };
 
   componentDidMount = () => {
     if (this.props.origin === "company") {
       this.getApplicationsOnOffers(this.props.id);
     }
+    
   };
 
   getApplicationsOnOffers = id => {
@@ -93,13 +95,16 @@ class Offer extends Component {
   handleShowElement = () => {
     const { showElement } = this.state;
     this.setState({ showElement: !showElement });
+    
   };
 
   render() {
     const { data, origin, id } = this.props;
-    const { showElement, applicationsCompanyList } = this.state;
+    const { showElement, applicationsCompanyList, redirectionAnswersCandidate } = this.state;
     const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
       .length;
+    if(redirectionAnswersCandidate)
+     return <Redirect to= {`/candidates/answers/offer${id}`}/>
     return (
       <div className="Offer container" id="anchorOffer">
         <div className="row align-items-center p-2 m-2">
@@ -176,7 +181,7 @@ class Offer extends Component {
                 </div>
               )}
               {origin === "candidate" &&
-                <div className="col-10 col-sm-auto">
+                <div className="col-10 col-sm-auto" onClick={() => this.setState({redirectionAnswersCandidate: true})}>
                   <OrangeButton text="Voir mes réponses" />
 
                 </div>

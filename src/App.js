@@ -6,6 +6,7 @@ import Home from './components/Home';
 import AccountCompany from './components/AccountCompany';
 import AccountCandidate from './components/AccountCandidate';
 import Header from "../src/components/Header";
+import AnswersCandidate from "../src/components/AnswersCandidate"
 
 import Applications from "../src/components/Applications"
 
@@ -34,7 +35,8 @@ class App extends Component {
           <Route path='/answers/offers:idOffer(\d+)/question:idQuestion(\d+)' component={AnswersApplication}/>
 
           <Route path='/companies' component={AccountCompany}/>
-          <Route path='/candidates' component={AccountCandidate}/>
+          <Route exact path='/candidates' component={AccountCandidate}/>
+          <Route path='/candidates/answers/offer:idOffer' component={AnswersCandidate}/>
 
           <Route path='/why' component={WhyPage}/>
           <Route path='/how' component={HowPage}/>
