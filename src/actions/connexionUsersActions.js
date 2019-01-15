@@ -14,18 +14,20 @@ export const getIdUser = (email, password, userType) => dispatch => {
     .then(res => {
       localStorage.setItem("token", res.headers["x-access-token"]);
       localStorage.setItem("userType", userType);
-      localStorage.setItem("idUser", res.data.id)
+      localStorage.setItem("idUser", res.data.id);
 
       dispatch({
         type: GET_ID_USER,
         idUser: res.data.id
       });
     })
-    .catch(err => alert('Mot de passe ou email incorrect'));
+    .catch(err => alert("Mot de passe ou email incorrect"));
 };
 
 export const signUpUser = (data, userType) => dispatch => {
   const url = `${domain}api/auth/signup/${userType}`;
+  console.log(url);
+
   const { email, password, description, name, siret, link, phone, logo } = data;
   const body = {
     email,
@@ -37,6 +39,7 @@ export const signUpUser = (data, userType) => dispatch => {
     phone,
     logo
   };
+  console.log(body);
 
   const f = new FormData();
   f.append("email", body.email);
@@ -50,11 +53,11 @@ export const signUpUser = (data, userType) => dispatch => {
 
   axios
     .post(url, f)
+
     .then(res => {
-      localStorage.setItem("token", res.headers["x-access-token"]);
       dispatch({
         type: SIGNUP_USER,
-        idUser: res.data.id
+       
       });
     })
     .catch(err => console.log("signUpUser", err));
