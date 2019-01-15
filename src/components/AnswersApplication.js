@@ -18,8 +18,8 @@ class AnswersApplication extends Component {
     const { text } = this.state
     const answersRank = localStorage.getItem("answersRank")
     const arrQ = this.props.applicationDescription.questions
+    await this.props.postAnswer(idOffer, idQuestion, text, 'file_link')
     if( arrQ && arrQ.length - 1 !== parseInt(answersRank)){
-      await this.props.postAnswer(idOffer, idQuestion, text, 'file_link')
       await localStorage.setItem("answersRank", parseInt(localStorage.getItem("answersRank")) + 1)
       await this.setState({ redirection: true })
       setTimeout(() => window.location.reload(), 100)
