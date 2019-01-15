@@ -15,6 +15,7 @@
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.1",
     "react-scripts": "2.1.1",
+    "react-tiny-popover": "^3.4.2",
     "react-toggle": "^4.0.2",
     "redux": "^4.0.1",
     "redux-form": "^7.4.2",
