@@ -2,23 +2,31 @@ import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
 
-import { postAnswer, getQuestion, getApplicationDescription } from "../actions/applicationActions";
+import { postAnswer, getQuestion, getApplicationDescription, postApplication } from "../actions/applicationActions";
 import OrangeButton from "./OrangeButton";
 
 class AnswersApplication extends Component {
   state = {
     text: '',
     redirection: false,
+    redirectionCandidateAccount: false
   }
 
   handleSubmit = async (e) => {
     e.preventDefault()
     const { idOffer, idQuestion } = this.props.match.params
     const { text } = this.state
-    await this.props.postAnswer(idOffer, idQuestion, text, 'file_link')
-    await localStorage.setItem("answersRank", parseInt(localStorage.getItem("answersRank")) + 1)
-    await this.setState({ redirection: true })
-    setTimeout(() => window.location.reload(), 100)
+    const answersRank = localStorage.getItem("answersRank")
+    const arrQ = this.props.applicationDescription.questions
+    if( arrQ && arrQ.length - 1 !== parseInt(answersRank)){
+      await this.props.postAnswer(idOffer, idQuestion, text, 'file_link')
+      await localStorage.setItem("answersRank", parseInt(localStorage.getItem("answersRank")) + 1)
+      await this.setState({ redirection: true })
+      setTimeout(() => window.location.reload(), 100)
+    }else{
+      await this.props.postApplication(idOffer, 1)
+      this.setState({ redirectionCandidateAccount: true })
+    }
   }
 
   handleChange = (e) => {
@@ -32,12 +40,14 @@ class AnswersApplication extends Component {
   }
 
   render() {
-    const answersRank = localStorage.getItem("answersRank")
     const { idOffer, applicationDescription, questionText } = this.props;
+    const { redirection,redirectionCandidateAccount } = this.state
+    const answersRank = localStorage.getItem("answersRank")
     const arrQ = applicationDescription.questions
-    const { redirection } = this.state
     if (redirection)
       return <Redirect to={`/answers/offers${idOffer}/question${arrQ[answersRank]}`} />
+    if (redirectionCandidateAccount)
+      return <Redirect to= {`/candidates`}/>
     return (
       <div className="AnswersApplication">
         {questionText}
@@ -62,9 +72,10 @@ const mapStateToProps = state => ({
   applicationDescription: state.application.applicationDescription,
   idOffer: state.application.idOfferApplication,
   questionText: state.application.questionText,
+
 });
 
 export default connect(
   mapStateToProps,
-  { postAnswer, getQuestion, getApplicationDescription }
+  { postAnswer, getQuestion, getApplicationDescription, postApplication }
 )(AnswersApplication);
