@@ -9,9 +9,9 @@ import CarouselCitations from "./CarouselCitations";
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
 
-import icone_CV from "../images/Icone_CV_No.png";
-import icone_LM from "../images/Icone_LM_No.png";
-import icone_ALGO from "../images/Icone_ALGO_No.png";
+// import icone_CV from "../images/Icone_CV_No.png";
+// import icone_LM from "../images/Icone_LM_No.png";
+// import icone_ALGO from "../images/Icone_ALGO_No.png";
 
 class Home extends Component {
   render() {
