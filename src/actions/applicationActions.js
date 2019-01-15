@@ -1,4 +1,4 @@
-import { GET_APPLICATION_DESCRIPTION, GET_APPLICATION_QUESTIONS, POST_ANSWERS, GET_QUESTION } from "./types";
+import { GET_APPLICATION_DESCRIPTION, GET_APPLICATION_QUESTIONS, POST_ANSWERS, GET_QUESTION, POST_APPLICATION } from "./types";
 import axios from "axios";
 
 const domain = process.env.REACT_APP_DOMAIN_NAME;
@@ -75,6 +75,27 @@ export const getQuestion = (idQuestion) => (dispatch) => {
         dispatch({
             type: GET_QUESTION,
             getQuestionText: res.data.text
-        })
-    })
-}
+        });
+    });
+};
+
+export const postApplication = (idOffer, isSent) => (dispatch) => {
+    const url = `${domain}api/offers/${idOffer}/applications`;
+    const data = { 
+        id_offers : idOffer,
+        is_sent: isSent
+    }
+    axios({
+        method: "POST",
+        url,
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        data
+    }).then(res => {
+        dispatch({
+            type: POST_APPLICATION,
+            postApplication: res.data
+        });
+    });
+};

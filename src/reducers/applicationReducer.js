@@ -1,4 +1,4 @@
-import { GET_APPLICATION_DESCRIPTION, GET_APPLICATION_QUESTIONS, POST_ANSWERS, GET_QUESTION} from "../actions/types";
+import { GET_APPLICATION_DESCRIPTION, GET_APPLICATION_QUESTIONS, POST_ANSWERS, GET_QUESTION, POST_APPLICATION} from "../actions/types";
 
 const initialState = {
   applicationDescription: [],
@@ -30,6 +30,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         questionText: action.getQuestionText
+      }
+      case POST_APPLICATION:
+      return {
+        ...state,
+        finalApplication: action.postApplication
       }
     default: 
       return state;
