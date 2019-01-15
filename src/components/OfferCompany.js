@@ -244,7 +244,7 @@ class OfferCompany extends Component {
                           }
                         >
                           Vous avez <b>{nbApplications}</b> candidature
-                          {nbApplications > 0 ? "s" : ""} en cours
+                          {nbApplications > 1 ? "s" : ""} en cours
                         </div>
                       </ArrowContainer>
                     )}
