@@ -20,6 +20,7 @@ $LightGrey: lightGrey;
   }
 
   .offerResume {
+    border-color: solid 1px red;
     color:$MainGrey;
     font-size: 14px;
     height: 45px;
@@ -29,11 +30,15 @@ $LightGrey: lightGrey;
   .descriptionCompleteOffer{
     color:$MainGrey;
     font-size: 14px;
+  }
 
+  .infoConnexionPostuler{
+    color:$MainGrey;
+    font-size: 12px;
   }
 
   .iconStar {
-    width: 20px;
+    width: 18px;
 
   }
 
@@ -42,7 +47,7 @@ $LightGrey: lightGrey;
   }
 
   .logoCompany {
-    width: 70px;
+    width: 50px;
 
     @include media-breakpoint-down(md) {
       width: 45px;
@@ -53,7 +58,7 @@ $LightGrey: lightGrey;
     }
 
     @include media-breakpoint-down(xs) {
-      width: 25px;
+      width: 30px;
     }
   }
 
