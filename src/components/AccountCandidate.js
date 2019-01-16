@@ -13,14 +13,11 @@ class AccountCandidate extends Component {
   }
   render() {
     const id = localStorage.getItem('idUser');
-    console.log(this.props.listOfCandidatesApplications)
     return (
       <div className="AccountCandidate" aria-hidden="true">
-        <NavLink to="/">Acceuil</NavLink>
         <CandidateInfo id={id} />
         {this.props.listOfCandidatesApplications.map(e => (
           <Offer origin="candidate" data={e} id={e.id_offers} key={e.id_offers} />
-          
           ))}
 
       </div>
