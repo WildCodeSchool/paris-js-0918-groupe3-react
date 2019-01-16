@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from "axios";
 import Popover, { ArrowContainer } from "react-tiny-popover";
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconArrowReverse from "../images/icons/iconArrowReverse.png";
-import iconOnline from "../images/icons/iconOnline.png";
-import iconOffline from "../images/icons/iconOffline.png";
-import iconApplications from "../images/icons/iconApplications.png";
-import iconArchive from "../images/icons/iconArchive.png";
+import iconWaitingBase from "../images/icons/iconWaitingBase.png";
+import iconWaiting from "../images/icons/iconWaiting.png";
+import iconValidateBase from "../images/icons/iconValidateBase.png";
+import iconValidate from "../images/icons/iconValidate.png";
+import iconRefuseBase from "../images/icons/iconRefuseBase.png";
+import iconRefuse from "../images/icons/iconRefuse.png";
 
 import sortApplicationsByCandidate from "../helpers/sortApplicationsByCandidate";
 
@@ -62,12 +64,14 @@ dateFormat.i18n = {
   timeNames: ["a", "p", "am", "pm", "A", "P", "AM", "PM"]
 };
 
-class OfferCompany extends Component {
+class OfferCandidate extends Component {
   state = {
     applicationsCompanyList: [],
     showElement: true,
-    isPopoverOnlineOpen: false,
-    isPopoverApplicationsOpen: false
+    isPopoverWaitingOpen: false,
+    isPopoverValidateOpen: false,
+    isPopoverRefuseOpen: false,
+    redirectionAnswersCandidate: false
   };
 
   componentDidMount = () => {
@@ -96,27 +100,40 @@ class OfferCompany extends Component {
     this.setState({ showElement: !showElement });
   };
 
-  // Open / close popover icon online
-  handleOnlinePopover = isPopoverOnlineOpen => {
+  // Open / close popover icon waiting
+  handleWaitingPopover = isPopoverWaitingOpen => {
     this.setState({
-      isPopoverOnlineOpen: !isPopoverOnlineOpen
+      isPopoverWaitingOpen: !isPopoverWaitingOpen
     });
     setTimeout(
       function() {
-        this.setState({ isPopoverOnlineOpen: false });
+        this.setState({ isPopoverWaitingOpen: false });
       }.bind(this),
       2500
     );
   };
 
-  // Open / close popover icon application
-  handleApplicationsPopover = isPopoverApplicationsOpen => {
+  // Open / close popover icon validate
+  handleValidatePopover = isPopoverValidateOpen => {
     this.setState({
-      isPopoverApplicationsOpen: !isPopoverApplicationsOpen
+      isPopoverValidateOpen: !isPopoverValidateOpen
     });
     setTimeout(
       function() {
-        this.setState({ isPopoverApplicationsOpen: false });
+        this.setState({ isPopoverValidateOpen: false });
+      }.bind(this),
+      2500
+    );
+  };
+
+  // Open / close popover icon refuse
+  handleRefusePopover = isPopoverRefuseOpen => {
+    this.setState({
+      isPopoverRefuseOpen: !isPopoverRefuseOpen
+    });
+    setTimeout(
+      function() {
+        this.setState({ isPopoverRefuseOpen: false });
       }.bind(this),
       2500
     );
@@ -126,13 +143,13 @@ class OfferCompany extends Component {
     const { data, id } = this.props;
     const {
       showElement,
-      applicationsCompanyList,
-      isPopoverOnlineOpen,
-      isPopoverApplicationsOpen
+      isPopoverWaitingOpen,
+      isPopoverValidateOpen,
+      isPopoverRefuseOpen,
+      redirectionAnswersCandidate
     } = this.state;
-    const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
-      .length;
-
+    if (redirectionAnswersCandidate)
+      return <Redirect to={`/candidates/answers/offer${id}`} />;
     return (
       <div className="OfferCompany container p-2 m-2">
         <div className="row">
@@ -159,11 +176,11 @@ class OfferCompany extends Component {
                 {/* Icones */}
                 <div className="row justify-content-end">
                   <Popover
-                    isOpen={isPopoverOnlineOpen}
+                    isOpen={isPopoverWaitingOpen}
                     position={"top"}
                     padding={5}
                     onClickOutside={() =>
-                      this.setState({ isPopoverOnlineOpen: false })
+                      this.setState({ isPopoverWaitingOpen: false })
                     }
                     content={({ position, targetRect, popoverRect }) => (
                       <ArrowContainer
@@ -182,48 +199,46 @@ class OfferCompany extends Component {
                           }}
                           onClick={() =>
                             this.setState({
-                              isPopoverOnlineOpen: !isPopoverOnlineOpen
+                              isPopoverWaitingOpen: !isPopoverWaitingOpen
                             })
                           }
                         >
-                          {data.is_published
-                            ? "Votre offre est en ligne"
-                            : "Votre offre est hors ligne"}
+                          Votre candidature est en attente
                         </div>
                       </ArrowContainer>
                     )}
                   >
-                    {data.is_published ? (
+                    {data.status === "waiting" ? (
                       <div className="col-auto p-2">
                         <img
-                          src={iconOnline}
-                          className="icon iconOnline"
-                          alt="icone online"
+                          src={iconWaiting}
+                          className="icon iconWaiting"
+                          alt="icone attente"
                           onClick={() =>
-                            this.handleOnlinePopover(isPopoverOnlineOpen)
+                            this.handleWaitingPopover(isPopoverWaitingOpen)
                           }
                         />
                       </div>
                     ) : (
                       <div className="col-auto p-2">
                         <img
-                          src={iconOffline}
-                          className="icon iconOffline"
-                          alt="icone offline"
+                          src={iconWaitingBase}
+                          className="icon iconWaitingBase"
+                          alt="icone attente"
                           onClick={() =>
-                            this.handleOnlinePopover(isPopoverOnlineOpen)
+                            this.handleWaitingPopover(isPopoverWaitingOpen)
                           }
                         />
                       </div>
                     )}
                   </Popover>
-                  {/* Icone nombre candidatures */}
+                  {/* Icone validate */}
                   <Popover
-                    isOpen={isPopoverApplicationsOpen}
+                    isOpen={isPopoverValidateOpen}
                     position={"top"}
                     padding={5}
                     onClickOutside={() =>
-                      this.setState({ isPopoverApplicationsOpen: false })
+                      this.setState({ isPopoverValidateOpen: false })
                     }
                     content={({ position, targetRect, popoverRect }) => (
                       <ArrowContainer
@@ -242,57 +257,114 @@ class OfferCompany extends Component {
                           }}
                           onClick={() =>
                             this.setState({
-                              isPopoverApplicationsOpen: !isPopoverApplicationsOpen
+                              isPopoverValidateOpen: !isPopoverValidateOpen
                             })
                           }
                         >
-                          Vous avez <b>{nbApplications}</b> candidature
-                          {nbApplications > 1 ? "s" : ""} en cours
+                          Votre candidature est validée
                         </div>
                       </ArrowContainer>
                     )}
                   >
-                    <div
-                      className="col-auto p-2"
-                      onClick={() =>
-                        this.handleApplicationsPopover(
-                          isPopoverApplicationsOpen
-                        )
-                      }
-                    >
-                      <div className="nbApplications">
-                        <p>{nbApplications}</p>
+                    {data.status === "validated" ? (
+                      <div className="col-auto p-2">
+                        <img
+                          src={iconValidate}
+                          className="icon iconValidate"
+                          alt="icone validate"
+                          onClick={() =>
+                            this.handleValidatePopover(isPopoverValidateOpen)
+                          }
+                        />
                       </div>
-                      <img
-                        src={iconApplications}
-                        className="icon iconApplications"
-                        alt="icone applications"
-                      />
-                    </div>
+                    ) : (
+                      <div className="col-auto p-2">
+                        <img
+                          src={iconValidateBase}
+                          className="icon iconValidateBase"
+                          alt="icone validate"
+                          onClick={() =>
+                            this.handleValidatePopover(isPopoverValidateOpen)
+                          }
+                        />
+                      </div>
+                    )}
                   </Popover>
-                  <div className="col-auto p-2">
-                    <img
-                      src={iconArchive}
-                      className="icon iconArchive"
-                      alt="icone archive"
-                    />
-                  </div>
+                  {/* Icone Refuse */}
+                  <Popover
+                    isOpen={isPopoverRefuseOpen}
+                    position={"top"}
+                    padding={5}
+                    onClickOutside={() =>
+                      this.setState({ isPopoverRefuseOpen: false })
+                    }
+                    content={({ position, targetRect, popoverRect }) => (
+                      <ArrowContainer
+                        position={position}
+                        targetRect={targetRect}
+                        popoverRect={popoverRect}
+                        arrowColor={"#64C4D9"}
+                        arrowSize={8}
+                      >
+                        <div
+                          style={{
+                            backgroundColor: "#64C4D9",
+                            color: "#FFF",
+                            padding: "8px",
+                            textAlign: "center"
+                          }}
+                          onClick={() =>
+                            this.setState({
+                              isPopoverRefuseOpen: !isPopoverRefuseOpen
+                            })
+                          }
+                        >
+                          Votre candidature a été refusé
+                        </div>
+                      </ArrowContainer>
+                    )}
+                  >
+                    {data.status === "rejected" ? (
+                      <div className="col-auto p-2">
+                        <img
+                          src={iconRefuse}
+                          className="icon iconRefuse"
+                          alt="icone refuse"
+                          onClick={() =>
+                            this.handleRefusePopover(isPopoverRefuseOpen)
+                          }
+                        />
+                      </div>
+                    ) : (
+                      <div className="col-auto p-2">
+                        <img
+                          src={iconRefuseBase}
+                          className="icon iconRefuseBase"
+                          alt="icone refuse"
+                          onClick={() =>
+                            this.handleRefusePopover(isPopoverRefuseOpen)
+                          }
+                        />
+                      </div>
+                    )}
+                  </Popover>
                 </div>
               </div>
             </div>
             <div className="row">
               {/* Collapse Open */}
-              <div className="collapse" id={"A" + data.id}>
+              <div className="collapse" id={"A" + data.id_offers}>
                 <div className="col-10 offset-1 text-justify">
                   <p>{data.description}</p>
                 </div>
-                {nbApplications>0 &&
-                <div className="col-12 text-center text-md-right">
-                  <Link to={`/offers${id}`}>
-                    <OrangeButton text="Voir les candidatures" />
-                  </Link>
+                <div
+                  className="col-12 text-center text-md-right"
+                  onClick={() =>
+                    this.setState({ redirectionAnswersCandidate: true })
+                  }
+                >
+                  <OrangeButton text="Voir mes réponse" />
                 </div>
-                }
               </div>
             </div>
           </div>
@@ -301,7 +373,7 @@ class OfferCompany extends Component {
             <div className="col-12 col-md-1 align-self-center text-center p-2">
               <a
                 className=""
-                href={"#A" + data.id}
+                href={"#A" + data.id_offers}
                 data-toggle="collapse"
                 onClick={this.handleShowElement}
               >
@@ -312,7 +384,7 @@ class OfferCompany extends Component {
           {!showElement && (
             <div className="col-12 col-md-1 align-self-end text-center mb-2 p-2">
               <a
-                href={"#A" + data.id}
+                href={"#A" + data.id_offers}
                 data-toggle="collapse"
                 onClick={this.handleShowElement}
               >
@@ -330,4 +402,4 @@ class OfferCompany extends Component {
   }
 }
 
-export default OfferCompany;
+export default OfferCandidate;

@@ -1,0 +1,19 @@
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: #D3D3D3;
+$VeryLightGrey: #f5f6fa;
+$LightOrange:#F7EEE3;
+
+.CandidateInfo {
+  background-color: $VeryLightGrey;
+  color: $MainOrange;
+
+  .iconEdit{
+    width: 25px;
+  }
+
+  .infosDetail {
+    color: $MainBlue;
+  }
+}
