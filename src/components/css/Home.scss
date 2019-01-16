@@ -42,11 +42,15 @@ $MainOrange:#F49754;
     margin-top: 0
   }
 
-  // #anchorOffer {
-  //   display: block;
-  //   position: relative;
-  //   padding-top: 5%;
-  // }
+  .illu{
+    width: 30vw;
+    @include media-breakpoint-down(md) {
+      width: 60vw;
+    }
+    @include media-breakpoint-down(sm) {
+      width: 95vw;
+    }
+  }
 
 
   .icone_CV,

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Scroll,Element} from "react-scroll";
+import { Scroll, Element } from "react-scroll";
 
 import SearchOffers from "./SearchOffers";
 import CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
 import CarouselCitations from "./CarouselCitations";
+
+import illu from "../images/ILLU_JPG.jpg";
 
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
@@ -30,7 +32,10 @@ class Home extends Component {
               </h4>
             </div>
             <div className="row m-4">
-              <div className="col-12 col-md-4 col-lg-auto justify-content-center align-items-center">
+              <div className="col-auto">
+                <img src={illu} className="illu" alt="logo" />
+              </div>
+              {/* <div className="col-12 col-md-4 col-lg-auto justify-content-center align-items-center">
                 <div className="col-12">
                   <h4 className="infoOrange">CURRICULUM VITAE ?</h4>
                 </div>
@@ -53,7 +58,7 @@ class Home extends Component {
                 <div className="col-12">
                   <h4 className="infoOrange verbe">DEPASSÉ</h4>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="row text-center justify-content-center p-3">
