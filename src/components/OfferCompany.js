@@ -283,11 +283,13 @@ class OfferCompany extends Component {
                 <div className="col-10 offset-1 text-justify">
                   <p>{data.description}</p>
                 </div>
+                {nbApplications>0 &&
                 <div className="col-12 text-center text-md-right">
                   <Link to={`/offers${id}`}>
                     <OrangeButton text="Voir les candidatures" />
                   </Link>
                 </div>
+                }
               </div>
             </div>
           </div>
