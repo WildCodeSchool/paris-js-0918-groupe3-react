@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Toggle from "react-toggle";
+import { Redirect } from "react-router-dom"
 
 import NewOfferQuestions from "./NewOfferQuestions";
 import NewQuestion from "./NewQuestion";
@@ -17,7 +18,8 @@ class NewOfferForm extends Component {
     place: "",
     contract_type: "CDI",
     description: "",
-    is_published: false
+    is_published: false,
+    redirection: false
   };
 
   handleChange = async e => {
@@ -26,7 +28,7 @@ class NewOfferForm extends Component {
       [name]: value
     })
     const { place } = this.state;
-    if (name === "place"){
+    if (name === "place") {
       this.props.fetchCities(place);
     }
   };
@@ -40,13 +42,22 @@ class NewOfferForm extends Component {
     );
   };
 
-  handleSubmit = e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    this.props.postNewOffer(this.state);
+    try {
+      await this.props.postNewOffer(this.state);
+      alert('Votre offre est postée');
+      this.setState({
+        redirection: true
+      })
+    } catch {
+      alert('Problème lors de la validation de votre offre')
+    };
   };
 
   render() {
     const { citiesList } = this.props;
+    if (this.state.redirection) return <Redirect to="/companies" />
     return (
       <div className="NewOfferForm">
         <div className="container">
@@ -80,10 +91,10 @@ class NewOfferForm extends Component {
                   onChange={this.handleChange}
                 />
                 <datalist id="cities">
-                {citiesList.length && citiesList.map(c =>
-                  <option key={c.code}>{c.nom} ({c.codesPostaux[0].substr(0,2)})</option>
-                )}
-              </datalist>
+                  {citiesList.length && citiesList.map(c =>
+                    <option key={c.code}>{c.nom} ({c.codesPostaux[0].substr(0, 2)})</option>
+                  )}
+                </datalist>
               </div>
               <div className="col-12 col-md-auto">
                 <label htmlFor="contract_type">Type de contrat</label>
@@ -145,7 +156,7 @@ class NewOfferForm extends Component {
 
 const mapStateToProps = state => ({
   questionsList: state.newOffer.questionsList,
-  citiesList : state.searchOffers.citiesList,
+  citiesList: state.searchOffers.citiesList,
 });
 
 export default connect(
