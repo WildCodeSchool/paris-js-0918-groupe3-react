@@ -106,7 +106,7 @@ class Offer extends Component {
     if(redirectionAnswersCandidate)
      return <Redirect to= {`/candidates/answers/offer${id}`}/>
     return (
-      <div className="Offer container" id="anchorOffer">
+      <div className="Offer container">
         <div className="row align-items-center p-2 m-2">
           {/* Img logo */}
           <div className="col-2 text-right align-self-center">
