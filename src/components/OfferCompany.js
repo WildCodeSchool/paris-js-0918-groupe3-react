@@ -96,6 +96,7 @@ class OfferCompany extends Component {
     this.setState({ showElement: !showElement });
   };
 
+  // Open / close popover icon online
   handleOnlinePopover = isPopoverOnlineOpen => {
     this.setState({
       isPopoverOnlineOpen: !isPopoverOnlineOpen
@@ -107,6 +108,8 @@ class OfferCompany extends Component {
       2500
     );
   };
+
+  // Open / close popover icon application
   handleApplicationsPopover = isPopoverApplicationsOpen => {
     this.setState({
       isPopoverApplicationsOpen: !isPopoverApplicationsOpen
