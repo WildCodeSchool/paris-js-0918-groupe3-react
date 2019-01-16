@@ -1,4 +1,4 @@
-import { GET_OFFERS_COMPANY, GET_COMPANY_INFO, GET_APPLICATIONS_COMPANY } from './types';
+import { GET_OFFERS_COMPANY, GET_COMPANY_INFO, GET_APPLICATIONS_COMPANY, PUT_STATUS_APPLICATION } from './types';
 import axios from 'axios';
 
 
@@ -52,6 +52,25 @@ export const getApplicationsOnOffers = (id) => (dispatch) => {
       dispatch({
         type: GET_APPLICATIONS_COMPANY,
         applicationsCompanyList: res.data
+      })
+    })
+}
+
+export const putStatusApplication = (id_offers, id_candidates, status) => (dispatch) => {
+  const url = `${domain}api/applications/status`;
+  const data = {
+    id_offers,
+    id_candidates,
+    status
+  }
+  axios.put(url, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+    .then(res => {
+      dispatch({
+        type: PUT_STATUS_APPLICATION,
       })
     })
 }
