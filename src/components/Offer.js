@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import dateFormat from "dateformat";
-import axios from 'axios';
+import axios from "axios";
 import { connect } from "react-redux";
-
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconArrowReverse from "../images/icons/iconArrowReverse.png";
@@ -65,14 +64,12 @@ class Offer extends Component {
   state = {
     applicationsCompanyList: [],
     showElement: true,
-    redirectionAnswersCandidate: false
   };
 
   componentDidMount = () => {
     if (this.props.origin === "company") {
       this.getApplicationsOnOffers(this.props.id);
     }
-    
   };
 
   getApplicationsOnOffers = id => {
@@ -95,16 +92,16 @@ class Offer extends Component {
   handleShowElement = () => {
     const { showElement } = this.state;
     this.setState({ showElement: !showElement });
-    
   };
 
   render() {
     const { data, origin, id } = this.props;
-    const { showElement, applicationsCompanyList, redirectionAnswersCandidate } = this.state;
+    const {
+      showElement,
+      applicationsCompanyList,
+    } = this.state;
     const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
       .length;
-    if(redirectionAnswersCandidate)
-     return <Redirect to= {`/candidates/answers/offer${id}`}/>
     return (
       <div className="Offer container">
         <div className="row align-items-center p-2 m-2">
@@ -160,19 +157,19 @@ class Offer extends Component {
                 <p>{data.description}</p>
               </div>
 
-              {(origin === 'home' && localStorage.getItem("userType") === 'candidates') &&
-                <div className="col-10 col-sm-auto">
-
-                  <img src={iconStar} className="iconStar" alt="icone star" />
-                  <a href="/" className="textFavoris">
-                    Favoris
-                  </a>
-                  &nbsp;&nbsp;
-                  <Link to={`apply${data.id}`}>
-                    <OrangeButton text="Postuler" />
-                  </Link>
-                </div>
-              }
+              {origin === "home" &&
+                localStorage.getItem("userType") === "candidates" && (
+                  <div className="col-10 col-sm-auto">
+                    <img src={iconStar} className="iconStar" alt="icone star" />
+                    <a href="/" className="textFavoris">
+                      Favoris
+                    </a>
+                    &nbsp;&nbsp;
+                    <Link to={`apply${data.id}`}>
+                      <OrangeButton text="Postuler" />
+                    </Link>
+                  </div>
+                )}
               {origin === "company" && nbApplications !== 0 && (
                 <div className="col-10 col-sm-auto">
                   <Link to={`/offers${id}`}>
@@ -180,18 +177,15 @@ class Offer extends Component {
                   </Link>
                 </div>
               )}
-              {origin === "candidate" &&
-                <div className="col-10 col-sm-auto" onClick={() => this.setState({redirectionAnswersCandidate: true})}>
-                  <OrangeButton text="Voir mes réponses" />
-
-                </div>
-              }
-              {!localStorage.getItem("userType") &&
-                <div className="col-12 text-right" onClick={this.props.toggleModalSignInUser}>
+              {!localStorage.getItem("userType") && (
+                <div
+                  className="col-12 text-right"
+                  onClick={this.props.toggleModalSignInUser}
+                >
                   <p>Vous devez vous connecter pour postuler</p>
                   <OrangeButton text="Connexion" />
                 </div>
-              }
+              )}
               {!showElement && (
                 <div className="col-2 col-sm-auto">
                   <a
@@ -207,7 +201,6 @@ class Offer extends Component {
                   </a>
                 </div>
               )}
-
             </div>
           </div>
         </div>
@@ -217,11 +210,10 @@ class Offer extends Component {
 }
 
 const mapStateToProps = state => ({
-  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser,
+  openModalSignInUser: state.toggleModalsAccount.openModalSignInUser
 });
 
 export default connect(
   mapStateToProps,
   { toggleModalSignInUser }
 )(Offer);
-

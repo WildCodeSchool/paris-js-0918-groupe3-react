@@ -22,7 +22,7 @@ class AccountCompany extends Component {
         <div className="container-fluid p-0">
           <CompanyInfo id={id} />
         </div>
-        <div className="container mt-5">
+        <div className="container mt-5 mb-5">
           <div className="row">
             <ul className="nav nav-tabs">
               <li className="nav-item">
