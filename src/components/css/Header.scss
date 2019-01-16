@@ -52,6 +52,7 @@ $White: #FFF;
       font-weight: 600;
       color: $MainOrange;
       transition: 0.25s;
+
       &:hover,
       &:focus {
         color: $White;
@@ -65,15 +66,19 @@ $White: #FFF;
   .btn {
     font-weight: 600;
     color: $White;
-    background-color: $MainOrange !important;
+    background-color: $MainOrange;
     box-shadow: none;
+    border-radius: 3px !important;
+
   }
 
   .btnMenuBurger {
     &:hover {
       color: $MainOrange;
       border-color: $MainOrange;
-      background-color: $White !important;
+      background-color: $White;
+      border-radius: 3px !important;
+
     }
   }
 }
