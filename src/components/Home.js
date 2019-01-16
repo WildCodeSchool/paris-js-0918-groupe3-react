@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {Scroll,Element} from "react-scroll";
 
 import SearchOffers from "./SearchOffers";
 import CarouselCompaniesHome from "./CarouselCompaniesHome";
@@ -62,8 +63,9 @@ class Home extends Component {
         <SearchOffers />
         <CarouselCompaniesHome />
         <hr />
-        {/* <section id="anchorOffer"> */}
-        <Offers origin="home" />
+        <Element name="anchorOffer">
+          <Offers origin="home" />
+        </Element>
         {/* </section> */}
       </div>
     );

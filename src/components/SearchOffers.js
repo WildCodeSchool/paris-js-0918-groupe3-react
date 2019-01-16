@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { HashLink as Link } from "react-router-hash-link";
+import { animateScroll as scroll, scroller } from "react-scroll";
 
 import { searchOffers, fetchCities } from "../actions/searchOffersActions";
 import OrangeButton from "./OrangeButton";
-import CarouselCitations from "./CarouselCitations";
 
 import "./css/SearchOffer.scss";
 
@@ -13,6 +12,14 @@ class SearchOffers extends Component {
     title: "",
     place: "",
     contract_type: "CDI"
+  };
+  scrollTo = () => {
+    scroller.scrollTo("anchorOffer", {
+      duration: 800,
+      delay: 200,
+      offset:-20,
+      smooth: "easeInOutCubic"
+    });
   };
 
   handleChange = async e => {
@@ -29,10 +36,11 @@ class SearchOffers extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.searchOffers(this.state);
+    this.scrollTo();
   };
+
   render() {
     const { citiesList } = this.props;
-
     return (
       <div className="SearchOffer container-fluid">
         <form className="container p-5">
@@ -90,9 +98,9 @@ class SearchOffers extends Component {
           </div>
           <div className="row text-center mt-4">
             <div className="col-12">
-              <Link to="/#anchorOffer" smooth onClick={this.handleSubmit}>
+              <span onClick={this.handleSubmit}>
                 <OrangeButton text="Rechercher" />
-              </Link>
+              </span>
             </div>
           </div>
         </form>
