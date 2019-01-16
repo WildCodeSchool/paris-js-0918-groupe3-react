@@ -13,16 +13,24 @@ import OrangeButton from './OrangeButton';
 class Applications extends Component {
 
     componentDidMount = () => {
-        this.props.getApplicationsOnOffers(this.props.match.params.id)
+        this.props.getApplicationsOnOffers(this.props.match.params.idOffer)
     }
 
     render() {
+        const { idOffer } = this.props.match.params
         const applicationById = sortApplicationsByCandidate(this.props.applicationsCompany)
         return (
             <div className='Applications'>
                 <Link to='/companies'><OrangeButton text="Retour" /></Link>
-                {applicationById.map((e, i) =>
-                    <ApplicationCompany index={i} element={e} />
+                {this.props.applicationsCompany[0] && applicationById.map((e, i) =>
+                    <ApplicationCompany
+                        index={i}
+                        element={e}
+                        idCandidate={this.props.applicationsCompany[0].id_candidates}
+                        status={this.props.applicationsCompany[0].status_application}
+                        idOffer={parseInt(idOffer)}
+                        key={`ApplicationCompany${i}`}
+                    />
                 )}
             </div>
         )

@@ -101,7 +101,7 @@ class OfferCompany extends Component {
       isPopoverOnlineOpen: !isPopoverOnlineOpen
     });
     setTimeout(
-      function() {
+      function () {
         this.setState({ isPopoverOnlineOpen: false });
       }.bind(this),
       2500
@@ -112,7 +112,7 @@ class OfferCompany extends Component {
       isPopoverApplicationsOpen: !isPopoverApplicationsOpen
     });
     setTimeout(
-      function() {
+      function () {
         this.setState({ isPopoverApplicationsOpen: false });
       }.bind(this),
       2500
@@ -129,7 +129,7 @@ class OfferCompany extends Component {
     } = this.state;
     const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
       .length;
-
+    const idCompany = localStorage.getItem('idUser')
     return (
       <div className="OfferCompany container p-2 m-2">
         <div className="row">
@@ -202,17 +202,17 @@ class OfferCompany extends Component {
                         />
                       </div>
                     ) : (
-                      <div className="col-auto p-2">
-                        <img
-                          src={iconOffline}
-                          className="icon iconOffline"
-                          alt="icone offline"
-                          onClick={() =>
-                            this.handleOnlinePopover(isPopoverOnlineOpen)
-                          }
-                        />
-                      </div>
-                    )}
+                        <div className="col-auto p-2">
+                          <img
+                            src={iconOffline}
+                            className="icon iconOffline"
+                            alt="icone offline"
+                            onClick={() =>
+                              this.handleOnlinePopover(isPopoverOnlineOpen)
+                            }
+                          />
+                        </div>
+                      )}
                   </Popover>
                   {/* Icone nombre candidatures */}
                   <Popover
@@ -284,7 +284,7 @@ class OfferCompany extends Component {
                   <p>{data.description}</p>
                 </div>
                 <div className="col-12 text-center text-md-right">
-                  <Link to={`/offers${id}`}>
+                  <Link to={`/company${idCompany}/offers${id}`}>
                     <OrangeButton text="Voir les candidatures" />
                   </Link>
                 </div>

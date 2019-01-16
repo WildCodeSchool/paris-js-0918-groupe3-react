@@ -30,7 +30,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/newOffer' component={NewOfferContainer} />
 
-          <Route path='/offers:id(\d+)' component={Applications}/>
+          <Route path='/company:idCompany(\d+)/offers:idOffer(\d+)' component={Applications}/>
           <Route path='/apply:id(\d+)' component={ApplicationCandidate}/>
           <Route path='/answers/offers:idOffer(\d+)/question:idQuestion(\d+)' component={AnswersApplication}/>
 

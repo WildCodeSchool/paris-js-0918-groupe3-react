@@ -1,4 +1,4 @@
-import { GET_OFFERS_COMPANY, GET_COMPANY_INFO, GET_APPLICATIONS_COMPANY } from "../actions/types";
+import { GET_OFFERS_COMPANY, GET_COMPANY_INFO, GET_APPLICATIONS_COMPANY, PUT_STATUS_APPLICATION } from "../actions/types";
 
 const initialState = {
   offersList: [],
@@ -22,7 +22,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         applicationsCompany: action.applicationsCompanyList
-}
+      }
+    case PUT_STATUS_APPLICATION:
+      return {
+        ...state,
+      }
     default:
       return state;
   }
