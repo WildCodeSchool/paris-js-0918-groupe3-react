@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from "axios";
 import { connect } from "react-redux";

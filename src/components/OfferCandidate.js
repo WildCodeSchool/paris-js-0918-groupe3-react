@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from "axios";
 import Popover, { ArrowContainer } from "react-tiny-popover";
@@ -12,8 +12,6 @@ import iconValidateBase from "../images/icons/iconValidateBase.png";
 import iconValidate from "../images/icons/iconValidate.png";
 import iconRefuseBase from "../images/icons/iconRefuseBase.png";
 import iconRefuse from "../images/icons/iconRefuse.png";
-
-import sortApplicationsByCandidate from "../helpers/sortApplicationsByCandidate";
 
 import "./css/OfferCompany.scss";
 import OrangeButton from "./OrangeButton";
