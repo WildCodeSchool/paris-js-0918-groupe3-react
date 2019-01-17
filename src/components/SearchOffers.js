@@ -11,7 +11,7 @@ class SearchOffers extends Component {
   state = {
     title: "",
     place: "",
-    contract_type: "Tous"
+    contract_type: ""
   };
   scrollTo = () => {
     scroller.scrollTo("anchorOffer", {
