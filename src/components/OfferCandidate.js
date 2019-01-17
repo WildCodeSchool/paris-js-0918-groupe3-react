@@ -102,10 +102,10 @@ class OfferCandidate extends Component {
     if (redirectionAnswersCandidate)
       return <Redirect to={`/candidates/answers/offer${id}`} />;
     return (
-      <div className="OfferCompany container p-2 m-2">
+      <div className="OfferCompany container p-3 m-2">
         <div className="row">
           <div className="col-12 col-md-11">
-            <div className="row align-items-center p-2">
+            <div className="row align-items-center">
               <div className="col-auto">
                 <div className="row">
                   <div className="col">
