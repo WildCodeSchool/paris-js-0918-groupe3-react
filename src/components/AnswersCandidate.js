@@ -2,35 +2,44 @@ import React, { Component } from "react";
 import { getAnswerCandidate } from "../actions/accountCandidateActions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import OrangeButton from "./OrangeButton";
+
+import "./css/AnswersCandidate.scss"
 
 class AnswersCandidate extends Component {
-    componentDidMount = () => {
-            this.props.getAnswerCandidate(this.props.match.params.idOffer)
-        }
-    render () {
-        const { answersCandidate } = this.props
-        console.log("reponse candidat", answersCandidate)
-        return(
-            <div className="AnswersCandidate">
-                {answersCandidate.map((e, i) => (
-                    <div key={`answers-${i}`}>
-                        <p>{`${i+1}. ${e.question}`}</p>
-                        <p>{e.answer}</p>
-                    </div>
-
-                ))}
-                <Link to='/candidates'><OrangeButton text='Retour à mon espace'/></Link>
-            </div>
-        )
-    }
+  componentDidMount = () => {
+    this.props.getAnswerCandidate(this.props.match.params.idOffer);
+  };
+  render() {
+    const { answersCandidate } = this.props;
+    return (
+      <div className="AnswersCandidate container p-4 mt-5 mb-5">
+        <div className="row">
+          <div className="col">
+            <Link to="/candidates">
+              <p>Retourner sur mon espace</p>
+            </Link>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            {answersCandidate.map((e, i) => (
+              <div key={`answers-${i}`}>
+                <p className="question">{`${i + 1}. ${e.question}`}</p>
+                <p className="answer">{e.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-    answersCandidate: state.accountCandidate.answersCandidate
-  });
+  answersCandidate: state.accountCandidate.answersCandidate
+});
 
-  export default connect(
-    mapStateToProps,
-    { getAnswerCandidate }
-  )(AnswersCandidate);
+export default connect(
+  mapStateToProps,
+  { getAnswerCandidate }
+)(AnswersCandidate);
