@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getIdUser, getTokenForNewPassword } from "../actions/connexionUsersActions";
+import {
+  getIdUser,
+  getTokenForNewPassword
+} from "../actions/connexionUsersActions";
 import {
   toggleModalSignUpUser,
   toggleModalSignUpCompany,
@@ -30,12 +33,12 @@ class ModalSignIn extends Component {
 
   handleSentMessage = async e => {
     e.preventDefault();
-    const { userType, getTokenForNewPassword } = this.props
-    const { inputEmail } = this.state
-    await getTokenForNewPassword(userType, inputEmail)
-    this.props.toggleModalClose()
-    alert('Un message vous a été envoyé')
-  }
+    const { userType, getTokenForNewPassword } = this.props;
+    const { inputEmail } = this.state;
+    await getTokenForNewPassword(userType, inputEmail);
+    this.props.toggleModalClose();
+    alert("Un message vous a été envoyé");
+  };
 
   handleSubmit = async e => {
     e.preventDefault();
@@ -45,8 +48,8 @@ class ModalSignIn extends Component {
     this.setState({
       redirection: true
     });
-    this.props.toggleModalClose()
-    setTimeout(() => window.location.reload(), 100)
+    this.props.toggleModalClose();
+    setTimeout(() => window.location.reload(), 100);
   };
 
   render() {
@@ -60,7 +63,8 @@ class ModalSignIn extends Component {
       idUser,
       userType
     } = this.props;
-    if (redirection === true && idUser && userType === 'companies') return <Redirect to={`/companies${idUser}`} />;
+    if (redirection === true && idUser && userType === "companies")
+      return <Redirect to={`/companies${idUser}`} />;
 
     return (
       <div className={classDisplaySignInModal}>
@@ -73,39 +77,42 @@ class ModalSignIn extends Component {
                 </button>
               </div>
             </div>
-            <div className="row p-3 pl-5 pr-5 justify-content-center text-center">
-              <div className="row">
-                {!newPassword ?
-                  <form onSubmit={this.handleSubmit}>
-                    <div className="col-12 mb-3">
-                      <h3>Connexion</h3>
+            <div className="row justify-content-center text-center">
+              <div className="row m-0">
+                {!newPassword ? (
+                    <form onSubmit={this.handleSubmit}>
+                      <div className="col-12 mb-3">
+                        <h3>Connexion</h3>
+                      </div>
+                      <div className="col-12 mb-3">
+                        <input
+                          type="text"
+                          name="inputEmail"
+                          placeholder="Email"
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                      <div className="col-12 mb-3">
+                        <input
+                          type="password"
+                          name="inputPassword"
+                          placeholder="Mot de passe"
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                      <div className="col-12">
+                        <OrangeButton text="Connexion" />
+                      </div>
+                    </form>
+                ) : (
+                  <form onSubmit={this.handleSentMessage} method="POST">
+                    <div className="col-8 offset-2 mb-3">
+                      <h5>
+                        Un e-mail vous sera envoyé pour réinitialiser votre mot
+                        de passe
+                      </h5>
                     </div>
-                    <div className="col-12 mb-3">
-                      <input
-                        type="text"
-                        name="inputEmail"
-                        placeholder="Email"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-12 mb-3">
-                      <input
-                        type="password"
-                        name="inputPassword"
-                        placeholder="Mot de passe"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-12">
-                      <OrangeButton text="Connexion" />
-                    </div>
-                  </form>
-                  :
-                  <form onSubmit={this.handleSentMessage} method='POST'>
-                    <div className="col-12 mb-3">
-                      <h3>Demande de nouveau mot de passe</h3>
-                    </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-8 offset-2 mb-3">
                       <input
                         type="text"
                         name="inputEmail"
@@ -117,18 +124,33 @@ class ModalSignIn extends Component {
                       <OrangeButton text="Envoyer" />
                     </div>
                   </form>
-                }
-
+                )}
               </div>
             </div>
             <div className="row align-items-end text-right">
               <div className="col-12">
-                <span onClick={() => this.setState({ newPassword: !newPassword })}>Mot de passe oublié </span>
                 {modalAccountType === "USER" && (
                   <span onClick={toggleModalSignUpUser}>Créer mon compte</span>
                 )}
                 {modalAccountType === "COMPANY" && (
-                  <span onClick={toggleModalSignUpCompany}>Créer mon compte</span>
+                  <span onClick={toggleModalSignUpCompany}>
+                    Créer mon compte
+                  </span>
+                )}
+              </div>
+              <div className="col-12">
+                {newPassword === false ? (
+                  <span
+                    onClick={() => this.setState({ newPassword: !newPassword })}
+                  >
+                    Mot de passe oublié ?
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => this.setState({ newPassword: !newPassword })}
+                  >
+                    Me connecter
+                  </span>
                 )}
               </div>
             </div>
