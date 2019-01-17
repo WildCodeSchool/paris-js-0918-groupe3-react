@@ -20,8 +20,6 @@ $MainOrange:#F49754;
   width: 100vw;
   background: rgba(0, 0, 0, 0.5);
 
-
-
   .modal-single {
     z-index: 2;
     background: white;
@@ -29,7 +27,7 @@ $MainOrange:#F49754;
     box-shadow: 2px 0 5px #aaa;
 
 
-    h3 {
+    h3, h5 {
       color: $MainBlue;
     }
 
