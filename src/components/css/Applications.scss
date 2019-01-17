@@ -1,0 +1,21 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
+
+.Applications {
+  border: solid 1px $MainBlue;
+
+  a {
+    font-size: 18px;
+    color: $MainOrange;
+  }
+
+  .icon {
+    width: 30px;
+  }
+}

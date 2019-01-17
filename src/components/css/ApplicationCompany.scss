@@ -11,7 +11,7 @@ $LightGrey: lightGrey;
   border-radius: 2px;
   box-shadow: 0 2px 5px #aaa;
 
-  h6 {
+  .titleApplication {
     color: $MainBlue;
   }
 
@@ -25,7 +25,12 @@ $LightGrey: lightGrey;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .answers{
+
+  .Questions{
+    color: $MainBlue;
+  }
+
+  .Answers{
     color:$MainGrey;
   }
 
