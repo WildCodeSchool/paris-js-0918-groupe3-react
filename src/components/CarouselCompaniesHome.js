@@ -7,7 +7,7 @@ const srcImg = "https://via.placeholder.com/100";
 class CarouselCompaniesHome extends Component {
   render() {
     return (
-      <div className="carouselCompaniesHome container-fluid p-5">
+      <div className="carouselCompaniesHome container-fluid p-2 m-2">
         <div
           // id="carouselExampleControls"
           id="carouselExampleSlidesOnly"
@@ -19,7 +19,7 @@ class CarouselCompaniesHome extends Component {
             {/* Carousel Slide 1 */}
             <div className="carousel-item active">
               <div className="row justify-content-around p-2">
-                <div className="col-6 col-md-4 col-lg-2 text-center ">
+                <div className="col-6 col-md-4 col-lg-2 text-center">
                   <img className=" w-75 h-75" src={srcImg} alt="" />
                   <br />
                   <br />
@@ -98,6 +98,7 @@ class CarouselCompaniesHome extends Component {
                 <div className="col-6 col-md-4 col-lg-2 text-center">
                   <img className=" w-75 h-75" src={srcImg} alt="" />
                   <br />
+                  <br/>
                   <p>Name</p>
                 </div>
                 <div className="col-6 col-md-4 col-lg-2 d-none d-md-block text-center">

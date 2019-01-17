@@ -7,17 +7,21 @@ class Offers extends Component {
   render() {
     const { offersList, origin } = this.props;
     return (
-      <div className="Offers">
-        {offersList.map(offer => (
-          <Offer origin={origin} key={offer.id} data={offer} />
-        ))}
+      <div className="Offers container-fluid mb-5">
+        <div className="row">
+          <div className="col">
+            {offersList.map(offer => (
+              <Offer origin={origin} key={offer.id} data={offer} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
- // offersList: state.offers.offersList,
+  // offersList: state.offers.offersList,
   offersList: state.searchOffers.offersList
 });
 

@@ -1,3 +1,12 @@
+html {
+    height: 100%;
+}
+
 body {
     font-family: Montserrat;
+    position: relative;
+    box-sizing: border-box;
+    min-height: 100%;
+    margin: 0;
+    padding-bottom: 140px;
 }

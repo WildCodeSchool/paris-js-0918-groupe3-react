@@ -14,7 +14,7 @@ class AnswersCandidate extends Component {
         return(
             <div className="AnswersCandidate">
                 {answersCandidate.map((e, i) => (
-                    <div key={`answers-${i}`}> 
+                    <div key={`answers-${i}`}>
                         <p>{`${i+1}. ${e.question}`}</p>
                         <p>{e.answer}</p>
                     </div>
@@ -29,7 +29,7 @@ class AnswersCandidate extends Component {
 const mapStateToProps = state => ({
     answersCandidate: state.accountCandidate.answersCandidate
   });
-  
+
   export default connect(
     mapStateToProps,
     { getAnswerCandidate }

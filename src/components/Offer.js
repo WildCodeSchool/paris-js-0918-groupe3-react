@@ -63,7 +63,7 @@ dateFormat.i18n = {
 class Offer extends Component {
   state = {
     applicationsCompanyList: [],
-    showElement: true,
+    showElement: true
   };
 
   componentDidMount = () => {
@@ -96,52 +96,102 @@ class Offer extends Component {
 
   render() {
     const { data, origin, id } = this.props;
-    const {
-      showElement,
-      applicationsCompanyList,
-    } = this.state;
+    const { showElement, applicationsCompanyList } = this.state;
     const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
       .length;
+
+      console.log(id);
+
     return (
       <div className="Offer container">
-        <div className="row align-items-center p-2 m-2">
-          {/* Img logo */}
-          <div className="col-2 text-right align-self-center">
-            <img src={logoCompany} className="logoCompany" alt="logo" />
-          </div>
-          {/* Body */}
-          <div className="col-7 col-md-9">
-            <div
-              className={
-                showElement ? "row text-left" : "row text-left mt-2 mt-md-3"
-              }
-            >
-              <div className="col-12">
-                <h6>
-                  <b>{`${data.title}`}</b>
-                </h6>
+        <div className="row">
+          <div className="col-12 col-md-10">
+            <div className="row pt-3 pb-2">
+              <div className="col-12 col-md-10 offset-md-2">
+                <div className="row align-items-center">
+                  <div className="col-auto">
+                    <img src={logoCompany} className="logoCompany" alt="logo" />
+                  </div>
+                  <div className="col">
+                    <div className="row">
+                      <div className="col-auto">
+                        <h6 className="h-100 d-flex justify-content-center flex-column">
+                          <b>{`${data.title}`}</b>
+                        </h6>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-auto">
+                        <h6 className="h-100 d-flex justify-content-center flex-column">
+                          {" "}
+                          {`${data.contract_type}`}
+                        </h6>
+                      </div>
+                      <div className="col-auto">
+                        <h6 className="h-100 d-flex justify-content-center flex-column">{`${dateFormat(
+                          data.updated_at,
+                          "dd-mm-yyyy"
+                        )}`}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="col-auto">
-                <h6> {`${data.contract_type}`}</h6>
-              </div>
-              <div className="col-auto">
-                <h6>{`${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</h6>
-              </div>
-
-              {origin === "company" && <h5>{nbApplications}</h5>}
-
+            </div>
+            <div className="row pb-3">
               {showElement && (
-                <div className="col-12 offerResume">
+                <div className="col-12 col-md-10 offset-md-2 text-justify offerResume">
                   <p>{data.description}</p>
                 </div>
               )}
             </div>
-            {/* <b> | ${data.contract_type} | ${dateFormat(data.updated_at, "dd-mm-yyyy")}`}</b> */}
+            <div className="row">
+              {/* Collapse Open */}
+              <div className="collapse" id={"A" + data.id}>
+                <div className="col-12 col-md-10 offset-md-2 text-justify descriptionCompleteOffer">
+                  <p>{data.description}</p>
+                </div>
+                {origin === "home" &&
+                  localStorage.getItem("userType") === "candidates" && (
+                    <div className="row align-items-center justify-content-end">
+                      <div className="col-auto m-2">
+                        <div className="row align-items-center">
+                          <img
+                            src={iconStar}
+                            className="iconStar"
+                            alt="icone star"
+                          />
+                          <a href="/" className="textFavoris">
+                            Favoris
+                          </a>
+                        </div>
+                      </div>
+                      <div className="col-auto m-2">
+                        <Link to={`apply${data.id}`}>
+                          <OrangeButton text="Postuler" />
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                {!localStorage.getItem("userType") && (
+                  <div
+                    className="col-12 text-right m-2"
+                    onClick={this.props.toggleModalSignInUser}
+                  >
+                    <OrangeButton text="Connexion" />
+                    <p className="infoConnexionPostuler">
+                      Vous devez vous connecter pour pouvoir postuler
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
           {/* Button open collapse */}
           {showElement && (
-            <div className="col-auto">
+            <div className="col-12 col-md-1 align-self-center text-center p-2">
               <a
+                className=""
                 href={"#A" + data.id}
                 data-toggle="collapse"
                 onClick={this.handleShowElement}
@@ -150,59 +200,21 @@ class Offer extends Component {
               </a>
             </div>
           )}
-          {/* Collapse Open */}
-          <div className="collapse" id={"A" + data.id}>
-            <div className="row justify-content-end align-items-center m-2">
-              <div className="descriptionCompleteOffer col-10 offset-md-2 col-md-10">
-                <p>{data.description}</p>
-              </div>
-
-              {origin === "home" &&
-                localStorage.getItem("userType") === "candidates" && (
-                  <div className="col-10 col-sm-auto">
-                    <img src={iconStar} className="iconStar" alt="icone star" />
-                    <a href="/" className="textFavoris">
-                      Favoris
-                    </a>
-                    &nbsp;&nbsp;
-                    <Link to={`apply${data.id}`}>
-                      <OrangeButton text="Postuler" />
-                    </Link>
-                  </div>
-                )}
-              {origin === "company" && nbApplications !== 0 && (
-                <div className="col-10 col-sm-auto">
-                  <Link to={`/offers${id}`}>
-                    <OrangeButton text="Voir les candidatures" />
-                  </Link>
-                </div>
-              )}
-              {!localStorage.getItem("userType") && (
-                <div
-                  className="col-12 text-right"
-                  onClick={this.props.toggleModalSignInUser}
-                >
-                  <p>Vous devez vous connecter pour postuler</p>
-                  <OrangeButton text="Connexion" />
-                </div>
-              )}
-              {!showElement && (
-                <div className="col-2 col-sm-auto">
-                  <a
-                    href={"#A" + data.id}
-                    data-toggle="collapse"
-                    onClick={this.handleShowElement}
-                  >
-                    <img
-                      src={iconArrowReverse}
-                      alt="icon arrow"
-                      className="iconArrow"
-                    />
-                  </a>
-                </div>
-              )}
+          {!showElement && (
+            <div className="col-12 col-md-1 align-self-end text-center mb-2 p-3">
+              <a
+                href={"#A" + data.id}
+                data-toggle="collapse"
+                onClick={this.handleShowElement}
+              >
+                <img
+                  src={iconArrowReverse}
+                  alt="icon arrow"
+                  className="iconArrow"
+                />
+              </a>
             </div>
-          </div>
+          )}
         </div>
       </div>
     );
