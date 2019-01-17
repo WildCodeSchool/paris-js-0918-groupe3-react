@@ -1,0 +1,35 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
+
+.AnswersApplication {
+  border: solid 1px $MainBlue;
+  border-radius: 2px;
+
+  .infoTitle {
+    color: $MainBlue;
+  }
+
+  p {
+    color: $MainGrey
+  }
+
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 350px;
+    border: solid 1px $MainOrange;
+    border-radius: 2px;
+    padding: 10px;
+
+    &:focus {
+      outline-style: none;
+      color: $MainGrey;
+    }
+  }
+}

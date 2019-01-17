@@ -7,14 +7,12 @@ class Offers extends Component {
   render() {
     const { offersList, origin } = this.props;
     return (
-      <div className="container-fluid">
+      <div className="Offers container-fluid mb-5">
         <div className="row">
           <div className="col">
-            <div className="Offers">
-              {offersList.map(offer => (
-                <Offer origin={origin} key={offer.id} data={offer} />
-              ))}
-            </div>
+            {offersList.map(offer => (
+              <Offer origin={origin} key={offer.id} data={offer} />
+            ))}
           </div>
         </div>
       </div>

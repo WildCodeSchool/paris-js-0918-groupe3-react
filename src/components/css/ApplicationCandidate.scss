@@ -1,0 +1,34 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
+
+.ApplicationCandidate {
+  border: solid 1px $MainBlue;
+  border-radius: 2px;
+
+  .infoTitle, h4 {
+    color: $MainBlue;
+  }
+
+  .offerDescription, p {
+    color: $MainGrey
+  }
+
+  a {
+    font-size: 18px;
+    color: $MainOrange;
+  }
+
+  .answers {
+    color: $MainGrey;
+  }
+
+  .iconArrow {
+    width: 20px;
+  }
+}
