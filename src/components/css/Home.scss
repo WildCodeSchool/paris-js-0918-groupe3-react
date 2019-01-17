@@ -9,24 +9,67 @@ $MainOrange:#F49754;
 .Home {
   .Home_intro {
 
-    h4,
-    h5 {
+    .textIntro {
       color: $MainBlue;
+
+      h4 {
+        line-height: 1.5;
+
+        @include media-breakpoint-down(md) {
+          font-size: 20px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          font-size: 14px;
+
+        }
+
+        @include media-breakpoint-down(xs) {
+          font-size: 14px;
+        }
+      }
+
+
+    }
+
+    .textAccroche {
+      color: $MainOrange;
+
+
+      h4 {
+        @include media-breakpoint-down(md) {
+          font-size: 24px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          font-size: 16px;
+
+        }
+
+        @include media-breakpoint-down(xs) {
+          font-size: 14px;
+        }
+      }
+
+      .verbe {
+        font-size: 40px;
+        font-weight: 900;
+        @include media-breakpoint-down(md) {
+          font-size: 30px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          font-size: 24px;
+
+        }
+
+        @include media-breakpoint-down(xs) {
+          font-size: 20px;
+        }
+      }
     }
 
 
-    h4{
-      line-height: 1.5;
-    }
-
-    .infoOrange{
-      color:$MainOrange;
-    }
-
-    .verbe{
-      font-size: 40px;
-      font-weight: 900;
-    }
 
 
     h6 {
@@ -41,17 +84,6 @@ $MainOrange:#F49754;
   hr {
     margin-top: 0
   }
-
-  .illu{
-    width: 30vw;
-    @include media-breakpoint-down(md) {
-      width: 60vw;
-    }
-    @include media-breakpoint-down(sm) {
-      width: 95vw;
-    }
-  }
-
 
   .icone_CV,
   .icone_LM,

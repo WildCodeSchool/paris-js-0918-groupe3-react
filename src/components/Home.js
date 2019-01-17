@@ -7,8 +7,6 @@ import CarouselCompaniesHome from "./CarouselCompaniesHome";
 import Offers from "./Offers";
 import CarouselCitations from "./CarouselCitations";
 
-import illu from "../images/ILLU_JPG.jpg";
-
 import "./css/Home.scss";
 import "./css/OrangeButton.scss";
 
@@ -20,9 +18,9 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <div className="Home_intro container-fluid p-3">
+        <div className="Home_intro container-fluid p-3 m-0">
           <div className="row justify-content-center text-center p-2">
-            <div className="col-12">
+            <div className="col-12 textIntro">
               <h4>
                 Grâce à un <b>QUESTIONNAIRE</b>, surprenez par <br />
                 vos <b>réalisations</b>, vos <b>propositions</b> et votre
@@ -31,47 +29,42 @@ class Home extends Component {
                 Et jusqu’à l’entretien d’embauche : <b>l’ANONYMAT</b>
               </h4>
             </div>
-            <div className="row m-4">
-              <div className="col-auto">
-                <img src={illu} className="illu" alt="logo" />
-              </div>
-              {/* <div className="col-12 col-md-4 col-lg-auto justify-content-center align-items-center">
+            <div className="row m-2 m-md-4 textAccroche">
+              <div className="col-12 col-md-4 col-lg-auto justify-content-center align-items-center">
                 <div className="col-12">
-                  <h4 className="infoOrange">CURRICULUM VITAE ?</h4>
+                  <h4>CURRICULUM VITAE ?</h4>
                 </div>
                 <div className="col-12">
-                  <h4 className="infoOrange verbe">ENVOLÉ</h4>
+                  <h4 className="verbe">ENVOLÉ</h4>
                 </div>
               </div>
               <div className="col-12 col-md-4 col-lg-auto justify-content-center align-items-center">
                 <div className="col-12">
-                  <h4 className="infoOrange">LETTRE DE MOTIVATION ?</h4>
+                  <h4>LETTRE DE MOTIVATION ?</h4>
                 </div>
                 <div className="col-12">
-                  <h4 className="infoOrange verbe">OUBLIÉE</h4>
+                  <h4 className="verbe">OUBLIÉE</h4>
                 </div>
               </div>
               <div className="col-12 col-md-4 col-lg-auto justify-content-center align-items-center">
                 <div className="col-12">
-                  <h4 className="infoOrange">ALGORITHME ?</h4>
+                  <h4>ALGORITHME ?</h4>
                 </div>
                 <div className="col-12">
-                  <h4 className="infoOrange verbe">DEPASSÉ</h4>
+                  <h4 className="verbe">DEPASSÉ</h4>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
-          <div className="row text-center justify-content-center p-3">
+          <div className="row text-center justify-content-center">
             <CarouselCitations />
           </div>
         </div>
         <SearchOffers />
         <CarouselCompaniesHome />
-        <hr />
         <Element name="anchorOffer">
           <Offers origin="home" />
         </Element>
-        {/* </section> */}
       </div>
     );
   }
