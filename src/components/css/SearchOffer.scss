@@ -1,3 +1,7 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
 $MainBlue:#64C4D9;
 $MainOrange:#F49754;
 
@@ -7,6 +11,18 @@ $MainOrange:#F49754;
   h2,
   h5 {
     color: #FFF;
+    @include media-breakpoint-down(md) {
+      font-size: 26px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: 22px;
+
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: 22px;
+    }
   }
 
   input {

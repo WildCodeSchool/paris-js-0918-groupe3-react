@@ -6,6 +6,7 @@ import Home from './components/Home';
 import AccountCompany from './components/AccountCompany';
 import AccountCandidate from './components/AccountCandidate';
 import Header from "../src/components/Header";
+import Footer from "../src/components/Footer";
 import AnswersCandidate from "../src/components/AnswersCandidate"
 
 import Applications from "../src/components/Applications"
@@ -42,6 +43,7 @@ class App extends Component {
           <Route path='/how' component={HowPage}/>
 
         </Switch>
+        <Footer/>
       </div>
     );
   }
