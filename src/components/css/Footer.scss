@@ -1,0 +1,18 @@
+$MainBlue:#64C4D9;
+$SecondaryBlue: #52A5B8;
+$MainOrange:#F49754;
+$White: #FFF;
+
+.Footer {
+  color: #FFF;
+  background-color: $MainBlue;
+
+  a{
+    color: white;
+  }
+
+  .copyright{
+    font-size:12px;
+  }
+
+}
