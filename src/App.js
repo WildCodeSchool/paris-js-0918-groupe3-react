@@ -16,6 +16,7 @@ import AnswersApplication from './components/AnswersApplication';
 
 import WhyPage from './components/WhyPage';
 import HowPage from './components/HowPage';
+import NewPassword from './components/NewPassword';
 
 
 
@@ -37,6 +38,7 @@ class App extends Component {
           <Route path='/companies' component={AccountCompany}/>
           <Route exact path='/candidates' component={AccountCandidate}/>
           <Route path='/candidates/answers/offer:idOffer' component={AnswersCandidate}/>
+          <Route path='/newpassword/:token' component={NewPassword}/>
 
           <Route path='/why' component={WhyPage}/>
           <Route path='/how' component={HowPage}/>

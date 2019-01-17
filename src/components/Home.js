@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Scroll,Element} from "react-scroll";
+import { Element } from "react-scroll";
 
 import SearchOffers from "./SearchOffers";
 import CarouselCompaniesHome from "./CarouselCompaniesHome";

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { animateScroll as scroll, scroller } from "react-scroll";
+import { scroller } from "react-scroll";
 
 import { searchOffers, fetchCities } from "../actions/searchOffersActions";
 import OrangeButton from "./OrangeButton";

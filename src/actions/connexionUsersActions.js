@@ -1,4 +1,4 @@
-import { GET_ID_USER, SIGNUP_USER } from "./types";
+import { GET_ID_USER, SIGNUP_USER, PUT_NEW_PASSWORD, GET_TOKEN_NEW_PASSWORD } from "./types";
 import axios from "axios";
 
 const domain = process.env.REACT_APP_DOMAIN_NAME;
@@ -26,8 +26,6 @@ export const getIdUser = (email, password, userType) => dispatch => {
 
 export const signUpUser = (data, userType) => dispatch => {
   const url = `${domain}api/auth/signup/${userType}`;
-  console.log(url);
-
   const { email, password, description, name, siret, link, phone, logo } = data;
   const body = {
     email,
@@ -39,7 +37,6 @@ export const signUpUser = (data, userType) => dispatch => {
     phone,
     logo
   };
-  console.log(body);
 
   const f = new FormData();
   f.append("email", body.email);
@@ -57,8 +54,36 @@ export const signUpUser = (data, userType) => dispatch => {
     .then(res => {
       dispatch({
         type: SIGNUP_USER,
-       
+
       });
     })
     .catch(err => console.log("signUpUser", err));
 };
+
+export const putNewPassword = (password, token) => dispatch => {
+  const url = `${domain}api/auth/newpassword`
+  axios.put(url, { password }, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+    .then(res => {
+      dispatch({
+        type: PUT_NEW_PASSWORD,
+      })
+    })
+}
+
+export const getTokenForNewPassword = (userType, email) => dispatch => {
+  const url = `${domain}api/auth/newpassword`
+  const body = {
+    userType, 
+    email
+  } 
+  axios.post(url, body)
+    .then(res => {
+      dispatch({
+        type: GET_TOKEN_NEW_PASSWORD,
+      })
+    })
+}
