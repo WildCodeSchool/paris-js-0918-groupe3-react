@@ -173,13 +173,6 @@ class Offer extends Component {
                       </div>
                     </div>
                   )}
-                {(localStorage.getItem("userType") === "companies" && nbApplications === 0) && (
-                  <div className="col-auto text-right m-2">
-                    <Link to={`/offers${id}`}>
-                      <OrangeButton text="Voir les candidatures" />
-                    </Link>
-                  </div>
-                )}
                 {!localStorage.getItem("userType") && (
                   <div
                     className="col-12 text-right m-2"
