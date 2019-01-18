@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Toggle from "react-toggle";
-import { Redirect } from "react-router-dom"
+import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 import NewOfferQuestions from "./NewOfferQuestions";
 import NewQuestion from "./NewQuestion";
@@ -26,7 +28,7 @@ class NewOfferForm extends Component {
     const { name, value } = e.target;
     await this.setState({
       [name]: value
-    })
+    });
     const { place } = this.state;
     if (name === "place") {
       this.props.fetchCities(place);
@@ -42,27 +44,32 @@ class NewOfferForm extends Component {
     );
   };
 
-  handleSubmit = async (e) => {
+  handleSubmit = async e => {
     e.preventDefault();
     try {
       await this.props.postNewOffer(this.state);
-      alert('Votre offre est postée');
+      alert("Votre offre est postée");
       this.setState({
         redirection: true
-      })
+      });
     } catch {
-      alert('Problème lors de la validation de votre offre')
-    };
+      alert("Problème lors de la validation de votre offre");
+    }
   };
 
   render() {
     const { citiesList } = this.props;
-    if (this.state.redirection) return <Redirect to="/companies" />
+    if (this.state.redirection) return <Redirect to="/companies" />;
     return (
       <div className="NewOfferForm">
         <div className="container">
           <h2>Poster une offre</h2>
           <form className="postNewOfferForm" onSubmit={this.handleSubmit}>
+            <div className="col">
+              <Link to="/companies">
+                <p className="linkBack">Retourner sur mon espace</p>
+              </Link>
+            </div>
             <div className="row align-items-center mt-4 mb-4">
               <div className="col-12 col-md-4 pr-1">
                 <label htmlFor="title">Titre de votre offre</label>
@@ -91,9 +98,12 @@ class NewOfferForm extends Component {
                   onChange={this.handleChange}
                 />
                 <datalist id="cities">
-                  {citiesList.length && citiesList.map(c =>
-                    <option key={c.code}>{c.nom} ({c.codesPostaux[0].substr(0, 2)})</option>
-                  )}
+                  {citiesList.length &&
+                    citiesList.map(c => (
+                      <option key={c.code}>
+                        {c.nom} ({c.codesPostaux[0].substr(0, 2)})
+                      </option>
+                    ))}
                 </datalist>
               </div>
               <div className="col-12 col-md-auto">
@@ -156,7 +166,7 @@ class NewOfferForm extends Component {
 
 const mapStateToProps = state => ({
   questionsList: state.newOffer.questionsList,
-  citiesList: state.searchOffers.citiesList,
+  citiesList: state.searchOffers.citiesList
 });
 
 export default connect(
