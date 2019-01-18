@@ -7,8 +7,8 @@ import { connect } from "react-redux";
 import iconArrow from "../images/icons/iconArrow.png";
 import iconArrowReverse from "../images/icons/iconArrowReverse.png";
 import iconStar from "../images/icons/iconStar.png";
+
 import logoCompany from "../images/LogoProvisoirOffer.png";
-import sortApplicationsByCandidate from "../helpers/sortApplicationsByCandidate";
 import { toggleModalSignInUser } from "../actions/modalsAccountActions";
 
 import "./css/Offer.scss";
@@ -95,12 +95,9 @@ class Offer extends Component {
   };
 
   render() {
-    const { data, origin, id } = this.props;
-    const { showElement, applicationsCompanyList } = this.state;
-    const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
-      .length;
+    const { data, origin } = this.props;
+    const { showElement } = this.state;
 
-      console.log(id);
 
     return (
       <div className="Offer container">
