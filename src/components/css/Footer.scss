@@ -15,17 +15,6 @@ $White: #FFF;
   color: #FFF;
   background-color: $MainBlue;
 
-  @include media-breakpoint-down(sm) {
-
-
-  }
-
-  @include media-breakpoint-down(xs) {
-
-
-
-  }
-
   a {
     color: white;
   }

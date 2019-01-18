@@ -7,7 +7,8 @@ import { connect } from "react-redux";
 import iconArrow from "../images/icons/iconArrow.png";
 import iconArrowReverse from "../images/icons/iconArrowReverse.png";
 import iconStar from "../images/icons/iconStar.png";
-import logoCompany from "../images/Icone_ALGO.png";
+
+import logoCompany from "../images/LogoProvisoirOffer.png";
 import { toggleModalSignInUser } from "../actions/modalsAccountActions";
 
 import "./css/Offer.scss";
