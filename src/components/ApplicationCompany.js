@@ -18,6 +18,9 @@ class ApplicationCompany extends Component {
     showElement: true,
     status: this.props.status
   };
+  componentWillReceiveProps = () => {
+    setTimeout(window.location.reload(), 50)
+  }
 
   handleShowElement = () => {
     const { showElement } = this.state;
