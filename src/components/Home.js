@@ -30,7 +30,7 @@ class Home extends Component {
                 Et jusqu’à l’entretien d’embauche : <b>l’ANONYMAT</b>
               </h4>
             </div>
-            <div className="row m-2 m-md-4 textAccroche">
+            <div className="row m-2 m-md-4 align-items-center textAccroche">
               <div className="col-12 col-md-4 col-lg-auto justify-content-center align-items-center">
                 <div className="col-12">
                   <h4>CURRICULUM VITAE ?</h4>
