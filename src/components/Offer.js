@@ -100,7 +100,6 @@ class Offer extends Component {
     const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
       .length;
 
-      console.log(id);
 
     return (
       <div className="Offer container">
