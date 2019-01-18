@@ -23,7 +23,7 @@ class CandidateInfo extends Component {
               <h5>Vos informations personelles</h5>
             </div>
             <div className="col-auto">
-              <a href="/companies" title="Editer">
+              <a href="/candidates" title="Editer">
                 <img src={iconEdit} className="iconEdit" alt="icone editer" />
               </a>
             </div>

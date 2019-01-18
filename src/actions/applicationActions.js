@@ -40,7 +40,6 @@ export const getApplicationQuestions = ids => (dispatch) => {
 
 export const postAnswer = (idOffer, idQuestion, text, file_link) => (dispatch) => {
     const url = `${domain}api/applications/answer?offer=${idOffer}&question=${idQuestion}`;
-    console.log('URL', url)
     const data = {
         text,
         file_link,
@@ -55,7 +54,6 @@ export const postAnswer = (idOffer, idQuestion, text, file_link) => (dispatch) =
         },
         data
     }).then(res => {
-        console.log('res',res)
         dispatch({
             type: POST_ANSWERS,
             postAnswer: res.data
