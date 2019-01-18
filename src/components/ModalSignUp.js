@@ -141,7 +141,7 @@ class ModalSignUp extends Component {
                         id="file-input"
                         type="file"
                         name="logo"
-                        accept="image/png,image/gif,image/jpeg"
+                        accept="image/png,image/jpeg,image/jpg"
                         onChange={this.handleChangeFile}
                       />
                     </div>

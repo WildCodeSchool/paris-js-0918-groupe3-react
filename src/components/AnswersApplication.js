@@ -54,7 +54,6 @@ class AnswersApplication extends Component {
     const { redirection, redirectionCandidateAccount } = this.state;
     const answersRank = localStorage.getItem("answersRank");
     const arrQ = applicationDescription.questions;
-    console.log(arrQ);
 
     if (redirection)
       return (

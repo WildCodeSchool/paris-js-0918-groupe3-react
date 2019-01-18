@@ -81,8 +81,7 @@ export const getQuestion = (idQuestion) => (dispatch) => {
 
 export const postApplication = (idOffer, isSent) => (dispatch) => {
     const url = `${domain}api/offers/${idOffer}/applications`;
-    const data = { 
-        id_offers : idOffer,
+    const data = {
         is_sent: isSent
     }
     axios({

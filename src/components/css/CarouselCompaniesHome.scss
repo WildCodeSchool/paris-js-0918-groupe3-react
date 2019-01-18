@@ -1,9 +1,15 @@
 $MainBlue:#64C4D9;
 $MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
 
 
 .carouselCompaniesHome{
   h6{
     color: $MainOrange
+  }
+
+  p{
+    color: $MainGrey;
   }
 }
