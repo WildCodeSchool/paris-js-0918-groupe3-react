@@ -130,8 +130,12 @@ class OfferCompany extends Component {
       isPopoverOnlineOpen,
       isPopoverApplicationsOpen
     } = this.state;
+    console.log(sortApplicationsByCandidate(applicationsCompanyList))
     const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
       .length;
+    const nbApplicationsWaiting = sortApplicationsByCandidate(applicationsCompanyList)
+      .filter(e => e.status_application === 'waiting')
+      .length
     const idCompany = localStorage.getItem('idUser')
     return (
       <div className="OfferCompany container p-2 m-2">
@@ -246,8 +250,8 @@ class OfferCompany extends Component {
                             })
                           }
                         >
-                          Vous avez <b>{nbApplications}</b> candidature
-                          {nbApplications > 1 ? "s" : ""} en cours
+                          Vous avez <b>{nbApplicationsWaiting}</b> candidature
+                          {nbApplicationsWaiting > 1 ? "s" : ""} en attente
                         </div>
                       </ArrowContainer>
                     )}
@@ -260,9 +264,12 @@ class OfferCompany extends Component {
                         )
                       }
                     >
-                      <div className="nbApplications">
-                        <p>{nbApplications}</p>
-                      </div>
+                      {nbApplicationsWaiting !== 0 &&
+                        <div className="nbApplications">
+                          <p>{nbApplicationsWaiting}</p>
+                        </div>
+                      }
+
                       <img
                         src={iconApplications}
                         className="icon iconApplications"
@@ -286,12 +293,12 @@ class OfferCompany extends Component {
                 <div className="col-10 offset-1 text-justify">
                   <p>{data.description}</p>
                 </div>
-                {nbApplications>0 &&
-                <div className="col-12 text-center text-md-right">
-                  <Link to={`/company${idCompany}/offers${id}`}>
-                    <OrangeButton text="Voir les candidatures" />
-                  </Link>
-                </div>
+                {nbApplications > 0 &&
+                  <div className="col-12 text-center text-md-right">
+                    <Link to={`/company${idCompany}/offers${id}`}>
+                      <OrangeButton text="Voir les candidatures" />
+                    </Link>
+                  </div>
                 }
               </div>
             </div>
