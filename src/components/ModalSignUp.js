@@ -22,10 +22,11 @@ class ModalSignUp extends Component {
     siret: "",
     link: "",
     phone: "",
-    logo: ""
+    logo: "",
+    showMsgErreurMdp: false
   };
 
-  handleChangeFile = e => this.setState({logo:e.target.files[0]})
+  handleChangeFile = e => this.setState({ logo: e.target.files[0] });
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -35,18 +36,16 @@ class ModalSignUp extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const { password, passwordBis } = this.state;
-
     const { userType } = this.props;
     if (password === passwordBis) {
-      await this.props.signUpUser(
-        this.state,
-
-        userType
-      );
+      await this.props.signUpUser(this.state, userType);
       this.props.toggleModalClose();
-      alert("votre compte à bien été créé");
+      window.location.reload();
+      localStorage.setItem("messageToast", "compteCree");
     } else {
-      alert("Veuillez entrer des mots de passe identiques");
+      this.setState({
+        showMsgErreurMdp: true
+      });
     }
   };
 
@@ -58,6 +57,8 @@ class ModalSignUp extends Component {
       toggleModalSignInCompany,
       toggleModalClose
     } = this.props;
+
+    const { showMsgErreurMdp } = this.state;
 
     return (
       <div className={classDisplaySignUpModal}>
@@ -114,6 +115,13 @@ class ModalSignUp extends Component {
                         required
                       />
                     </div>
+                    {showMsgErreurMdp && (
+                      <div className="col-12 m-1">
+                        <p className="msgErreurMdp">
+                          Veuillez entrer des mots de passe identiques
+                        </p>
+                      </div>
+                    )}
                     <div className="col-12">
                       <OrangeButton text="Créer mon compte" />
                     </div>
@@ -127,10 +135,10 @@ class ModalSignUp extends Component {
                     action="upload"
                     encType="multipart/form-data"
                   >
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <h3>Créer mon compte</h3>
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <label
                         htmlFor="file-input"
                         className="textLabelFileInput"
@@ -145,7 +153,7 @@ class ModalSignUp extends Component {
                         onChange={this.handleChangeFile}
                       />
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <input
                         type="text"
                         name="name"
@@ -153,7 +161,7 @@ class ModalSignUp extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <textarea
                         type="text"
                         name="description"
@@ -161,7 +169,7 @@ class ModalSignUp extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <input
                         type="text"
                         name="email"
@@ -169,7 +177,7 @@ class ModalSignUp extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <input
                         type="text"
                         name="link"
@@ -177,7 +185,7 @@ class ModalSignUp extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <input
                         type="text"
                         name="siret"
@@ -185,7 +193,7 @@ class ModalSignUp extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <input
                         type="password"
                         name="password"
@@ -193,7 +201,7 @@ class ModalSignUp extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div className="col-12 mb-3">
+                    <div className="col-12 mb-2">
                       <input
                         type="password"
                         name="passwordBis"
@@ -201,6 +209,13 @@ class ModalSignUp extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
+                    {showMsgErreurMdp && (
+                      <div className="col-12 m-1">
+                        <p className="msgErreurMdp">
+                          Veuillez entrer des mots de passe identiques
+                        </p>
+                      </div>
+                    )}
                     <div className="col-12">
                       <OrangeButton text="Créer mon compte" />
                     </div>
