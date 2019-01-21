@@ -8,6 +8,7 @@ import ModalSignUp from "./ModalSignUp";
 import "./css/Header.scss";
 
 import logo from "../images/Logo.png";
+import iconClose from "../images/icons/iconRefuseBase.png";
 
 import { getIdUser } from "../actions/connexionUsersActions";
 import {
@@ -18,7 +19,8 @@ import {
 class Header extends Component {
   state = {
     redirectionHome: false,
-    redirectionMySpace: false
+    redirectionMySpace: false,
+    iconMenuBurger: true
   };
 
   handleClickDeconnexion = () => {
@@ -26,10 +28,18 @@ class Header extends Component {
       redirectionHome: true
     });
     localStorage.clear();
+    localStorage.setItem("messageToast", "deconnexion");
+    this.handleChangeIconMenuBurger();
   };
   handleClickMySpace = () => {
     this.setState({
       redirectionMySpace: true
+    });
+    this.handleChangeIconMenuBurger();
+  };
+  handleChangeIconMenuBurger = () => {
+    this.setState({
+      iconMenuBurger: !this.state.iconMenuBurger
     });
   };
 
@@ -39,7 +49,7 @@ class Header extends Component {
       toggleModalSignInCompany,
       modalAccountType
     } = this.props;
-    const { redirectionHome, redirectionMySpace } = this.state;
+    const { redirectionHome, redirectionMySpace, iconMenuBurger } = this.state;
     const userType = localStorage.getItem("userType");
     const currentLocation = window.location.pathname;
 
@@ -82,6 +92,7 @@ class Header extends Component {
             to={"/newAccountCandidate"}
             redirect={`/candidate${this.props.idUser}`}
             userType="candidates"
+            onClick={this.handleChangeIconMenuBurger}
           />
         )}
         {/* Modal COMPANY Sign UP */}
@@ -92,14 +103,14 @@ class Header extends Component {
             userType="companies"
           />
         )}
-        <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-custom p-2">
           <a className="navbar-brand" href="/">
             <img className="logo" src={logo} alt="Logo" />
             &nbsp; &nbsp;
             <h2 className="d-inline align-middle">Dessine-moi un job</h2>
           </a>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler p-1"
             type="button"
             data-toggle="collapse"
             data-target="#navbarNav"
@@ -107,7 +118,20 @@ class Header extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+            {iconMenuBurger && (
+              <span
+                className="navbar-toggler-icon"
+                onClick={this.handleChangeIconMenuBurger}
+              />
+            )}
+            {!iconMenuBurger && (
+              <img
+                className="iconClose"
+                src={iconClose}
+                alt="icone fermer"
+                onClick={this.handleChangeIconMenuBurger}
+              />
+            )}
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             {/* Button "Connexion" home Menu burger */}

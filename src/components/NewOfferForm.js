@@ -48,12 +48,13 @@ class NewOfferForm extends Component {
     e.preventDefault();
     try {
       await this.props.postNewOffer(this.state);
-      alert("Votre offre est postée");
+      localStorage.setItem("messageToast", "offrePostee");
+
       this.setState({
         redirection: true
       });
     } catch {
-      alert("Problème lors de la validation de votre offre");
+      localStorage.setItem("messageToast", "erreurOffrePostee");
     }
   };
 

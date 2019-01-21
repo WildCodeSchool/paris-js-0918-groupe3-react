@@ -30,7 +30,6 @@ class ApplicationCompany extends Component {
   changeStatus = async status => {
     const { idCandidate, idOffer } = this.props;
     await this.props.putStatusApplication(idOffer, idCandidate, status);
-    alert(`Application ${status}`);
     setTimeout(window.location.reload(), 100);
   };
 

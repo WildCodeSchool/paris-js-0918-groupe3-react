@@ -94,5 +94,11 @@ $MainGrey: #6C6C6C;
         font-size: 0.85em;
       }
     }
+
+    .msgErreurMdp {
+      font-size: 12px;
+      font-weight: 900;
+      color: $MainOrange;
+    }
   }
 }

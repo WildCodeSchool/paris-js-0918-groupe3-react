@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getOffersCompany } from "../actions/accountCompanyActions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+
 import OrangeButton from "./OrangeButton";
 
 import "./css/AccountCompany.scss";

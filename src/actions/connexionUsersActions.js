@@ -21,7 +21,7 @@ export const getIdUser = (email, password, userType) => dispatch => {
         idUser: res.data.id
       });
     })
-    .catch(err => alert("Mot de passe ou email incorrect"));
+    .catch();
 };
 
 export const signUpUser = (data, userType) => dispatch => {
@@ -77,9 +77,9 @@ export const putNewPassword = (password, token) => dispatch => {
 export const getTokenForNewPassword = (userType, email) => dispatch => {
   const url = `${domain}api/auth/newpassword`
   const body = {
-    userType, 
+    userType,
     email
-  } 
+  }
   axios.post(url, body)
     .then(res => {
       dispatch({
