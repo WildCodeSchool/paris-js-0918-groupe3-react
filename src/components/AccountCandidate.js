@@ -18,6 +18,9 @@ class AccountCandidate extends Component {
   };
   render() {
     const id = localStorage.getItem("idUser");
+
+    console.log(this.props.listOfCandidatesApplications);
+
     return (
       <div className="AccountCandidate" aria-hidden="true">
         <div className="container-fluid p-0">
@@ -60,14 +63,20 @@ class AccountCandidate extends Component {
               </div>
             </div>
             <div className="col-12">
-              {this.props.listOfCandidatesApplications.map(e => (
-                <OfferCandidate
-                  origin="candidate"
-                  data={e}
-                  id={e.id_offers}
-                  key={e.id_offers}
-                />
-              ))}
+              {this.props.listOfCandidatesApplications.length ? (
+                this.props.listOfCandidatesApplications.map(e => (
+                  <OfferCandidate
+                    origin="candidate"
+                    data={e}
+                    id={e.id_offers}
+                    key={e.id_offers}
+                  />
+                ))
+              ) : (
+                <div>
+                  <p className="msgNoCandidature">Vous n'avez pas de candidature actuellement.</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
