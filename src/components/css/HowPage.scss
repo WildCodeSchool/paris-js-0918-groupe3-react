@@ -1,3 +1,7 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
 $MainBlue:#64C4D9;
 $MainOrange:#F49754;
 $MainGrey: #6C6C6C;
@@ -7,15 +11,55 @@ $LightOrange:#F7EEE3;
 
 .HowPage {
 
-  h2,
-  h4 {
+  h2 {
     color: $MainBlue;
     font-weight: bold;
+
+    @include media-breakpoint-down(md) {
+      font-size: 28px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: 22px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: 22px;
+    }
+  }
+
+  h4 {
+    color: $MainOrange;
+    border-top: solid 1px $MainOrange;
+    border-bottom: solid 1px $MainOrange;
+    padding: 15px;
+
+    @include media-breakpoint-down(md) {
+      font-size: 20px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: 16px;
+
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: 16px;
+    }
   }
 
   p {
     // text-align: justify;
     color: $MainGrey;
     font-size: 14px;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 12px;
+
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: 12px;
+    }
   }
 }
