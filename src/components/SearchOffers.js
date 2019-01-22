@@ -77,7 +77,7 @@ class SearchOffers extends Component {
                   ))}
               </datalist>
             </div>
-            <div className="col-12 col-lg-2">
+            <div className="col-12 col-lg-2 customeSelect">
               <select
                 name="contract_type"
                 id="contract_type"
