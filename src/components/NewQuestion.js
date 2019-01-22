@@ -39,11 +39,11 @@ class NewQuestion extends Component {
             />
           </div>
         </div>
-        <div className="row justify-content-start align-items-center mb-5">
-          <div className="col-auto">
+        <div className="row justify-content-start align-items-center mb-3">
+          <div className="col-1 p-0">
             <input type="checkbox" name="" value="" />
           </div>
-          <div className="col-auto">
+          <div className="col-auto ">
             <span className="align-middle">Joindre un fichier</span>
           </div>
         </div>

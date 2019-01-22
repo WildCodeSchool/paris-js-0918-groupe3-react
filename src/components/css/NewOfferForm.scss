@@ -1,5 +1,11 @@
-$MainBlue: #64C4D9;
-$MainOrange: #F49754;
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
 
 .NewOfferForm {
     h2 {
@@ -23,6 +29,14 @@ $MainOrange: #F49754;
     textarea {
         border: 1px solid$MainBlue;
         border-radius: 3px;
+        width: 100%;
+        resize: none;
+        padding: 10px;
+
+        &:focus {
+            outline-style: none;
+            color: $MainGrey;
+        }
     }
 }
 

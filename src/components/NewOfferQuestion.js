@@ -3,6 +3,7 @@ import Toggle from "react-toggle";
 
 import "react-toggle/style.css";
 import "./css/Toggle.scss";
+import "./css/NewOfferQuestion.scss"
 
 class NewOfferQuestion extends Component {
 
@@ -22,7 +23,7 @@ class NewOfferQuestion extends Component {
             />
           </div>
           <div className="col-8 col-md-10">
-            <span>{text}</span>
+            <span className="textQuestion">{text}</span>
           </div>
         </div>
       </div>
