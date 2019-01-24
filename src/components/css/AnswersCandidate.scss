@@ -11,8 +11,11 @@ $LightGrey: lightGrey;
   border: solid 1px $MainBlue;
 
   p {
-    font-size: 18px;
-    color: $MainOrange;
+    font-size: 16px;
+  }
+
+  .retourLink{
+    color:$MainOrange;
   }
 
   .question {

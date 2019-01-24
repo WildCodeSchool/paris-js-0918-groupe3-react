@@ -91,14 +91,9 @@ class OfferCandidate extends Component {
     this.setState({ showElement: !showElement });
   };
 
-
-
   render() {
     const { data, id } = this.props;
-    const {
-      showElement,
-      redirectionAnswersCandidate
-    } = this.state;
+    const { showElement, redirectionAnswersCandidate } = this.state;
     if (redirectionAnswersCandidate)
       return <Redirect to={`/candidates/answers/offer${id}`} />;
     return (
@@ -158,10 +153,11 @@ class OfferCandidate extends Component {
             </div>
             <div className="row">
               {/* Collapse Open */}
-              <div className="collapse" id={"A" + data.id_offers}>
-                <div className="col-10 offset-1 text-justify">
-                  <p>{data.description}</p>
-                </div>
+              <div
+                className="collapse col-10 offset-1 text-justify descriptionCompleteOffer"
+                id={"A" + data.id_offers}
+              >
+                <span dangerouslySetInnerHTML={{ __html: data.description }} />
                 <div
                   className="col-12 text-center text-md-right"
                   onClick={() =>

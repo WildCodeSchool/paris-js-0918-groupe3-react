@@ -19,8 +19,8 @@ class ApplicationCompany extends Component {
     status: this.props.status
   };
   componentWillReceiveProps = () => {
-    setTimeout(window.location.reload(), 50)
-  }
+    setTimeout(window.location.reload(), 50);
+  };
 
   handleShowElement = () => {
     const { showElement } = this.state;
@@ -44,7 +44,8 @@ class ApplicationCompany extends Component {
               <div className="col-12 col-md-11 offset-md-1 ">
                 <div className="row m-2">
                   <div className="col-auto align-self-center">
-                    <i className="titleApplication">{`Candidature n°${index + 1}`}</i>
+                    <i className="titleApplication">{`Candidature n°${index +
+                      1}`}</i>
                   </div>
                   <div className="col-1">
                     {status === "waiting" && (
@@ -82,7 +83,10 @@ class ApplicationCompany extends Component {
                         el.question
                       }`}</h6>
                       <div className="Answers ml-4">
-                        <p>{el.reponse}</p>
+                        <p
+                          className="answer"
+                          dangerouslySetInnerHTML={{ __html: el.reponse }}
+                        />
                       </div>
                     </div>
                   ))}

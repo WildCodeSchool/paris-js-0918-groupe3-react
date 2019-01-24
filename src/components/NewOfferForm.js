@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import NewOfferQuestions from "./NewOfferQuestions";
 import NewQuestion from "./NewQuestion";
 import OrangeButton from "./OrangeButton";
+import DraftDescriptionOffer from "./DraftDescriptionOffer";
 import { connect } from "react-redux";
 import { postNewOffer } from "../actions/newOfferActions";
 import { fetchCities } from "../actions/searchOffersActions";
@@ -48,13 +49,17 @@ class NewOfferForm extends Component {
     try {
       await this.props.postNewOffer(this.state);
       localStorage.setItem("messageToast", "offrePostee");
-
+      window.location.reload();
       this.setState({
         redirection: true
       });
     } catch {
       localStorage.setItem("messageToast", "erreurOffrePostee");
     }
+  };
+
+  handleLegacyHtml = description => {
+    this.setState({ description });
   };
 
   render() {
@@ -70,67 +75,74 @@ class NewOfferForm extends Component {
             </Link>
           </div>
           <div className="row align-items-center mt-4 mb-4">
-            <div className="col-12 col-md-4 pr-1">
-              <label htmlFor="title">Titre de votre offre</label>
-            </div>
-            <div className="col-12 col-md-8">
-              <input
-                className="NewOfferForm_field_title"
-                type="text"
-                name="title"
-                id="title"
-                placeholder="Ex: Développeur Web"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="col-12 col-md-2">
-              <label htmlFor="place">Lieu</label>
-            </div>
-            <div className="col-12 col-md-auto">
-              <input
-                className="NewOfferForm_field_place"
-                type="text"
-                name="place"
-                id="place"
-                list="cities"
-                placeholder="Ex: Paris"
-                onChange={this.handleChange}
-              />
-              <datalist id="cities">
-                {citiesList.length &&
-                  citiesList.map(c => (
-                    <option key={c.code}>
-                      {c.nom} ({c.codesPostaux[0].substr(0, 2)})
-                    </option>
-                  ))}
-              </datalist>
-            </div>
-            <div className="col-12 col-md-auto">
-              <label htmlFor="contract_type">Type de contrat</label>
-            </div>
-            <div className="col-12 col-md-1">
-              <select
-                className="NewOfferForm_field_contactType"
-                name="contract_type"
-                id="contract_type"
-                onChange={this.handleChange}
-              >
-                <option>CDI</option>
-                <option>CDD</option>
-                <option>Stage</option>
-              </select>
-            </div>
-            <div className="col-12">
-              <label htmlFor="description">Description</label>
-            </div>
-            <div className="col-12">
-              <textarea
-                className="NewOfferForm_field_description"
-                name="description"
-                id="description"
-                placeholder="Description de l'offre"
-                onChange={this.handleChange}
-              />
+            <div className="col">
+              <div className="row mb-3">
+                <div className="col-12 col-md-4 pr-1">
+                  <label htmlFor="title">Titre de votre offre</label>
+                </div>
+                <div className="col-12 col-md-8">
+                  <input
+                    className="NewOfferForm_field_title"
+                    type="text"
+                    name="title"
+                    id="title"
+                    placeholder="Ex: Développeur Web"
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
+              <div className="row mb-2">
+                <div className="col-12 col-md-2">
+                  <label htmlFor="place">Lieu</label>
+                </div>
+                <div className="col-12 col-md-auto">
+                  <input
+                    className="NewOfferForm_field_place"
+                    type="text"
+                    name="place"
+                    id="place"
+                    list="cities"
+                    placeholder="Ex: Paris"
+                    onChange={this.handleChange}
+                  />
+                  <datalist id="cities">
+                    {citiesList.length &&
+                      citiesList.map(c => (
+                        <option key={c.code}>
+                          {c.nom} ({c.codesPostaux[0].substr(0, 2)})
+                        </option>
+                      ))}
+                  </datalist>
+                </div>
+              </div>
+              <div className="row align-items-center mb-2">
+                <div className="col-12 col-md-auto">
+                  <label htmlFor="contract_type">Type de contrat</label>
+                </div>
+                <div className="col-12 col-md-6 NewOfferForm_field_contactType">
+                  <select
+                    name="contract_type"
+                    id="contract_type"
+                    onChange={this.handleChange}
+                  >
+                    <option>CDI</option>
+                    <option>CDD</option>
+                    <option>Stage</option>
+                  </select>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12">
+                  <label htmlFor="description">Description</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12">
+                  <DraftDescriptionOffer
+                    handleLegacyHtml={this.handleLegacyHtml}
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <NewOfferQuestions handleBoxChange={this.handleBoxChange} />

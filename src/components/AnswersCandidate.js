@@ -11,12 +11,13 @@ class AnswersCandidate extends Component {
   };
   render() {
     const { answersCandidate } = this.props;
+
     return (
       <div className="AnswersCandidate container p-4 mt-5 mb-5">
         <div className="row">
           <div className="col">
             <Link to="/candidates">
-              <p>Retourner sur mon espace</p>
+              <p className="retourLink">Retourner sur mon espace</p>
             </Link>
           </div>
         </div>
@@ -25,7 +26,7 @@ class AnswersCandidate extends Component {
             {answersCandidate.map((e, i) => (
               <div key={`answers-${i}`}>
                 <p className="question">{`${i + 1}. ${e.question}`}</p>
-                <p className="answer">{e.answer}</p>
+                <p className="answer" dangerouslySetInnerHTML={{ __html: e.answer }} />
               </div>
             ))}
           </div>
