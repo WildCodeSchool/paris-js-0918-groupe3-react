@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAOA,AAAA,cAAc,CAAC;EACb,gBAAgB,EAJF,OAAO;EAKrB,KAAK,EARK,OAAO;CAiBlB;;AAXD,AAIE,cAJY,CAIZ,SAAS,CAAA;EACP,KAAK,EAAE,IAAI;CACZ;;AANH,AAQE,cARY,CAQZ,YAAY,CAAC;EACX,KAAK,EAhBC,OAAO;CAiBd",
-    "sources": [
-        "CandidateInfo.scss"
-    ],
-    "names": [],
-    "file": "CandidateInfo.css"
-}
