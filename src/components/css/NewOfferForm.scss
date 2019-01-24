@@ -1,10 +1,21 @@
-$MainBlue: #64C4D9;
-$MainOrange: #F49754;
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
 
 .NewOfferForm {
     h2 {
         color: $MainOrange;
         font-weight: 600;
+    }
+
+    .linkBack {
+        font-size: 18px;
+        color: $MainOrange;
     }
 
     label {
@@ -14,10 +25,43 @@ $MainOrange: #F49754;
         margin: 10px;
     }
 
-    input,
-    textarea {
+    .NewOfferForm_field_contactType {
+        select {
+            /* Arrow */
+            background-image: url("../../images/icons/iconDoubleArrow.png");
+            background-size: 15px;
+            background-position: right 5px top 50%;
+            background-repeat: no-repeat;
+            background-color: #FFF;
+            /**/
+            color: $MainGrey;
+            height: 45px;
+            width: 30%;
+            border: 1px solid $MainBlue;
+            font-size: 12px;
+            border-radius: 3px;
+            appearance: none;
+            cursor: pointer;
+            padding: 10px;
+
+            &:focus {
+                outline-style: none;
+            }
+        }
+    }
+
+    input {
+        font-size: 12px;
         border: 1px solid$MainBlue;
         border-radius: 3px;
+        width: 100%;
+        resize: none;
+        padding: 10px;
+
+        &:focus {
+            outline-style: none;
+            color: $MainGrey;
+        }
     }
 }
 
@@ -25,11 +69,6 @@ $MainOrange: #F49754;
 .NewOfferForm_field_place,
 .NewOfferForm_field_description {
     width: 100%;
-}
-
-.NewOfferForm_field_description {
-    height: 50vh;
-    resize: none;
 }
 
 .NewOfferForm_field_online {

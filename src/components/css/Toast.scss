@@ -1,0 +1,39 @@
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: #D3D3D3;
+$VeryLightGrey: #EDEDED;
+$LightOrange:#F7EEE3;
+
+.toast {
+  position: fixed;
+  z-index: 3;
+  bottom: 10px;
+  left: 10px;
+  background-color: $MainOrange;
+  font-size: 12px;
+  animation-name: verticalMove;
+  animation-duration: 0.75s;
+
+  .toast-header {
+    height: auto;
+  }
+
+  strong {
+    color: $MainGrey;
+  }
+
+  img {
+    width: 15px;
+  }
+
+  @keyframes verticalMove {
+    from {
+      bottom: 0px;
+    }
+
+    to {
+      bottom: 10px;
+    }
+  }
+}

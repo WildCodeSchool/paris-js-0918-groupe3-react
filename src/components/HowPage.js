@@ -17,7 +17,7 @@ class HowPage extends Component {
           <div className="row justify-content-center ">
             <div className="col-12 col-md-6 col-lg-4 p-3 p-lg-4">
               <div className="row justify-content-center">
-                <h2>1</h2>
+                <h2>01.</h2>
               </div>
               <div className="row p-2">
                 <p>
@@ -35,7 +35,7 @@ class HowPage extends Component {
             </div>
             <div className="col-12 col-md-6 col-lg-4 p-3 p-lg-4">
               <div className="row justify-content-center">
-                <h2>2</h2>
+                <h2>02.</h2>
               </div>
               <div className="row p-2">
                 <p>
@@ -52,7 +52,7 @@ class HowPage extends Component {
             </div>
             <div className="col-12 col-md-6 col-lg-4 p-3 p-lg-4 ">
               <div className="row justify-content-center">
-                <h2>3</h2>
+                <h2>03.</h2>
               </div>
               <div className="row p-2">
                 <p>
@@ -67,7 +67,7 @@ class HowPage extends Component {
             </div>
             <div className="col-12 col-md-6 col-lg-4 p-3 p-lg-4 ">
               <div className="row justify-content-center">
-                <h2>4</h2>
+                <h2>04.</h2>
               </div>
               <div className="row p-2">
                 <p>
@@ -85,7 +85,7 @@ class HowPage extends Component {
             </div>
             <div className="col-12 col-md-6 col-lg-4 p-3 p-lg-4">
               <div className="row justify-content-center">
-                <h2>5</h2>
+                <h2>05.</h2>
               </div>
               <div className="row p-2">
                 <p>
@@ -102,7 +102,7 @@ class HowPage extends Component {
             </div>
             <div className="col-12 col-md-6 col-lg-4 p-3 p-lg-4">
               <div className="row justify-content-center">
-                <h2>6</h2>
+                <h2>06.</h2>
               </div>
               <div className="row p-2">
                 <p>

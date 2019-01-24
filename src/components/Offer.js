@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from "axios";
 import { connect } from "react-redux";
+import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from "draft-js";
+import { convertFromHTML } from "draft-convert";
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconArrowReverse from "../images/icons/iconArrowReverse.png";
@@ -96,8 +98,7 @@ class Offer extends Component {
 
   render() {
     const { data, origin } = this.props;
-    const { showElement } = this.state;
-
+    const { showElement, contentDescription } = this.state;
 
     return (
       <div className="Offer container">
@@ -137,17 +138,22 @@ class Offer extends Component {
             </div>
             <div className="row pb-3">
               {showElement && (
-                <div className="col-12 col-md-10 offset-md-2 text-justify offerResume">
-                  <p>{data.description}</p>
+                <div className="col-12 col-md-9 offset-md-3 offerResume">
+                  <span
+                    dangerouslySetInnerHTML={{ __html: data.description }}
+                  />
+                  {/* <p>{data.description}</p> */}
                 </div>
               )}
             </div>
             <div className="row">
               {/* Collapse Open */}
-              <div className="collapse" id={"A" + data.id}>
-                <div className="col-12 col-md-10 offset-md-2 text-justify descriptionCompleteOffer">
-                  <p>{data.description}</p>
-                </div>
+              <div
+                className="collapse col-12 col-md-9 offset-md-3 text-justify descriptionCompleteOffer"
+                id={"A" + data.id}
+              >
+                <span dangerouslySetInnerHTML={{ __html: data.description }} />
+                {/* <p>{data.description}</p> */}
                 {origin === "home" &&
                   localStorage.getItem("userType") === "candidates" && (
                     <div className="row align-items-center justify-content-end">

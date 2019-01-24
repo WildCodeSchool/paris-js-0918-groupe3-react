@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import $ from "jquery";
 
 import {
   getIdUser,
@@ -22,7 +23,8 @@ class ModalSignIn extends Component {
     inputEmail: "",
     inputPassword: "",
     redirection: false,
-    newPassword: false
+    newPassword: false,
+    showMsgErreurConnexion: false
   };
 
   handleChange = e => {
@@ -37,49 +39,62 @@ class ModalSignIn extends Component {
     const { inputEmail } = this.state;
     await getTokenForNewPassword(userType, inputEmail);
     this.props.toggleModalClose();
-    alert("Un message vous a été envoyé");
+    localStorage.setItem("messageToast", "resetPassword");
+    window.location.reload();
   };
 
   handleSubmit = async e => {
     e.preventDefault();
-    const { inputEmail, inputPassword } = this.state;
+    const { inputEmail, inputPassword, showMsgErreurConnexion } = this.state;
     const { userType } = this.props;
     await this.props.getIdUser(inputEmail, inputPassword, userType);
-    this.setState({
-      redirection: true
-    });
-    this.props.toggleModalClose();
-    setTimeout(() => window.location.reload(), 100);
+    setTimeout(() => {
+      if (this.props.idUser) {
+        this.setState({
+          redirection: true
+        });
+        this.props.toggleModalClose();
+        window.location.reload();
+        localStorage.setItem("messageToast", "connexionReussi");
+      } else {
+        this.setState({
+          showMsgErreurConnexion: true
+        });
+      }
+    }, 250);
   };
 
   render() {
-    const { redirection, newPassword } = this.state;
+    const { redirection, newPassword, showMsgErreurConnexion } = this.state;
     const {
       modalAccountType,
       classDisplaySignInModal,
       toggleModalSignUpUser,
       toggleModalSignUpCompany,
       toggleModalClose,
-      idUser,
-      userType
+      userType,
+      idUser
     } = this.props;
-    if (redirection === true && idUser && userType === "companies")
-      return <Redirect to={`/companies${idUser}`} />;
+
+    if (redirection === true && userType === "companies") {
+      return <Redirect to={`/companies`} firstConnexion="true" />;
+    }
 
     return (
-      <div className={classDisplaySignInModal}>
-        <div className="ModalSignIn">
-          <div className="modal-single animated fadeInDown faster p-2">
-            <div className="row">
-              <div className="col-12">
-                <button className="close" onClick={toggleModalClose}>
-                  <span>&times;</span>
-                </button>
+      <div>
+        <div className={classDisplaySignInModal}>
+          <div className="ModalSignIn">
+            <div className="modal-single animated fadeInDown faster p-2">
+              <div className="row">
+                <div className="col-12">
+                  <button className="close" onClick={toggleModalClose}>
+                    <span>&times;</span>
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="row justify-content-center text-center">
-              <div className="row m-0">
-                {!newPassword ? (
+              <div className="row justify-content-center text-center">
+                <div className="row m-0">
+                  {!newPassword ? (
                     <form onSubmit={this.handleSubmit}>
                       <div className="col-12 mb-3">
                         <h3>Connexion</h3>
@@ -103,55 +118,67 @@ class ModalSignIn extends Component {
                       <div className="col-12">
                         <OrangeButton text="Connexion" />
                       </div>
+                      {showMsgErreurConnexion && (
+                        <div className="col-12 mt-3">
+                          <p className="msgErreurConnexion">Email ou mot de passe incorrect</p>
+                        </div>
+                      )}
                     </form>
-                ) : (
-                  <form onSubmit={this.handleSentMessage} method="POST">
-                    <div className="col-8 offset-2 mb-3">
-                      <h5>
-                        Un e-mail vous sera envoyé pour réinitialiser votre mot
-                        de passe
-                      </h5>
-                    </div>
-                    <div className="col-8 offset-2 mb-3">
-                      <input
-                        type="text"
-                        name="inputEmail"
-                        placeholder="Email"
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col-12">
-                      <OrangeButton text="Envoyer" />
-                    </div>
-                  </form>
-                )}
+                  ) : (
+                    <form onSubmit={this.handleSentMessage} method="POST">
+                      <div className="col-8 offset-2 mb-3">
+                        <h5>
+                          Un e-mail vous sera envoyé pour réinitialiser votre
+                          mot de passe
+                        </h5>
+                      </div>
+                      <div className="col-8 offset-2 mb-3">
+                        <input
+                          type="text"
+                          name="inputEmail"
+                          placeholder="Email"
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                      <div className="col-12">
+                        <OrangeButton text="Envoyer" />
+                      </div>
+                    </form>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className="row align-items-end text-right">
-              <div className="col-12">
-                {modalAccountType === "USER" && (
-                  <span onClick={toggleModalSignUpUser}>Créer mon compte</span>
-                )}
-                {modalAccountType === "COMPANY" && (
-                  <span onClick={toggleModalSignUpCompany}>
-                    Créer mon compte
-                  </span>
-                )}
-              </div>
-              <div className="col-12">
-                {newPassword === false ? (
-                  <span
-                    onClick={() => this.setState({ newPassword: !newPassword })}
-                  >
-                    Mot de passe oublié ?
-                  </span>
-                ) : (
-                  <span
-                    onClick={() => this.setState({ newPassword: !newPassword })}
-                  >
-                    Me connecter
-                  </span>
-                )}
+              <div className="row align-items-end text-right">
+                <div className="col-12">
+                  {modalAccountType === "USER" && (
+                    <span onClick={toggleModalSignUpUser}>
+                      Créer mon compte
+                    </span>
+                  )}
+                  {modalAccountType === "COMPANY" && (
+                    <span onClick={toggleModalSignUpCompany}>
+                      Créer mon compte
+                    </span>
+                  )}
+                </div>
+                <div className="col-12">
+                  {newPassword === false ? (
+                    <span
+                      onClick={() =>
+                        this.setState({ newPassword: !newPassword })
+                      }
+                    >
+                      Mot de passe oublié ?
+                    </span>
+                  ) : (
+                    <span
+                      onClick={() =>
+                        this.setState({ newPassword: !newPassword })
+                      }
+                    >
+                      Me connecter
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>

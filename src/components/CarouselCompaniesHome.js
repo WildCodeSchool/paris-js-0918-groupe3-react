@@ -31,7 +31,7 @@ class CarouselCompaniesHome extends Component {
           id="carouselExampleSlidesOnly"
           className="carousel slide"
           data-ride="carousel"
-          data-interval="2000"
+          data-interval="6500"
         >
           <div className="carousel-inner">
             {/* Carousel Slide 1 */}

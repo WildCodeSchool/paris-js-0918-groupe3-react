@@ -4,6 +4,8 @@ import { getOriginalQuestions } from "../actions/newOfferActions";
 
 import NewOfferQuestion from "./NewOfferQuestion";
 
+import "./css/NewQuestions.scss"
+
 class NewOfferQuestions extends Component {
   componentDidMount() {
     this.props.getOriginalQuestions();

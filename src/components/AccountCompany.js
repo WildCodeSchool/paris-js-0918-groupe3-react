@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getOffersCompany } from "../actions/accountCompanyActions";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+
 import OrangeButton from "./OrangeButton";
 
 import "./css/AccountCompany.scss";
@@ -44,9 +45,22 @@ class AccountCompany extends Component {
               </NavLink>
             </div>
             <div className="col-12">
-              {offersList.map((e, i) => (
-                <OfferCompany origin="company" data={e} id={e.id} key={e.id} />
-              ))}
+              {offersList.length ? (
+                offersList.map((e, i) => (
+                  <OfferCompany
+                    origin="company"
+                    data={e}
+                    id={e.id}
+                    key={e.id}
+                  />
+                ))
+              ) : (
+                <div>
+                  <p className="msgNoOffer">
+                    Vous n'avez pas encore posté d'offre.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

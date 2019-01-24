@@ -4,6 +4,8 @@
 
 $MainBlue:#64C4D9;
 $MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: lightGrey;
 
 .SearchOffer {
   background-color: $MainBlue;
@@ -11,6 +13,7 @@ $MainOrange:#F49754;
   h2,
   h5 {
     color: #FFF;
+
     @include media-breakpoint-down(md) {
       font-size: 26px;
     }
@@ -33,13 +36,38 @@ $MainOrange:#F49754;
     border-radius: 3px;
 
     &::placeholder {
-      font-size: 0.85em;
+      font-size: 12px;
+    }
+
+    &:focus {
+      outline-style: none;
     }
   }
 
-  select {
-    height: 40px;
-    margin: 5px;
-    border: 1px solid$MainBlue;
+  .customeSelect {
+    select {
+      /* Arrow */
+      background-image: url("../../images/icons/iconDoubleArrow.png");
+      background-size: 15px;
+      background-position: right 5px top 50%;
+      background-repeat: no-repeat;
+      background-color: #FFF;
+      /**/
+      color:$MainGrey;
+      height: 45px;
+      width: 90%;
+      border: 1px solid $MainBlue;
+      font-size: 12px;
+      border-radius: 3px;
+      appearance: none;
+      cursor: pointer;
+      padding: 10px;
+
+      &:focus {
+        outline-style: none;
+      }
+    }
   }
+
+
 }

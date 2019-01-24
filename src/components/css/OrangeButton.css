@@ -1,0 +1,25 @@
+.OrangeButton {
+  font-weight: bold;
+  background-color: #F49754;
+  color: #FFF;
+  border: solid 1px #F49754;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 7px;
+  margin: 5px;
+  font-weight: bold;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.OrangeButton:hover {
+  background-color: #FFF;
+  color: #F49754;
+  border: solid 1px #F49754;
+}
+
+.OrangeButton:focus {
+  outline: none;
+}
+/*# sourceMappingURL=OrangeButton.css.map */

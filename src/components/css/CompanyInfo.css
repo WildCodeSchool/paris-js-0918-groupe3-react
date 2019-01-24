@@ -1,0 +1,23 @@
+.CompanyInfo {
+  background-color: #f5f6fa;
+  color: #F49754;
+}
+
+.CompanyInfo .logoCompany {
+  width: 70px;
+}
+
+.CompanyInfo .iconEdit {
+  width: 25px;
+}
+
+.CompanyInfo .infosDetail {
+  color: #64C4D9;
+}
+
+.CompanyInfo .descriptionResume {
+  height: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/*# sourceMappingURL=CompanyInfo.css.map */

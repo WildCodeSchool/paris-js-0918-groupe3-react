@@ -21,7 +21,7 @@ class ApplicationCandidate extends Component {
     const questions = [];
     const promises = [];
     ids.forEach(id => {
-      const url = `${domain}api/questions/${id}`;
+      const url = `${domain}questions/${id}`;
       promises.push(
         axios.get(url).then(res => {
           questions.push(res.data);
@@ -66,11 +66,11 @@ class ApplicationCandidate extends Component {
             <h4>{title}</h4>
           </div>
           <div className="col-12">
-            <div className="offerDescription">
+            <div className="offerDescription ">
               <span className="infoTitle">
                 <b>Description de l'offre : </b>
               </span>{" "}
-              <p className="p-3">{description}</p>
+              <span dangerouslySetInnerHTML={{ __html: description }} />
             </div>
           </div>
           <div className="col-12">

@@ -11,7 +11,8 @@ class NewPassword extends Component {
   state = {
     inputPassword: "",
     inputPasswordBis: "",
-    redirection: false
+    redirection: false,
+    showMsgErreurMdp: false
   };
 
   handleChange = e => {
@@ -29,14 +30,17 @@ class NewPassword extends Component {
       this.setState({
         redirection: true
       });
-      alert("Votre mot de passe a été changé");
+      localStorage.setItem("messageToast", "mdpChanged");
+      window.location.reload();
     } else {
-      alert("Les mots de passe ne correspondent pas");
+      this.setState({
+        showMsgErreurMdp: true
+      });
     }
   };
 
   render() {
-    const { redirection } = this.state;
+    const { redirection, showMsgErreurMdp } = this.state;
     if (redirection) return <Redirect to="/" />;
     return (
       <div className="NewPassword container mt-3 p-3">
@@ -58,6 +62,13 @@ class NewPassword extends Component {
                 onChange={this.handleChange}
               />
             </div>
+            {showMsgErreurMdp && (
+              <div className="col-12 m-1">
+                <p className="msgErreurMdp">
+                  Veuillez entrer des mots de passe identiques
+                </p>
+              </div>
+            )}
             <div className="col text-center m-3">
               <OrangeButton text="Changer mot de passe" />
             </div>

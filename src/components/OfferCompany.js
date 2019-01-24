@@ -8,6 +8,7 @@ import iconArrow from "../images/icons/iconArrow.png";
 import iconArrowReverse from "../images/icons/iconArrowReverse.png";
 import iconOnline from "../images/icons/iconOnline.png";
 import iconOffline from "../images/icons/iconOffline.png";
+import iconApplicationsBase from "../images/icons/iconApplicationsBase.png";
 import iconApplications from "../images/icons/iconApplications.png";
 import iconArchive from "../images/icons/iconArchive.png";
 
@@ -77,7 +78,7 @@ class OfferCompany extends Component {
   getApplicationsOnOffers = id => {
     const domain = process.env.REACT_APP_DOMAIN_NAME;
     const token = localStorage.getItem("token");
-    const url = `${domain}api/offers/${id}/applications`;
+    const url = `${domain}offers/${id}/applications`;
     axios({
       method: "GET",
       url,
@@ -103,7 +104,7 @@ class OfferCompany extends Component {
       isPopoverOnlineOpen: !isPopoverOnlineOpen
     });
     setTimeout(
-      function () {
+      function() {
         this.setState({ isPopoverOnlineOpen: false });
       }.bind(this),
       2500
@@ -116,7 +117,7 @@ class OfferCompany extends Component {
       isPopoverApplicationsOpen: !isPopoverApplicationsOpen
     });
     setTimeout(
-      function () {
+      function() {
         this.setState({ isPopoverApplicationsOpen: false });
       }.bind(this),
       2500
@@ -131,11 +132,13 @@ class OfferCompany extends Component {
       isPopoverOnlineOpen,
       isPopoverApplicationsOpen
     } = this.state;
+
     const nbApplications = applicationsCompanyList.length;
     const nbApplicationsWaiting = applicationsCompanyList
       .filter(e => e.status_application === 'waiting')
       .length
     const idCompany = localStorage.getItem('idUser')
+
     return (
       <div className="OfferCompany container p-2 m-2">
         <div className="row">
@@ -208,17 +211,17 @@ class OfferCompany extends Component {
                         />
                       </div>
                     ) : (
-                        <div className="col-auto p-2">
-                          <img
-                            src={iconOffline}
-                            className="icon iconOffline"
-                            alt="icone offline"
-                            onClick={() =>
-                              this.handleOnlinePopover(isPopoverOnlineOpen)
-                            }
-                          />
-                        </div>
-                      )}
+                      <div className="col-auto p-2">
+                        <img
+                          src={iconOffline}
+                          className="icon iconOffline"
+                          alt="icone offline"
+                          onClick={() =>
+                            this.handleOnlinePopover(isPopoverOnlineOpen)
+                          }
+                        />
+                      </div>
+                    )}
                   </Popover>
                   {/* Icone nombre candidatures */}
                   <Popover
@@ -263,17 +266,24 @@ class OfferCompany extends Component {
                         )
                       }
                     >
-                      {nbApplicationsWaiting !== 0 &&
+                      {nbApplicationsWaiting !== 0 && (
                         <div className="nbApplications">
                           <p>{nbApplicationsWaiting}</p>
                         </div>
-                      }
-
-                      <img
-                        src={iconApplications}
-                        className="icon iconApplications"
-                        alt="icone applications"
-                      />
+                      )}
+                      {nbApplications > 0 ? (
+                        <img
+                          src={iconApplicationsBase}
+                          className="icon iconApplications"
+                          alt="icone applications"
+                        />
+                      ) : (
+                        <img
+                          src={iconApplications}
+                          className="icon iconApplications"
+                          alt="icone applications"
+                        />
+                      )}
                     </div>
                   </Popover>
                   <div className="col-auto p-2">
@@ -288,17 +298,18 @@ class OfferCompany extends Component {
             </div>
             <div className="row">
               {/* Collapse Open */}
-              <div className="collapse" id={"A" + data.id}>
-                <div className="col-10 offset-1 text-justify">
-                  <p>{data.description}</p>
-                </div>
-                {nbApplications > 0 &&
+              <div
+                className="collapse col-10 offset-1 text-justify descriptionCompleteOffer"
+                id={"A" + data.id}
+              >
+                <span dangerouslySetInnerHTML={{ __html: data.description }} />
+                {nbApplications > 0 && (
                   <div className="col-12 text-center text-md-right">
                     <Link to={`/company${idCompany}/offers${id}`}>
                       <OrangeButton text="Voir les candidatures" />
                     </Link>
                   </div>
-                }
+                )}
               </div>
             </div>
           </div>

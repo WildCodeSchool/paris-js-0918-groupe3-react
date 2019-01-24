@@ -6,7 +6,7 @@ const domain = process.env.REACT_APP_DOMAIN_NAME;
 export const searchOffers = data => dispatch => {
   const { title, place, contract_type } = data;
   const type = ((contract_type === "Tous") ? "" : contract_type);
-  const url = `${domain}api/offers/search/?search=${title}&place=${place}&type=${type}`;
+  const url = `${domain}offers/search/?search=${title}&place=${place}&type=${type}`;
   axios.get(url).then(res => {
     dispatch({
       type: GET_OFFERS,

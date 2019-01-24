@@ -1,0 +1,24 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$MainBlue:#64C4D9;
+$MainOrange:#F49754;
+$MainGrey: #6C6C6C;
+$LightGrey: #D3D3D3;
+$VeryLightGrey: #EDEDED;
+$LightOrange:#F7EEE3;
+
+.NewOfferQuestion {
+    .textQuestion {
+        font-size: 14px;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 12px;
+        }
+
+        @include media-breakpoint-down(xs) {
+            font-size: 12px;
+        }
+    }
+}
