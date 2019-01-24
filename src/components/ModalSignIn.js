@@ -61,7 +61,7 @@ class ModalSignIn extends Component {
           showMsgErreurConnexion: true
         });
       }
-    }, 100);
+    }, 250);
   };
 
   render() {
