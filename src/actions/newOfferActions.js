@@ -9,7 +9,7 @@ const domain = process.env.REACT_APP_DOMAIN_NAME;
 const token = localStorage.getItem("token");
 
 export const getOriginalQuestions = () => dispatch => {
-  const url = `${domain}api/questions/originals`;
+  const url = `${domain}questions/originals`;
   axios.get(url).then(res => {
     dispatch({
       type: GET_ORIGINAL_QUESTIONS,
@@ -19,7 +19,7 @@ export const getOriginalQuestions = () => dispatch => {
 };
 
 export const postNewQuestion = newQuestion => dispatch => {
-  const url = `${domain}api/questions/`;
+  const url = `${domain}questions/`;
   const body = { text: newQuestion };
   axios.post(url, body).then(res =>
     dispatch({
@@ -44,7 +44,7 @@ export const postNewOffer = values => dispatch => {
     description,
     is_published
   };
-  const url = `${domain}api/offers?questions=${questionsList}`;
+  const url = `${domain}offers?questions=${questionsList}`;
   axios({
     method: "POST",
     url,

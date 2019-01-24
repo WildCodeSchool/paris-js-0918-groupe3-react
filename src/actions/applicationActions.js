@@ -5,7 +5,7 @@ const domain = process.env.REACT_APP_DOMAIN_NAME;
 const token = localStorage.getItem("token");
 
 export const getApplicationDescription = idOffer => (dispatch) => {
-    const url = `${domain}api/offers/details/${idOffer}`;
+    const url = `${domain}offers/details/${idOffer}`;
     axios({
         method: "GET",
         url,
@@ -25,7 +25,7 @@ export const getApplicationQuestions = ids => (dispatch) => {
     const questions = [];
     const promises = [];
     ids.forEach(id => {
-        const url = `${domain}api/questions/${id}`;
+        const url = `${domain}questions/${id}`;
         promises.push(axios.get(url).then(res => {
             questions.push(res.data)
         }))
@@ -39,7 +39,7 @@ export const getApplicationQuestions = ids => (dispatch) => {
 };
 
 export const postAnswer = (idOffer, idQuestion, text, file_link) => (dispatch) => {
-    const url = `${domain}api/applications/answer?offer=${idOffer}&question=${idQuestion}`;
+    const url = `${domain}applications/answer?offer=${idOffer}&question=${idQuestion}`;
     const data = {
         text,
         file_link,
@@ -62,7 +62,7 @@ export const postAnswer = (idOffer, idQuestion, text, file_link) => (dispatch) =
 };
 
 export const getQuestion = (idQuestion) => (dispatch) => {
-    const url = `${domain}api/questions/${idQuestion}`;
+    const url = `${domain}questions/${idQuestion}`;
     axios({
         method: "GET",
         url,
@@ -78,7 +78,7 @@ export const getQuestion = (idQuestion) => (dispatch) => {
 };
 
 export const postApplication = (idOffer, isSent) => (dispatch) => {
-    const url = `${domain}api/offers/${idOffer}/applications`;
+    const url = `${domain}offers/${idOffer}/applications`;
     const data = {
         is_sent: isSent
     }
