@@ -86,8 +86,9 @@ class OfferCompany extends Component {
       }
     }).then(res => {
       this.setState({
-        applicationsCompanyList: res.data
+        applicationsCompanyList: sortApplicationsByCandidate(res.data)
       });
+      console.log('offerCompany',id,this.state.applicationsCompanyList)
     });
   };
 
@@ -130,10 +131,8 @@ class OfferCompany extends Component {
       isPopoverOnlineOpen,
       isPopoverApplicationsOpen
     } = this.state;
-    console.log(sortApplicationsByCandidate(applicationsCompanyList))
-    const nbApplications = sortApplicationsByCandidate(applicationsCompanyList)
-      .length;
-    const nbApplicationsWaiting = sortApplicationsByCandidate(applicationsCompanyList)
+    const nbApplications = applicationsCompanyList.length;
+    const nbApplicationsWaiting = applicationsCompanyList
       .filter(e => e.status_application === 'waiting')
       .length
     const idCompany = localStorage.getItem('idUser')
