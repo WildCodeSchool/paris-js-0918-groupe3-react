@@ -1,0 +1,81 @@
+.modal-signin-actived {
+  display: block;
+}
+
+.modal-signin-desactived {
+  display: none;
+}
+
+.ModalSignIn {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 1;
+  top: 0;
+  min-height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.ModalSignIn .modal-single {
+  z-index: 2;
+  background: white;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 0 5px #aaa;
+          box-shadow: 2px 0 5px #aaa;
+}
+
+.ModalSignIn .modal-single h3, .ModalSignIn .modal-single h5 {
+  color: #64C4D9;
+}
+
+.ModalSignIn .modal-single span {
+  color: #64C4D9;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+.ModalSignIn .modal-single .close span {
+  font-size: 1.5em;
+}
+
+.ModalSignIn .modal-single input {
+  width: 90%;
+  padding: 5px;
+  border: 1px solid #64C4D9;
+  border-radius: 3px;
+}
+
+.ModalSignIn .modal-single input:focus {
+  outline: none;
+}
+
+.ModalSignIn .modal-single input::-webkit-input-placeholder {
+  font-size: 0.85em;
+}
+
+.ModalSignIn .modal-single input:-ms-input-placeholder {
+  font-size: 0.85em;
+}
+
+.ModalSignIn .modal-single input::-ms-input-placeholder {
+  font-size: 0.85em;
+}
+
+.ModalSignIn .modal-single input::placeholder {
+  font-size: 0.85em;
+}
+
+.ModalSignIn .modal-single .msgErreurConnexion {
+  font-size: 12px;
+  font-weight: 900;
+  color: #F49754;
+}
+/*# sourceMappingURL=ModalSignIn.css.map */

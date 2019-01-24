@@ -8,7 +8,7 @@ const token = localStorage.getItem("token");
 
 
 export const getCompanyInfo = () => dispatch => {
-  const url = `${domain}api/companies`;
+  const url = `${domain}companies`;
   axios({
     method: "GET",
     url,
@@ -24,7 +24,7 @@ export const getCompanyInfo = () => dispatch => {
 };
 
 export const getOffersCompany = bool => dispatch => {
-  const url = `${domain}api/offers?is_active=${bool}`;
+  const url = `${domain}offers?is_active=${bool}`;
   axios({
     method: "GET",
     url,
@@ -40,7 +40,7 @@ export const getOffersCompany = bool => dispatch => {
 };
 
 export const getApplicationsOnOffers = (id) => (dispatch) => {
-  const url = `${domain}api/offers/${id}/applications`;
+  const url = `${domain}offers/${id}/applications`;
   axios({
     method: 'GET',
     url,
@@ -57,7 +57,7 @@ export const getApplicationsOnOffers = (id) => (dispatch) => {
 }
 
 export const putStatusApplication = (id_offers, id_candidates, status) => (dispatch) => {
-  const url = `${domain}api/applications/status`;
+  const url = `${domain}applications/status`;
   const data = {
     id_offers,
     id_candidates,

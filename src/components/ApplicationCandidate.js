@@ -21,7 +21,7 @@ class ApplicationCandidate extends Component {
     const questions = [];
     const promises = [];
     ids.forEach(id => {
-      const url = `${domain}api/questions/${id}`;
+      const url = `${domain}questions/${id}`;
       promises.push(
         axios.get(url).then(res => {
           questions.push(res.data);

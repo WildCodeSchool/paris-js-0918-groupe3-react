@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAMA,AACE,sBADoB,CACpB,EAAE,CAAA;EACA,KAAK,EAPG,OAAO;CAQhB;;AAHH,AAKE,sBALoB,CAKpB,CAAC,CAAA;EACC,KAAK,EAVE,OAAO;CAWf",
+    "sources": [
+        "CarouselCompaniesHome.scss"
+    ],
+    "names": [],
+    "file": "CarouselCompaniesHome.css"
+}

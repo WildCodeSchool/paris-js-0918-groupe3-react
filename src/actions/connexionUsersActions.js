@@ -4,7 +4,7 @@ import axios from "axios";
 const domain = process.env.REACT_APP_DOMAIN_NAME;
 
 export const getIdUser = (email, password, userType) => dispatch => {
-  const url = `${domain}api/auth/signin/${userType}`;
+  const url = `${domain}auth/signin/${userType}`;
   const body = {
     email: email,
     password: password
@@ -25,7 +25,7 @@ export const getIdUser = (email, password, userType) => dispatch => {
 };
 
 export const signUpUser = (data, userType) => dispatch => {
-  const url = `${domain}api/auth/signup/${userType}`;
+  const url = `${domain}auth/signup/${userType}`;
   const { email, password, description, name, siret, link, phone, logo } = data;
   const body = {
     email,
@@ -61,7 +61,7 @@ export const signUpUser = (data, userType) => dispatch => {
 };
 
 export const putNewPassword = (password, token) => dispatch => {
-  const url = `${domain}api/auth/newpassword`
+  const url = `${domain}auth/newpassword`
   axios.put(url, { password }, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ export const putNewPassword = (password, token) => dispatch => {
 }
 
 export const getTokenForNewPassword = (userType, email) => dispatch => {
-  const url = `${domain}api/auth/newpassword`
+  const url = `${domain}auth/newpassword`
   const body = {
     userType,
     email

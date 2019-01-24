@@ -77,7 +77,7 @@ class OfferCompany extends Component {
   getApplicationsOnOffers = id => {
     const domain = process.env.REACT_APP_DOMAIN_NAME;
     const token = localStorage.getItem("token");
-    const url = `${domain}api/offers/${id}/applications`;
+    const url = `${domain}offers/${id}/applications`;
     axios({
       method: "GET",
       url,

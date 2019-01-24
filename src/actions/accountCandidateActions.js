@@ -5,7 +5,7 @@ const domain = process.env.REACT_APP_DOMAIN_NAME;
 const token = localStorage.getItem("token");
 
 export const getCandidateInfo = () => dispatch => {
-  const url = `${domain}api/candidates`;
+  const url = `${domain}candidates`;
 
   axios({
     method: "GET",
@@ -22,7 +22,7 @@ export const getCandidateInfo = () => dispatch => {
 };
 
 export const getInfoOffersApplication = () => dispatch => {
-  const url = `${domain}api/candidates/applications`;
+  const url = `${domain}candidates/applications`;
 
   axios({
     method: "GET",
@@ -39,7 +39,7 @@ export const getInfoOffersApplication = () => dispatch => {
 };
 
 export const getAnswerCandidate = (idOffer) => dispatch => {
-  const url = `${domain}api/candidates/offer${idOffer}/answers`;
+  const url = `${domain}candidates/offer${idOffer}/answers`;
 
   axios({
     method: "GET",
