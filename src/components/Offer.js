@@ -108,7 +108,12 @@ class Offer extends Component {
               <div className="col-12 col-md-10 offset-md-2">
                 <div className="row align-items-center">
                   <div className="col-auto">
-                    <img src={logoCompany} className="logoCompany" alt="logo" />
+                    <img
+                      // src={`${process.env.REACT_APP_DOMAIN_PUBLIC}` + data.logo}
+                      src={logoCompany}
+                      className="logoCompany"
+                      alt="logo"
+                    />
                   </div>
                   <div className="col">
                     <div className="row">

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import { getCompanyInfo } from "../actions/accountCompanyActions";
 
-import logoCompany from "../images/Icone_ALGO.png";
 import iconEdit from "../images/icons/iconEdit.png";
 
 import "./css/CompanyInfo.scss";
@@ -14,7 +13,9 @@ class CompanyInfo extends Component {
   }
 
   render() {
-    const { name, description, email, siret, link } = this.props.companyInfo;
+    const { name, description, email, siret, link, logo } = this.props.companyInfo;
+    console.log(`${process.env.REACT_APP_DOMAIN_PUBLIC}`+logo);
+
     return (
       <div className="CompanyInfo">
         <div className="container p-3">
@@ -30,9 +31,9 @@ class CompanyInfo extends Component {
           </div>
           <div className="row align-items-center infosDetail">
             <div className="col-4 col-md-2 text-right p-0">
-              <img src={logoCompany} className="logoCompany" alt="logo" />
+              <img src={`${process.env.REACT_APP_DOMAIN_PUBLIC}`+logo} className="logoCompany" alt="logo" />
             </div>
-            <div className="col-8 col-md-4 text-center">
+            <div className="col-8 col-md-5 text-center">
               <p className="m-1">
                 <b>E-mail : </b>
                 {email}
@@ -46,7 +47,7 @@ class CompanyInfo extends Component {
                 {siret}
               </p>
             </div>
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-md-5">
               <p className="descriptionResume m-1">
                 <b>Description : </b>
                 {description}
