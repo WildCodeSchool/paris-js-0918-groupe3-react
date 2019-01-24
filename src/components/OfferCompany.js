@@ -89,7 +89,6 @@ class OfferCompany extends Component {
       this.setState({
         applicationsCompanyList: sortApplicationsByCandidate(res.data)
       });
-      console.log('offerCompany',id,this.state.applicationsCompanyList)
     });
   };
 

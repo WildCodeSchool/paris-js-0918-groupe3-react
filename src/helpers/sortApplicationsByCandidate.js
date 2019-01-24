@@ -8,7 +8,7 @@ const sortApplicationsByCandidate = (arr) => {
         const arrQR = arrFiltered.reduce((c, e) => {
             const obj = {}
             obj.question = e.question_text
-            obj.reponse = e.answers_text
+            obj.reponse = e.answer_text
             c.push(obj)
             return c
         }, [])

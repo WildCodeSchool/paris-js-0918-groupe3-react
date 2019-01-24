@@ -23,7 +23,6 @@ class Applications extends Component {
     const applicationById = sortApplicationsByCandidate(
       this.props.applicationsCompany
     );
-    console.log('Applications', applicationById)
     return (
       <div className="Applications container p-4 mt-5 mb-5">
         <div className="row">
