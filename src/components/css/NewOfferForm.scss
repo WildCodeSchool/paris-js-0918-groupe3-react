@@ -25,8 +25,33 @@ $LightGrey: lightGrey;
         margin: 10px;
     }
 
-    input,
-    textarea {
+    .NewOfferForm_field_contactType {
+        select {
+            /* Arrow */
+            background-image: url("../../images/icons/iconDoubleArrow.png");
+            background-size: 15px;
+            background-position: right 5px top 50%;
+            background-repeat: no-repeat;
+            background-color: #FFF;
+            /**/
+            color: $MainGrey;
+            height: 45px;
+            width: 30%;
+            border: 1px solid $MainBlue;
+            font-size: 12px;
+            border-radius: 3px;
+            appearance: none;
+            cursor: pointer;
+            padding: 10px;
+
+            &:focus {
+                outline-style: none;
+            }
+        }
+    }
+
+    input {
+        font-size: 12px;
         border: 1px solid$MainBlue;
         border-radius: 3px;
         width: 100%;
@@ -44,11 +69,6 @@ $LightGrey: lightGrey;
 .NewOfferForm_field_place,
 .NewOfferForm_field_description {
     width: 100%;
-}
-
-.NewOfferForm_field_description {
-    height: 50vh;
-    resize: none;
 }
 
 .NewOfferForm_field_online {

@@ -8,7 +8,9 @@ import {
   getApplicationDescription,
   postApplication
 } from "../actions/applicationActions";
+
 import OrangeButton from "./OrangeButton";
+import DraftAnswerApplication from "./DraftDescriptionOffer";
 
 import "./css/AnswersApplication.scss";
 
@@ -17,6 +19,11 @@ class AnswersApplication extends Component {
     text: "",
     redirection: false,
     redirectionCandidateAccount: false
+  };
+
+  componentDidMount = () => {
+    this.props.getApplicationDescription(this.props.match.params.idOffer);
+    this.props.getQuestion(this.props.match.params.idQuestion);
   };
 
   handleSubmit = async e => {
@@ -36,6 +43,7 @@ class AnswersApplication extends Component {
     } else {
       await this.props.postApplication(idOffer, 1);
       this.setState({ redirectionCandidateAccount: true });
+      window.location.reload();
     }
   };
 
@@ -44,9 +52,8 @@ class AnswersApplication extends Component {
     this.setState({ text: e.target.value });
   };
 
-  componentDidMount = () => {
-    this.props.getApplicationDescription(this.props.match.params.idOffer);
-    this.props.getQuestion(this.props.match.params.idQuestion);
+  handleLegacyHtml = text => {
+    this.setState({ text });
   };
 
   render() {
@@ -68,7 +75,7 @@ class AnswersApplication extends Component {
           <div className="col-12 p-3">
             {arrQ && (
               <span className="infoTitle">
-                <b>Question {parseInt(answersRank)+1}</b>
+                <b>Question {parseInt(answersRank) + 1}</b>
               </span>
             )}
             <p>{questionText}</p>
@@ -76,12 +83,9 @@ class AnswersApplication extends Component {
           <div className="col-12">
             <form onSubmit={this.handleSubmit} method="POST">
               <div className="row">
-                <div className="col-12 col-md-10 offset-md-1 text-center mt-3">
-                  <textarea
-                    type="text"
-                    name="answer"
-                    placeholder="Votre réponse..."
-                    onChange={this.handleChange}
+                <div className="col-12 col-md-10 offset-md-1 mt-3">
+                  <DraftAnswerApplication
+                    handleLegacyHtml={this.handleLegacyHtml}
                   />
                 </div>
                 <div className="col-12 col-md-10 offset-md-1 text-right">

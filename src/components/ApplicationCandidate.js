@@ -66,11 +66,11 @@ class ApplicationCandidate extends Component {
             <h4>{title}</h4>
           </div>
           <div className="col-12">
-            <div className="offerDescription">
+            <div className="offerDescription ">
               <span className="infoTitle">
                 <b>Description de l'offre : </b>
               </span>{" "}
-              <p className="p-3">{description}</p>
+              <span dangerouslySetInnerHTML={{ __html: description }} />
             </div>
           </div>
           <div className="col-12">
