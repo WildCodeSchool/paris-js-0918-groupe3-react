@@ -154,7 +154,7 @@ class NewOfferForm extends Component {
                   <Toggle
                     className="customToggleOrange"
                     name="is_published"
-                    defaultChecked={false}
+                    defaultChecked={true}
                     icons={false}
                     onChange={this.handleBoxChange}
                   />
