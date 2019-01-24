@@ -152,7 +152,7 @@ class Offer extends Component {
                 className="collapse col-12 col-md-9 offset-md-3 text-justify descriptionCompleteOffer"
                 id={"A" + data.id}
               >
-                <span dangerouslySetInnerHTML={{ __html: data.description }} />
+                <p dangerouslySetInnerHTML={{ __html: data.description }} />
                 {/* <p>{data.description}</p> */}
                 {origin === "home" &&
                   localStorage.getItem("userType") === "candidates" && (
