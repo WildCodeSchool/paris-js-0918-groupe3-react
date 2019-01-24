@@ -99,6 +99,8 @@ class Offer extends Component {
   render() {
     const { data, origin } = this.props;
     const { showElement, contentDescription } = this.state;
+    console.log(data);
+
 
     return (
       <div className="Offer container">
@@ -109,8 +111,8 @@ class Offer extends Component {
                 <div className="row align-items-center">
                   <div className="col-auto">
                     <img
-                      // src={`${process.env.REACT_APP_DOMAIN_PUBLIC}` + data.logo}
-                      src={logoCompany}
+                      src={`${process.env.REACT_APP_DOMAIN_PUBLIC}` + data.logo}
+                      // src={logoCompany}
                       className="logoCompany"
                       alt="logo"
                     />
