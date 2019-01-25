@@ -12,12 +12,28 @@ class NewQuestion extends Component {
 
   handleChange = e => {
     this.setState({
-      newQuestion: e.target.value
+      newQuestion: e.target.value,
+      showMsgFieldEmpty: false
     });
   };
 
-  render() {
+  handleCheckField = () => {
     const { newQuestion } = this.state;
+    if (newQuestion.length !== 0) {
+      this.props.postNewQuestion(newQuestion);
+      this.setState({
+        newQuestion: "",
+      });
+    } else {
+      this.setState({
+        showMsgFieldEmpty: true
+      });
+    }
+  };
+
+  render() {
+    const { newQuestion, showMsgFieldEmpty } = this.state;
+    console.log(newQuestion);
     return (
       <div className="NewQuestion">
         <div className="row align-items-center mt-3">
@@ -27,26 +43,28 @@ class NewQuestion extends Component {
               onChange={this.handleChange}
               placeholder="Ajouter une question..."
             />
-            {/* <button onClick={() => this.props.postNewQuestion(newQuestion)}>
-          &nbsp;+&nbsp;
-        </button> */}
           </div>
           <div className="col-2 col-md-1">
-            <img
-              src={iconAdd}
-              alt=""
-              onClick={() => this.props.postNewQuestion(newQuestion)}
-            />
+            <img src={iconAdd} alt="" onClick={this.handleCheckField} />
           </div>
         </div>
-        <div className="row justify-content-start align-items-center mb-3">
+        {showMsgFieldEmpty && (
+          <div className="row">
+            <div className="col msgFieldempty">
+              <p>
+                Veuillez remplir le champ avant de poster une nouvelle question
+              </p>
+            </div>
+          </div>
+        )}
+        {/* <div className="row justify-content-start align-items-center mb-3">
           <div className="col-1 p-0">
             <input type="checkbox" name="" value="" />
           </div>
           <div className="col-auto ">
             <span className="align-middle">Joindre un fichier</span>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
