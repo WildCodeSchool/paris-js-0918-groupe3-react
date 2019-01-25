@@ -51,18 +51,18 @@ $LightGrey: lightGrey;
   }
 
   .logoCompany {
-    width: 50px;
+    width: 70px;
 
     @include media-breakpoint-down(md) {
-      width: 45px;
+      width: 55px;
     }
 
     @include media-breakpoint-down(sm) {
-      width: 35px;
+      width: 45px;
     }
 
     @include media-breakpoint-down(xs) {
-      width: 30px;
+      width: 40px;
     }
   }
 
