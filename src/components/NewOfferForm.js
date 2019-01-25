@@ -95,6 +95,7 @@ class NewOfferForm extends Component {
                     id="title"
                     placeholder="Ex: Développeur Web"
                     onChange={this.handleChange}
+                    required
                   />
                 </div>
               </div>
@@ -111,6 +112,7 @@ class NewOfferForm extends Component {
                     list="cities"
                     placeholder="Ex: Paris"
                     onChange={this.handleChange}
+                    required
                   />
                   <datalist id="cities">
                     {citiesList.length &&
@@ -131,6 +133,7 @@ class NewOfferForm extends Component {
                     name="contract_type"
                     id="contract_type"
                     onChange={this.handleChange}
+                    required
                   >
                     <option>CDI</option>
                     <option>CDD</option>

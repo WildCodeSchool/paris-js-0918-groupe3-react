@@ -39,6 +39,11 @@ $LightGrey: lightGrey;
         width: 40px;
     }
 
+    .msgFieldempty{
+        font-size: 12px;
+        color: $MainOrange;
+    }
+
     input[type=checkbox] {
         transform: scale(1.4);
     }
