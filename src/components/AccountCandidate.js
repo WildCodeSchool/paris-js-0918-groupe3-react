@@ -82,8 +82,8 @@ class AccountCandidate extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 const mapStateToProps = state => ({
   listOfCandidatesApplications:
