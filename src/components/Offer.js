@@ -109,7 +109,6 @@ class Offer extends Component {
                   <div className="col-auto">
                     <img
                       src={`${process.env.REACT_APP_DOMAIN_PUBLIC}` + data.logo}
-                      // src={logoCompany}
                       className="logoCompany"
                       alt="logo"
                     />
