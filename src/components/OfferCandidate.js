@@ -94,6 +94,8 @@ class OfferCandidate extends Component {
   render() {
     const { data, id } = this.props;
     const { showElement, redirectionAnswersCandidate } = this.state;
+    console.log(data);
+
     if (redirectionAnswersCandidate)
       return <Redirect to={`/candidates/answers/offer${id}`} />;
     return (
@@ -103,9 +105,14 @@ class OfferCandidate extends Component {
             <div className="row align-items-center">
               <div className="col-auto">
                 <div className="row">
-                  <div className="col">
+                  <div className="col-auto">
                     <h6>
                       <b>{`${data.title}`}</b>
+                    </h6>
+                  </div>
+                  <div className="col-auto ">
+                    <h6 className="nameCompany">
+                      <span>{`${data.companyName}`}</span>
                     </h6>
                   </div>
                 </div>
