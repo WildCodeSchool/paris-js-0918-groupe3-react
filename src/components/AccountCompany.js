@@ -66,8 +66,8 @@ class AccountCompany extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 const mapStateToProps = state => ({
   offersList: state.accountCompany.offersList
