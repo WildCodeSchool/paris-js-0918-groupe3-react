@@ -56,7 +56,7 @@ class HowPage extends Component {
               </div>
               <div className="row p-2">
                 <p>
-                  3) Votre passion, c’est l’aménagement d’intérieur. Vous
+                  Votre passion, c’est l’aménagement d’intérieur. Vous
                   postulez auprès d’une chaîne de grande distribution qui
                   cherche à réaménager ses magasins. En plus de répondre à notre
                   questionnaire, vous réalisez un{" "}
