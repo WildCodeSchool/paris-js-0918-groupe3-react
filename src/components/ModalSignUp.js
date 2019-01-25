@@ -101,7 +101,7 @@ class ModalSignUp extends Component {
                       <input
                         type="password"
                         name="password"
-                        placeholder="Mot de passe"
+                        placeholder="Mot de passe (8 caractères min.)"
                         onChange={this.handleChange}
                         required
                       />
@@ -197,7 +197,7 @@ class ModalSignUp extends Component {
                       <input
                         type="password"
                         name="password"
-                        placeholder="Mot de passe"
+                        placeholder="Mot de passe (8 caractères min.)"
                         onChange={this.handleChange}
                       />
                     </div>
