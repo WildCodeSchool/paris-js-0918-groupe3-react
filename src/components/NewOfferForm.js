@@ -21,7 +21,8 @@ class NewOfferForm extends Component {
     contract_type: "CDI",
     description: "",
     is_published: false,
-    redirection: false
+    redirection: false,
+    showMsgDescriptionEmpty: false
   };
 
   handleChange = async e => {
@@ -46,15 +47,21 @@ class NewOfferForm extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    try {
-      await this.props.postNewOffer(this.state);
-      localStorage.setItem("messageToast", "offrePostee");
-      window.location.reload();
+    if (this.state.description.length !== 0) {
+      try {
+        await this.props.postNewOffer(this.state);
+        localStorage.setItem("messageToast", "offrePostee");
+        window.location.reload();
+        this.setState({
+          redirection: true
+        });
+      } catch {
+        localStorage.setItem("messageToast", "erreurOffrePostee");
+      }
+    } else {
       this.setState({
-        redirection: true
+        showMsgDescriptionEmpty: true
       });
-    } catch {
-      localStorage.setItem("messageToast", "erreurOffrePostee");
     }
   };
 
