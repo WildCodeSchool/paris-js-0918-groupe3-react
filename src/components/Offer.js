@@ -95,7 +95,7 @@ class Offer extends Component {
 
   render() {
     const { data, origin } = this.props;
-    const { showElement, contentDescription } = this.state;
+    const { showElement } = this.state;
     console.log(data);
 
 
@@ -109,7 +109,6 @@ class Offer extends Component {
                   <div className="col-auto">
                     <img
                       src={`${process.env.REACT_APP_DOMAIN_PUBLIC}` + data.logo}
-                      // src={logoCompany}
                       className="logoCompany"
                       alt="logo"
                     />
