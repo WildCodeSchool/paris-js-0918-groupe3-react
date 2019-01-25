@@ -78,8 +78,8 @@ class NewOfferForm extends Component {
         <h2>Poster une offre</h2>
         <form className="postNewOfferForm" onSubmit={this.handleSubmit}>
           <div className="col">
-            <Link to="/companies">
-              <p className="linkBack">Retourner sur mon espace</p>
+            <Link to="/companies" className="retourLink">
+              <p >Retourner sur mon espace</p>
             </Link>
           </div>
           <div className="row align-items-center mt-4 mb-4">

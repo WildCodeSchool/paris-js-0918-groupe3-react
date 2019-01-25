@@ -16,8 +16,8 @@ class AnswersCandidate extends Component {
       <div className="AnswersCandidate container p-4 mt-5 mb-5">
         <div className="row">
           <div className="col">
-            <Link to="/candidates">
-              <p className="retourLink">Retourner sur mon espace</p>
+            <Link to="/candidates" className="retourLink">
+              <p >Retourner sur mon espace</p>
             </Link>
           </div>
         </div>
