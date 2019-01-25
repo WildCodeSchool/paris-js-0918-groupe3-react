@@ -63,6 +63,11 @@ $LightGrey: lightGrey;
             color: $MainGrey;
         }
     }
+
+    .msgFieldempty{
+        font-size: 12px;
+        color: $MainOrange;
+    }
 }
 
 .NewOfferForm_field_title,

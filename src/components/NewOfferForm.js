@@ -71,6 +71,7 @@ class NewOfferForm extends Component {
 
   render() {
     const { citiesList } = this.props;
+    const { showMsgDescriptionEmpty } = this.state;
     if (this.state.redirection) return <Redirect to="/companies" />;
     return (
       <div className="NewOfferForm container mb-5">
@@ -153,6 +154,13 @@ class NewOfferForm extends Component {
                   />
                 </div>
               </div>
+              {showMsgDescriptionEmpty && (
+                <div className="row mt-2">
+                  <div className="col msgFieldempty">
+                    <p>Veuillez remplir la description</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <NewOfferQuestions handleBoxChange={this.handleBoxChange} />
