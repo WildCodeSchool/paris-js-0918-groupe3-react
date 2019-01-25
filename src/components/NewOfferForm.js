@@ -20,7 +20,7 @@ class NewOfferForm extends Component {
     place: "",
     contract_type: "CDI",
     description: "",
-    is_published: false,
+    is_published: true,
     redirection: false,
     showMsgDescriptionEmpty: false
   };
