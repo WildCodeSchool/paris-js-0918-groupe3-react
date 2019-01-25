@@ -3,14 +3,11 @@ import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 import axios from "axios";
 import { connect } from "react-redux";
-import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from "draft-js";
-import { convertFromHTML } from "draft-convert";
 
 import iconArrow from "../images/icons/iconArrow.png";
 import iconArrowReverse from "../images/icons/iconArrowReverse.png";
 import iconStar from "../images/icons/iconStar.png";
 
-import logoCompany from "../images/LogoProvisoirOffer.png";
 import { toggleModalSignInUser } from "../actions/modalsAccountActions";
 
 import "./css/Offer.scss";
@@ -99,6 +96,8 @@ class Offer extends Component {
   render() {
     const { data, origin } = this.props;
     const { showElement, contentDescription } = this.state;
+    console.log(data);
+
 
     return (
       <div className="Offer container">
@@ -108,13 +107,23 @@ class Offer extends Component {
               <div className="col-12 col-md-10 offset-md-2">
                 <div className="row align-items-center">
                   <div className="col-auto">
-                    <img src={logoCompany} className="logoCompany" alt="logo" />
+                    <img
+                      src={`${process.env.REACT_APP_DOMAIN_PUBLIC}` + data.logo}
+                      // src={logoCompany}
+                      className="logoCompany"
+                      alt="logo"
+                    />
                   </div>
                   <div className="col">
                     <div className="row">
                       <div className="col-auto">
                         <h6 className="h-100 d-flex justify-content-center flex-column">
                           <b>{`${data.title}`}</b>
+                        </h6>
+                      </div>
+                      <div className="col-auto">
+                        <h6 className="nameCompany h-100 d-flex justify-content-center flex-column nameCompany">
+                          <span>{`${data.name}`}</span>
                         </h6>
                       </div>
                     </div>
